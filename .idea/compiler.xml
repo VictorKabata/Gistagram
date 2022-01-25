@@ -3,6 +3,7 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.7">
       <module name="Gistagram.app" target="11" />
+      <module name="Gistagram.data.network" target="11" />
       <module name="Gistagram.data.repository" target="11" />
     </bytecodeTargetLevel>
   </component>
