@@ -1,4 +1,4 @@
-package com.vickikbt.gistagram
+package com.vickikbt.gistagram.ui.activity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -11,28 +11,30 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.vickikbt.gistagram.ui.theme.GistagramTheme
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             GistagramTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+                Surface(color = MaterialTheme.colors.surface) {
+                    MainScreen()
                 }
             }
         }
     }
+
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+fun MainScreen() {
+
 }
+
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     GistagramTheme {
-        Greeting("Android")
+
     }
 }
