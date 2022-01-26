@@ -74,7 +74,7 @@ dependencies {
     implementation "io.insert-koin:koin-androidx-compose:$koin_version"
 
     //Apollo
-    implementation "com.apollographql.apollo3:apollo-runtime:$apollo_version"
+    implementation "com.apollographql.apollo:apollo-runtime-kotlin:$apollo_version"
 
     //Accompanist Libs
     implementation "com.google.accompanist:accompanist-navigation-animation:$accompanist_version"
