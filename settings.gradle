@@ -8,6 +8,3 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Gistagram"
 include ':app'
-include ':domain'
-include ':data:repository'
-include ':data:network'

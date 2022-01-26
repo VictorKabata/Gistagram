@@ -4,15 +4,28 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.vickikbt.gistagram.R
 
-sealed class NavigationItem(val route: String, @StringRes title: Int, @DrawableRes icon: Int?) {
-    object Auth : NavigationItem("auth", R.string.app_name, null)
+sealed class NavigationItem(
+    val route: String,
+    @StringRes val title: Int,
+    @DrawableRes val icon: Int?,
+    val profilePicture: String? = null
+) {
+    object Auth : NavigationItem("login", R.string.title_login, null)
 
-    object Home : NavigationItem("home", R.string.app_name, null)
-    object Search : NavigationItem("search", R.string.app_name, null)
-    object Notifications : NavigationItem("notifications", R.string.app_name, null)
-    object Profile : NavigationItem("profile", R.string.app_name, null)
-    object Settings : NavigationItem("settings", R.string.app_name, null)
+    object Home : NavigationItem("home", R.string.title_home, R.drawable.ic_home)
+    object Search : NavigationItem("search", R.string.title_search, R.drawable.ic_search)
+    object Notifications :
+        NavigationItem("notifications", R.string.title_notifications, R.drawable.ic_heart)
 
-    object Issues : NavigationItem("issues", R.string.app_name, null)
-    object Mentions : NavigationItem("mentions", R.string.app_name, null)
+    object Profile : NavigationItem(
+        "profile",
+        R.string.title_profile,
+        null,
+        "https://image.tmdb.org/t/p/original//1Rr5SrvHxMXHu5RjKpaMba8VTzi.jpg"
+    )
+
+    object Settings : NavigationItem("settings", R.string.title_settings, R.drawable.ic_settings)
+
+    object Issues : NavigationItem("issues", R.string.title_issues, null)
+    object Mentions : NavigationItem("mentions", R.string.title_mentions, null)
 }

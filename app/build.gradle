@@ -69,8 +69,20 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
     implementation 'androidx.activity:activity-compose:1.4.0'
 
+    //Accompanist Libs
+    implementation "com.google.accompanist:accompanist-navigation-animation:$accompanist_version"
+
     //Splash Screen API
     implementation "androidx.core:core-splashscreen:$splash_screen_version"
+
+    //Timber-Logging
+    implementation "com.jakewharton.timber:timber:$timber_version"
+
+    //Compose Navigation-Navigation between various screens
+    implementation "androidx.navigation:navigation-compose:$navigation_version"
+
+    //Coil-Image Loader
+    implementation "io.coil-kt:coil-compose:$coil_version"
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
