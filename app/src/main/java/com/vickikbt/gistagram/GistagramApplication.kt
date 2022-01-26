@@ -4,6 +4,7 @@ import android.app.Application
 import com.vickikbt.gistagram.di.cacheModule
 import com.vickikbt.gistagram.di.networkModule
 import com.vickikbt.gistagram.di.presentationModule
+import com.vickikbt.gistagram.di.repositoryModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -22,7 +23,7 @@ class GistagramApplication : Application() {
 
     private fun initKoin() {
         startKoin {
-            val modules = listOf(cacheModule, networkModule, presentationModule)
+            val modules = listOf(cacheModule, networkModule, repositoryModule, presentationModule)
 
             androidLogger(Level.NONE)
             androidContext(this@GistagramApplication)
