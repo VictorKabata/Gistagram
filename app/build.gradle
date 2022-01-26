@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id("com.apollographql.apollo").version("2.4.0")
 }
 
 android {
@@ -25,6 +27,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -53,6 +56,10 @@ android {
 
 }
 
+apollo {
+    generateKotlinModels.set(true)
+}
+
 dependencies {
 
     implementation "androidx.core:core-ktx:$androidCore_version"
@@ -73,8 +80,13 @@ dependencies {
     implementation "io.insert-koin:koin-android:$koin_version"
     implementation "io.insert-koin:koin-androidx-compose:$koin_version"
 
+    //OkHttp
+    implementation "com.squareup.okhttp3:okhttp:5.0.0-alpha.2"
+    implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2"
+
     //Apollo
-    implementation "com.apollographql.apollo:apollo-runtime-kotlin:$apollo_version"
+    implementation "com.apollographql.apollo:apollo-runtime:$apollo_version"
+    implementation "com.apollographql.apollo:apollo-coroutines-support:$apollo_version"
 
     //Accompanist Libs
     implementation "com.google.accompanist:accompanist-navigation-animation:$accompanist_version"

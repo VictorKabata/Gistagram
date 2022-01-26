@@ -37,7 +37,7 @@ buildscript {
         room_version = "2.4.0-alpha02"
         datastore_version = "1.0.0"
         retrofit_version = '2.9.0'
-        apollo_version = "2.5.8"
+        apollo_version = "2.4.0"
         okhttp_vesion = "4.8.0"
         loggingIntercepter_version = "4.7.2"
 
