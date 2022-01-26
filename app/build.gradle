@@ -69,6 +69,13 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
     implementation 'androidx.activity:activity-compose:1.4.0'
 
+    //Koin-Dependency injection
+    implementation "io.insert-koin:koin-android:$koin_version"
+    implementation "io.insert-koin:koin-androidx-compose:$koin_version"
+
+    //Apollo
+    implementation "com.apollographql.apollo3:apollo-runtime:$apollo_version"
+
     //Accompanist Libs
     implementation "com.google.accompanist:accompanist-navigation-animation:$accompanist_version"
 
