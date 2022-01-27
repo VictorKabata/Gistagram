@@ -95,6 +95,9 @@ dependencies {
     //Splash Screen API
     implementation "androidx.core:core-splashscreen:$splash_screen_version"
 
+    //Coil-Image Loader
+    implementation "io.coil-kt:coil-compose:$coil_version"
+
     //Timber-Logging
     implementation "com.jakewharton.timber:timber:$timber_version"
 

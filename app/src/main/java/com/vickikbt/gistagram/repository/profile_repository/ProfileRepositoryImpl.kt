@@ -5,9 +5,9 @@ import com.apollographql.apollo.api.Input
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.coroutines.await
 import com.vickikbt.gistagram.UserProfileQuery
+import com.vickikbt.gistagram.utils.safeApiCall
 
-class ProfileRepositoryImpl constructor(private val apolloClient: ApolloClient) :
-    ProfileRepository {
+class ProfileRepositoryImpl constructor(private val apolloClient: ApolloClient) : ProfileRepository {
 
     override suspend fun getLoggedInUserProfile(login: String): Response<UserProfileQuery.Data> {
         return apolloClient.query(
