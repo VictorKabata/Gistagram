@@ -15,4 +15,9 @@
     <string name="following">Following</string>
     <string name="username">Username</string>
     <string name="bio">Bio</string>
+    <string name="location">Location</string>
+    <string name="company">Company</string>
+    <string name="email">Email</string>
+    <string name="website">Website</string>
+    <string name="twitter_username">Twitter Username</string>
 </resources>

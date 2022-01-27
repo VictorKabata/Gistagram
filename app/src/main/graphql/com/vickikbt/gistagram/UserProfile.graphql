@@ -8,8 +8,11 @@ query UserProfileQuery($login: String!, $organizationsCount: Int, $pinnedReposCo
     bio
     company
     location
+    twitterUsername
+    isFollowingViewer
     isViewer
     isCampusExpert
+    websiteUrl
     organizations(first: $organizationsCount) {
       nodes {
         id
@@ -89,6 +92,6 @@ query UserProfileQuery($login: String!, $organizationsCount: Int, $pinnedReposCo
     following {
       totalCount
     }
-    isFollowingViewer
+    createdAt
   }
 }

@@ -4,13 +4,18 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Projects/Kotlin/Gistagram/app/src/main/res/drawable-night/ic_logo.xml" value="0.25462962962962965" />
+        <entry key="..\:/Projects/Kotlin/Gistagram/app/src/main/res/drawable/ic_email.xml" value="0.2361111111111111" />
         <entry key="..\:/Projects/Kotlin/Gistagram/app/src/main/res/drawable/ic_heart.xml" value="0.2518518518518518" />
         <entry key="..\:/Projects/Kotlin/Gistagram/app/src/main/res/drawable/ic_home.xml" value="0.2518518518518518" />
+        <entry key="..\:/Projects/Kotlin/Gistagram/app/src/main/res/drawable/ic_link.xml" value="0.2361111111111111" />
         <entry key="..\:/Projects/Kotlin/Gistagram/app/src/main/res/drawable/ic_logo.xml" value="0.25462962962962965" />
         <entry key="..\:/Projects/Kotlin/Gistagram/app/src/main/res/drawable/ic_mentions.xml" value="0.2518518518518518" />
+        <entry key="..\:/Projects/Kotlin/Gistagram/app/src/main/res/drawable/ic_orgainization.xml" value="0.2361111111111111" />
+        <entry key="..\:/Projects/Kotlin/Gistagram/app/src/main/res/drawable/ic_place.xml" value="0.2361111111111111" />
         <entry key="..\:/Projects/Kotlin/Gistagram/app/src/main/res/drawable/ic_plus.xml" value="0.2518518518518518" />
         <entry key="..\:/Projects/Kotlin/Gistagram/app/src/main/res/drawable/ic_profile.xml" value="0.2518518518518518" />
         <entry key="..\:/Projects/Kotlin/Gistagram/app/src/main/res/drawable/ic_search.xml" value="0.2518518518518518" />
+        <entry key="..\:/Projects/Kotlin/Gistagram/app/src/main/res/drawable/ic_twitter.xml" value="0.2361111111111111" />
       </map>
     </option>
   </component>

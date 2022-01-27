@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -18,6 +19,7 @@ import coil.compose.rememberImagePainter
 import com.vickikbt.gistagram.R
 import com.vickikbt.gistagram.UserProfileQuery
 import com.vickikbt.gistagram.ui.components.ItemCircleImage
+import com.vickikbt.gistagram.ui.components.profile.ItemBioText
 import com.vickikbt.gistagram.ui.components.profile.ProfileAppBar
 import com.vickikbt.gistagram.ui.components.profile.ProfileStats
 import org.koin.androidx.compose.getViewModel
@@ -99,6 +101,7 @@ fun BioSection(user: UserProfileQuery.User?) {
         verticalArrangement = Arrangement.Center
     ) {
 
+        //region Username
         Text(
             text = user?.name ?: stringResource(R.string.username),
             style = MaterialTheme.typography.h5,
@@ -109,17 +112,61 @@ fun BioSection(user: UserProfileQuery.User?) {
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
         )
+        //endregion
 
         Spacer(modifier = Modifier.height(3.dp))
 
+        //region Bio
         Text(
             modifier = Modifier.padding(end = 16.dp),
             text = user?.bio ?: stringResource(R.string.bio),
             style = MaterialTheme.typography.body1,
             color = MaterialTheme.colors.onSurface,
-            fontSize = 13.sp,
+            fontSize = 14.sp,
             letterSpacing = letterSpacing
         )
+        //endregion
+
+        Spacer(modifier = Modifier.height(3.dp))
+
+        //region Location and Company
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(end = 16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Start
+        ) {
+            ItemBioText(
+                imageRes = R.drawable.ic_location,
+                text = user?.location ?: stringResource(R.string.location)
+            )
+            Spacer(modifier = Modifier.width(5.dp))
+            ItemBioText(
+                imageRes = R.drawable.ic_orgainization,
+                text = user?.company ?: stringResource(R.string.company)
+            )
+        }
+        //endregion
+
+        Spacer(modifier = Modifier.height(3.dp))
+
+        //region Personal Website
+        ItemBioText(
+            textColor = colorResource(id = R.color.link_color),
+            imageRes = R.drawable.ic_website,
+            text = user?.websiteUrl?.toString() ?: stringResource(R.string.website)
+        )
+        //endregion
+
+        Spacer(modifier = Modifier.height(3.dp))
+
+        //region Twitter Username
+        ItemBioText(
+            imageRes = R.drawable.ic_twitter,
+            text = user?.twitterUsername ?: stringResource(R.string.twitter_username)
+        )
+        //endregion
 
     }
 }
