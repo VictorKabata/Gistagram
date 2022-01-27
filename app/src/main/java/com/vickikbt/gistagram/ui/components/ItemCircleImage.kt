@@ -26,7 +26,7 @@ fun ItemCircleImage(
             .padding(3.dp)
             .clip(CircleShape)
             .aspectRatio(1f, matchHeightConstraintsFirst = true)
-            .border(width = 1.dp, color = borderColor ?: Color.Gray, shape = CircleShape),
+            .border(width = 2.dp, color = borderColor ?: Color.Gray, shape = CircleShape),
         painter = image,
         contentDescription = contentDescription,
         contentScale = ContentScale.Crop

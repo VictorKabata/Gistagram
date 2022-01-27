@@ -52,35 +52,43 @@ query UserProfileQuery($login: String!, $organizationsCount: Int, $pinnedReposCo
       }
     }
     repositories(first: $reposCount, isFork: $isFork) {
+      totalCount
       nodes {
         id
-          name
-          createdAt
-          description
-          stargazerCount
-          isPrivate
-          isFork
-          forkCount
-          url
-          viewerHasStarred
-          resourcePath
-          owner {
-            ... on User {
-              id
-              avatarUrl
-              login
-              name
-            }
+        name
+        createdAt
+        description
+        stargazerCount
+        isPrivate
+        isFork
+        forkCount
+        url
+        viewerHasStarred
+        resourcePath
+        owner {
+          ... on User {
+            id
+            avatarUrl
+            login
+            name
           }
-          languages(first: $languagesCount) {
-            totalCount
-            nodes {
-              id
-              name
-              color
-            }
+        }
+        languages(first: $languagesCount) {
+          totalCount
+          nodes {
+            id
+            name
+            color
           }
+        }
       }
     }
+    followers {
+      totalCount
+    }
+    following {
+      totalCount
+    }
+    isFollowingViewer
   }
 }

@@ -7,7 +7,7 @@
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="colorOnSecondary">@color/black</item>
 
-        <item name="colorSurface">@color/colorPrimary</item>
+        <item name="colorOnBackground">@color/black</item>
 
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
