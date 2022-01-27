@@ -20,4 +20,6 @@
     <string name="email">Email</string>
     <string name="website">Website</string>
     <string name="twitter_username">Twitter Username</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="add_user">Add user</string>
 </resources>

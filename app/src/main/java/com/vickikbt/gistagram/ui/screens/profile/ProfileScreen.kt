@@ -1,7 +1,11 @@
 package com.vickikbt.gistagram.ui.screens.profile
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -9,6 +13,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -72,7 +77,8 @@ private fun StatSection(user: UserProfileQuery.User?) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 20.dp),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         ItemCircleImage(
             modifier = Modifier
@@ -81,8 +87,6 @@ private fun StatSection(user: UserProfileQuery.User?) {
             image = userProfilePainter,
             contentDescription = stringResource(R.string.profile_picture)
         )
-
-        Spacer(modifier = Modifier.width(16.dp))
 
         ProfileStats(modifier = Modifier.weight(7f), user = user)
     }
@@ -98,7 +102,7 @@ fun BioSection(user: UserProfileQuery.User?) {
             .fillMaxWidth()
             .padding(horizontal = 16.dp),
         horizontalAlignment = Alignment.Start,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
 
         //region Username
@@ -114,8 +118,6 @@ fun BioSection(user: UserProfileQuery.User?) {
         )
         //endregion
 
-        Spacer(modifier = Modifier.height(3.dp))
-
         //region Bio
         Text(
             modifier = Modifier.padding(end = 16.dp),
@@ -126,8 +128,6 @@ fun BioSection(user: UserProfileQuery.User?) {
             letterSpacing = letterSpacing
         )
         //endregion
-
-        Spacer(modifier = Modifier.height(3.dp))
 
         //region Location and Company
         Row(
@@ -149,8 +149,6 @@ fun BioSection(user: UserProfileQuery.User?) {
         }
         //endregion
 
-        Spacer(modifier = Modifier.height(3.dp))
-
         //region Personal Website
         ItemBioText(
             textColor = colorResource(id = R.color.link_color),
@@ -159,14 +157,56 @@ fun BioSection(user: UserProfileQuery.User?) {
         )
         //endregion
 
-        Spacer(modifier = Modifier.height(3.dp))
-
         //region Twitter Username
         ItemBioText(
             imageRes = R.drawable.ic_twitter,
             text = user?.twitterUsername ?: stringResource(R.string.twitter_username)
         )
         //endregion
+
+        Spacer(modifier = Modifier.height(4.dp))
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+
+            Button(
+                onClick = { },
+                modifier = Modifier.weight(8f),
+                border = BorderStroke(width = 1.dp, color = MaterialTheme.colors.onSurface),
+                contentPadding = PaddingValues(vertical = 8.dp),
+                shape = RoundedCornerShape(4.dp)
+            ) {
+                Text(
+                    modifier = Modifier,
+                    text = stringResource(R.string.edit_profile),
+                    color = MaterialTheme.colors.onSurface,
+                    fontSize = 12.sp,
+                    style = MaterialTheme.typography.h4
+                )
+            }
+
+            Spacer(modifier = Modifier.width(6.dp))
+
+            Button(
+                onClick = { },
+                modifier = Modifier
+                    .wrapContentSize()
+                    .weight(1f),
+                border = BorderStroke(width = 1.dp, color = MaterialTheme.colors.onSurface),
+                contentPadding = PaddingValues(vertical = 8.dp),
+                shape = RoundedCornerShape(4.dp)
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_add_user),
+                    contentDescription = stringResource(R.string.add_user),
+                    modifier = Modifier.size(18.dp)
+                )
+            }
+
+        }
 
     }
 }
