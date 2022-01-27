@@ -1,6 +1,8 @@
 package com.vickikbt.gistagram.ui.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -39,7 +41,7 @@ fun BottomNavBar(
             modifier = Modifier.fillMaxWidth(),
             backgroundColor = Color.Transparent,
             elevation = 0.dp,
-            contentColor = MaterialTheme.colors.onSurface
+            contentColor = MaterialTheme.colors.onBackground
         ) {
             bottomNavItems.forEach { item ->
                 val isSelected = item.route == backStackEntryState.value?.destination?.route
@@ -59,7 +61,8 @@ fun BottomNavBar(
 
                 BottomNavigationItem(
                     icon = {
-                        Icon(
+                        Image(
+                            modifier = Modifier.size(24.dp),
                             painter = bottomNavPainter,
                             contentDescription = stringResource(id = item.title)
                         )

@@ -21,7 +21,7 @@ sealed class NavigationItem(
         "profile",
         R.string.title_profile,
         null,
-        "https://image.tmdb.org/t/p/original//1Rr5SrvHxMXHu5RjKpaMba8VTzi.jpg"
+        "https://avatars.githubusercontent.com/u/39780120?u=bb50900c4214570b711aca1da85a84209b79fed0&v=4"
     )
 
     object Settings : NavigationItem("settings", R.string.title_settings, R.drawable.ic_settings)

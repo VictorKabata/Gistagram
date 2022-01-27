@@ -4,6 +4,8 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
@@ -25,17 +27,17 @@ import com.vickikbt.gistagram.R
 import com.vickikbt.gistagram.UserProfileQuery
 import com.vickikbt.gistagram.ui.components.ItemCircleImage
 import com.vickikbt.gistagram.ui.components.profile.ItemBioText
+import com.vickikbt.gistagram.ui.components.profile.ItemPinnedRepo
 import com.vickikbt.gistagram.ui.components.profile.ProfileAppBar
 import com.vickikbt.gistagram.ui.components.profile.ProfileStats
 import org.koin.androidx.compose.getViewModel
+import timber.log.Timber
 
 @Composable
 fun ProfileScreen(
     navController: NavController? = null,
     viewModel: ProfileViewModel = getViewModel()
 ) {
-
-    //viewModel.getLoggedInUserProfile()
 
     val userProfileResult = viewModel.userProfile.observeAsState().value
     val user = userProfileResult?.data?.data?.user
@@ -61,6 +63,11 @@ fun ProfileScreen(
             item {
                 BioSection(user = user)
             }
+
+            item {
+                Spacer(modifier = Modifier.height(18.dp))
+                PinnedRepoSection(pinnedRepo = user?.pinnedItems?.nodes)
+            }
         }
     }
 
@@ -72,6 +79,8 @@ private fun StatSection(user: UserProfileQuery.User?) {
         placeholder(R.drawable.ic_logo)
         crossfade(true)
     }
+
+    Timber.e("User image: ${user?.avatarUrl}")
 
     Row(
         modifier = Modifier
@@ -208,6 +217,22 @@ fun BioSection(user: UserProfileQuery.User?) {
 
         }
 
+    }
+}
+
+@Composable
+fun PinnedRepoSection(pinnedRepo: List<UserProfileQuery.Node2?>?) {
+    val pinnedRepoList = mutableListOf<UserProfileQuery.AsRepository?>()
+    pinnedRepo?.forEach { pinnedRepoList.add(it?.asRepository) }
+
+    LazyRow(modifier = Modifier) {
+        items(items = pinnedRepoList) { repo ->
+            ItemPinnedRepo(
+                modifier = Modifier.padding(horizontal = 6.dp),
+                onItemClicked = {},
+                pinnedRepo = repo
+            )
+        }
     }
 }
 

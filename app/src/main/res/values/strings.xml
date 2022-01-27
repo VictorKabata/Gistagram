@@ -22,4 +22,5 @@
     <string name="twitter_username">Twitter Username</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="add_user">Add user</string>
+    <string name="pinned_repo">Pinned repo</string>
 </resources>
