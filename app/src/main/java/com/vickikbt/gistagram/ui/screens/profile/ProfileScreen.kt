@@ -110,7 +110,7 @@ fun BioSection(user: UserProfileQuery.User?) {
             overflow = TextOverflow.Ellipsis,
         )
 
-        Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.height(3.dp))
 
         Text(
             modifier = Modifier.padding(end = 16.dp),
