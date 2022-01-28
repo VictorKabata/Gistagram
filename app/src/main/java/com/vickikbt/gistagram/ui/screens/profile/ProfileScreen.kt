@@ -26,10 +26,7 @@ import coil.compose.rememberImagePainter
 import com.vickikbt.gistagram.R
 import com.vickikbt.gistagram.UserProfileQuery
 import com.vickikbt.gistagram.ui.components.ItemCircleImage
-import com.vickikbt.gistagram.ui.components.profile.ItemBioText
-import com.vickikbt.gistagram.ui.components.profile.ItemPinnedRepo
-import com.vickikbt.gistagram.ui.components.profile.ProfileAppBar
-import com.vickikbt.gistagram.ui.components.profile.ProfileStats
+import com.vickikbt.gistagram.ui.components.profile.*
 import org.koin.androidx.compose.getViewModel
 import timber.log.Timber
 
@@ -67,6 +64,11 @@ fun ProfileScreen(
             item {
                 Spacer(modifier = Modifier.height(18.dp))
                 PinnedRepoSection(pinnedRepo = user?.pinnedItems?.nodes)
+            }
+
+            item {
+                Spacer(modifier = Modifier.height(14.dp))
+                RepositoriesSection()
             }
         }
     }
@@ -234,6 +236,17 @@ fun PinnedRepoSection(pinnedRepo: List<UserProfileQuery.Node2?>?) {
             )
         }
     }
+}
+
+@Composable
+fun RepositoriesSection(modifier: Modifier = Modifier) {
+
+    ProfileTabRow(modifier = Modifier) {
+        when(it){
+
+        }
+    }
+
 }
 
 @Preview

@@ -23,4 +23,6 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="add_user">Add user</string>
     <string name="pinned_repo">Pinned repo</string>
+    <string name="forks">Forks</string>
+    <string name="gists">Gists</string>
 </resources>

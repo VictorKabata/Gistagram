@@ -41,7 +41,7 @@ fun BottomNavBar(
             modifier = Modifier.fillMaxWidth(),
             backgroundColor = Color.Transparent,
             elevation = 0.dp,
-            contentColor = MaterialTheme.colors.onBackground
+            contentColor = MaterialTheme.colors.onSurface
         ) {
             bottomNavItems.forEach { item ->
                 val isSelected = item.route == backStackEntryState.value?.destination?.route
@@ -68,7 +68,7 @@ fun BottomNavBar(
                         )
                     },
                     label = { /*Text(text = stringResource(id = item.title))*/ },
-                    selectedContentColor = MaterialTheme.colors.onSurface,
+                    selectedContentColor = MaterialTheme.colors.onBackground,
                     unselectedContentColor = Color.Gray,
                     alwaysShowLabel = false,
                     selected = isSelected,
