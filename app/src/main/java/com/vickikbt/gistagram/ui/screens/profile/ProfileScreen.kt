@@ -8,9 +8,10 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,9 +28,10 @@ import com.vickikbt.gistagram.R
 import com.vickikbt.gistagram.UserProfileQuery
 import com.vickikbt.gistagram.ui.components.ItemCircleImage
 import com.vickikbt.gistagram.ui.components.profile.*
+import com.vickikbt.gistagram.ui.screens.profile.tabs.RepositoriesTab
 import org.koin.androidx.compose.getViewModel
-import timber.log.Timber
 
+@ExperimentalMaterialApi
 @Composable
 fun ProfileScreen(
     navController: NavController? = null,
@@ -68,7 +70,7 @@ fun ProfileScreen(
 
             item {
                 Spacer(modifier = Modifier.height(14.dp))
-                RepositoriesSection()
+                RepositoriesSection(repos = user?.repositories?.nodes)
             }
         }
     }
@@ -81,8 +83,6 @@ private fun StatSection(user: UserProfileQuery.User?) {
         placeholder(R.drawable.ic_logo)
         crossfade(true)
     }
-
-    Timber.e("User image: ${user?.avatarUrl}")
 
     Row(
         modifier = Modifier
@@ -238,17 +238,24 @@ fun PinnedRepoSection(pinnedRepo: List<UserProfileQuery.Node2?>?) {
     }
 }
 
+@ExperimentalMaterialApi
 @Composable
-fun RepositoriesSection(modifier: Modifier = Modifier) {
+fun RepositoriesSection(
+    modifier: Modifier = Modifier,
+    repos: List<UserProfileQuery.Node3?>?
+) {
 
-    ProfileTabRow(modifier = Modifier) {
-        when(it){
+    var selectedTabIndex by remember { mutableStateOf(0) }
 
-        }
+    ProfileTabRow(modifier = Modifier, onTabSelected = { selectedTabIndex = it })
+
+    when (selectedTabIndex) {
+        0 -> RepositoriesTab(repos = repos)
     }
 
 }
 
+@ExperimentalMaterialApi
 @Preview
 @Composable
 fun Preview() {

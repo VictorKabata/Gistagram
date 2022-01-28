@@ -25,4 +25,6 @@
     <string name="pinned_repo">Pinned repo</string>
     <string name="forks">Forks</string>
     <string name="gists">Gists</string>
+    <string name="repository">Repository</string>
+    <string name="language">Language</string>
 </resources>
