@@ -1,0 +1,1 @@
+D:\Projects\Kotlin\Gistagram\buildSrc\build\classes\kotlin\main\AndroidSdk.class;D:\Projects\Kotlin\Gistagram\buildSrc\build\classes\kotlin\main\Dependencies.class;D:\Projects\Kotlin\Gistagram\buildSrc\build\classes\kotlin\main\Plugins.class;D:\Projects\Kotlin\Gistagram\buildSrc\build\classes\kotlin\main\Versions.class

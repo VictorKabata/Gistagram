@@ -8,4 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Gistagram"
 
-include(":app", ":shared")
+include(":androidApp", ":shared")
