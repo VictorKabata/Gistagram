@@ -22,8 +22,18 @@ object Versions {
     const val pagingCompose = "1.0.0-alpha14"
     const val splashScreen = "1.0.0-beta01"
 
-    const val apollo = "2.4.0"
+    const val ktor = "1.6.7"
+    const val kotlinSerialization = "1.6.10"
+    const val kotlinxSerialization = "1.2.2"
+    const val apollo = "3.1.0"
+    const val multiplatformPaging = "0.4.7"
     const val okhttp = "5.0.0-alpha.2"
+    const val coroutinesKmm = "1.5.0-native-mt"
+
+    const val realm = "0.9.0"
+    // const val sqlDelight="1.5.2"
+
+    const val cabretLog = "1.0.4"
 
     const val jUnit = "4.13.2"
     const val truth = "1.1.3"

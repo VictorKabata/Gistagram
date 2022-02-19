@@ -15,7 +15,8 @@ object Dependencies {
     const val composeConstraint = "1.0.0-rc01"
 
     const val lifeCycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
-    const val accompanistNavigationAnimation = "com.google.accompanist:accompanist-navigation-animation:${Versions.accompanist}"
+    const val accompanistNavigationAnimation =
+        "com.google.accompanist:accompanist-navigation-animation:${Versions.accompanist}"
     const val koinAndroid = "io.insert-koin:koin-android:${Versions.koin}"
     const val koinCompose = "io.insert-koin:koin-androidx-compose:${Versions.koin}"
     const val navigation = "androidx.navigation:navigation-compose:${Versions.navigation}"
@@ -29,11 +30,46 @@ object Dependencies {
     const val pagingCompose = "1.0.0-alpha14"
     const val splashScreen = "androidx.core:core-splashscreen:${Versions.splashScreen}"
 
-    const val apolloRuntime = "com.apollographql.apollo:apollo-runtime:${Versions.apollo}"
+    // KMM Libraries
+    const val coroutinesKmm =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesKmm}"
+
+    const val koinCore = "io.insert-koin:koin-core:${Versions.koin}"
+
+    const val kotlinxSerialization =
+        "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerialization}"
+
+    const val ktorCore = "io.ktor:ktor-client-core:${Versions.ktor}"
+    const val ktorSerialization = "io.ktor:ktor-client-serialization:${Versions.ktor}"
+    const val ktorLogging = "io.ktor:ktor-client-logging:${Versions.ktor}"
+    const val ktorAndroid = "io.ktor:ktor-client-android:${Versions.ktor}"
+    const val ktoriOS = "io.ktor:ktor-client-ios:${Versions.ktor}"
+
+    const val apolloRuntime = "com.apollographql.apollo3:apollo-runtime:${Versions.apollo}"
     const val apolloCoroutines =
         "com.apollographql.apollo:apollo-coroutines-support:${Versions.apollo}"
+    const val apolloNormalizedCache =
+        "com.apollographql.apollo3:apollo-normalized-cache:${Versions.apollo}"
+
+    const val multiplatformPaging =
+        "io.github.kuuuurt:multiplatform-paging:${Versions.multiplatformPaging}"
+
     const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
+
     const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}"
+
+    // const val sqlDelight = "com.squareup.sqldelight:runtime:${Versions.sqlDelight}"
+    // const val sqlDelightCoroutines = "com.squareup.sqldelight:coroutines-extensions-jvm:${Versions.sqlDelight}"
+    // const val sqlDelightAndroid = "com.squareup.sqldelight:android-driver:${Versions.sqlDelight}"
+    // const val sqlDelightiOS = "com.squareup.sqldelight:native-driver:${Versions.sqlDelight}"
+
+    const val realm = "io.realm.kotlin:library-base:${Versions.realm}"
+
+    const val cabretLog = "de.jensklingenberg.cabret:cabret-log:${Versions.cabretLog}"
+    const val cabretLogAndroid =
+        "de.jensklingenberg.cabret:cabret-log-android:${Versions.cabretLog}"
+    const val cabretLogiOS = "de.jensklingenberg.cabret:cabret-log-iosx64:${Versions.cabretLog}"
+    const val cabretLogJvm = "de.jensklingenberg.cabret:cabret-log-jvm:${Versions.cabretLog}"
 
     const val jUnit = "4.13.2"
     const val truth = "1.1.3"
