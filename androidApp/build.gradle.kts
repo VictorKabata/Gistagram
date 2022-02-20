@@ -48,7 +48,6 @@ android {
 
     kotlinOptions {
         jvmTarget = "1.8"
-        // useIR = true
     }
 
     packagingOptions {
@@ -63,7 +62,7 @@ android {
 
 dependencies {
 
-    // implementation(project(":shared"))
+    implementation(project(":shared"))
 
     implementation(Dependencies.androidCore)
     implementation(Dependencies.appCompat)
