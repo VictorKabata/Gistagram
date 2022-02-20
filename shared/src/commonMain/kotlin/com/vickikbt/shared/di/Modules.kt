@@ -1,7 +1,11 @@
 package com.vickikbt.shared.di
 
+import com.apollographql.apollo3.ApolloClient
+import com.vickikbt.shared.data.data_source.ProfileRepositoryImpl
+import com.vickikbt.shared.data.network.graphql.AuthorizationInterceptor
 import com.vickikbt.shared.data.network.rest.ApiClient
 import com.vickikbt.shared.data.network.rest.ApiClientImpl
+import com.vickikbt.shared.domain.repositories.ProfileRepository
 import io.ktor.client.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
@@ -40,16 +44,16 @@ val commonModule = module {
      * as a HttpInterceptor
      */
     // single { AuthorizationInterceptor(tokenDao = get()) }
-    /*single {
+    single {
         ApolloClient.Builder()
             .serverUrl("https://api.github.com/graphql")
-            .addHttpInterceptor(AuthorizationInterceptor(get()))
+            .addHttpInterceptor(AuthorizationInterceptor())
             .build()
-    }*/
+    }
 
     /**
      * Injecting to repositories
      */
     // single<AuthRepository> { AuthRepositoryImpl(apiClient = get(), tokenDao = get()) }
-    // single<ProfileRepository> { ProfileRepositoryImpl() }
+    single<ProfileRepository> { ProfileRepositoryImpl(apolloClient = get()) }
 }

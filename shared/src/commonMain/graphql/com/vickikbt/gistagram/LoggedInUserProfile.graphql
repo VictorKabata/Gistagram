@@ -1,4 +1,4 @@
-query Viewer($organizationsCount: Int, $pinnedReposCount: Int, $languagesCount: Int, $reposCount: Int, $isFork: Boolean) {
+query LoggedInUserProfile($organizationsCount: Int, $pinnedReposCount: Int, $languagesCount: Int, $reposCount: Int, $isFork: Boolean) {
     viewer {
         id
         email
