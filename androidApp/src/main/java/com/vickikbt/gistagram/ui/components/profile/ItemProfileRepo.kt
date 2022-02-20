@@ -23,7 +23,7 @@ import com.vickikbt.gistagram.R
 @Composable
 fun ItemProfileRepo(
     modifier: Modifier = Modifier,
-    repo: LoggedInUserProfileQuery.OnRepository?,
+    repo: LoggedInUserProfileQuery.Node3?,
     onItemClicked: (String) -> Unit
 ) {
 

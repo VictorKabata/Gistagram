@@ -1,9 +1,38 @@
 package com.vickikbt.gistagram.ui.screens.profile
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.runtime.Composable
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import coil.compose.rememberImagePainter
+import com.vickikbt.gistagram.LoggedInUserProfileQuery
+import com.vickikbt.gistagram.R
+import com.vickikbt.gistagram.ui.components.ItemCircleImage
+import com.vickikbt.gistagram.ui.components.profile.ItemBioText
+import com.vickikbt.gistagram.ui.components.profile.ProfileAppBar
+import com.vickikbt.gistagram.ui.components.profile.ProfileStats
+import com.vickikbt.gistagram.ui.components.profile.ProfileTabRow
+import com.vickikbt.gistagram.ui.screens.profile.tabs.ItemPinnedRepo
+import com.vickikbt.gistagram.ui.screens.profile.tabs.RepositoriesTab
 import org.koin.androidx.compose.getViewModel
 
 @ExperimentalMaterialApi
@@ -13,14 +42,14 @@ fun ProfileScreen(
     viewModel: ProfileViewModel = getViewModel()
 ) {
 
-    /*val userProfileResult = viewModel.userProfile.observeAsState().value
-    val user = userProfileResult?.data?.data?.user()
+    val userProfileResult = viewModel.userProfile.observeAsState().value
+    val user = userProfileResult?.data?.data?.viewer
 
     Column(modifier = Modifier.fillMaxSize()) {
         ProfileAppBar(
-            title = user?.login() ?: stringResource(id = R.string.title_profile),
+            title = user?.login ?: stringResource(id = R.string.title_profile),
             onSettingsClicked = {
-                //ToDo: Navigate to settings
+                // ToDo: Navigate to settings
             }
         )
 
@@ -40,20 +69,20 @@ fun ProfileScreen(
 
             item {
                 Spacer(modifier = Modifier.height(18.dp))
-                //PinnedRepoSection(pinnedRepo = user?.pinnedItems()?.nodes())
+                // PinnedRepoSection(pinnedRepo = user?.pinnedItems()?.nodes())
             }
 
             item {
                 Spacer(modifier = Modifier.height(14.dp))
-                RepositoriesSection(repos = user?.repositories()?.nodes())
+                RepositoriesSection(repos = user?.repositories?.nodes)
             }
         }
-    }*/
+    }
 }
 
-/*@Composable
-private fun StatSection(user: UserProfileQuery.User?) {
-    val userProfilePainter = rememberImagePainter(data = user?.avatarUrl()) {
+@Composable
+private fun StatSection(user: LoggedInUserProfileQuery.Viewer?) {
+    val userProfilePainter = rememberImagePainter(data = user?.avatarUrl) {
         placeholder(R.drawable.ic_logo)
         crossfade(true)
     }
@@ -78,7 +107,7 @@ private fun StatSection(user: UserProfileQuery.User?) {
 }
 
 @Composable
-fun BioSection(user: UserProfileQuery.User?) {
+fun BioSection(user: LoggedInUserProfileQuery.Viewer?) {
     val letterSpacing = 0.5.sp
     val lineHeight = 20.sp
 
@@ -92,7 +121,7 @@ fun BioSection(user: UserProfileQuery.User?) {
 
         //region Username
         Text(
-            text = user?.name() ?: stringResource(R.string.username),
+            text = user?.name ?: stringResource(R.string.username),
             style = MaterialTheme.typography.h5,
             color = MaterialTheme.colors.onSurface,
             fontSize = 16.sp,
@@ -106,7 +135,7 @@ fun BioSection(user: UserProfileQuery.User?) {
         //region Bio
         Text(
             modifier = Modifier.padding(end = 16.dp),
-            text = user?.bio() ?: stringResource(R.string.bio),
+            text = user?.bio ?: stringResource(R.string.bio),
             style = MaterialTheme.typography.body1,
             color = MaterialTheme.colors.onSurface,
             fontSize = 14.sp,
@@ -124,12 +153,12 @@ fun BioSection(user: UserProfileQuery.User?) {
         ) {
             ItemBioText(
                 imageRes = R.drawable.ic_location,
-                text = user?.location() ?: stringResource(R.string.location)
+                text = user?.location ?: stringResource(R.string.location)
             )
             Spacer(modifier = Modifier.width(5.dp))
             ItemBioText(
                 imageRes = R.drawable.ic_orgainization,
-                text = user?.company() ?: stringResource(R.string.company)
+                text = user?.company ?: stringResource(R.string.company)
             )
         }
         //endregion
@@ -138,14 +167,14 @@ fun BioSection(user: UserProfileQuery.User?) {
         ItemBioText(
             textColor = colorResource(id = R.color.link_color),
             imageRes = R.drawable.ic_website,
-            text = user?.websiteUrl()?.toString() ?: stringResource(R.string.website)
+            text = user?.websiteUrl?.toString() ?: stringResource(R.string.website)
         )
         //endregion
 
         //region Twitter Username
         ItemBioText(
             imageRes = R.drawable.ic_twitter,
-            text = user?.twitterUsername() ?: stringResource(R.string.twitter_username)
+            text = user?.twitterUsername ?: stringResource(R.string.twitter_username)
         )
         //endregion
 
@@ -190,18 +219,17 @@ fun BioSection(user: UserProfileQuery.User?) {
                     modifier = Modifier.size(18.dp)
                 )
             }
-
         }
-
     }
 }
 
 @Composable
-fun PinnedRepoSection(pinnedRepo: List<UserProfileQuery.Node2?>?) {
-    val pinnedRepoList = mutableListOf<UserProfileQuery.AsRepository?>()
-    //pinnedRepo?.forEach { pinnedRepoList.add(it?.asRepository) }
+fun PinnedRepoSection(pinnedRepo: List<LoggedInUserProfileQuery.PinnedItems?>?) {
+    val pinnedRepoList = mutableListOf<LoggedInUserProfileQuery.OnRepository?>()
+    // pinnedRepo?.forEach { pinnedRepoList.add(it?.asRepository) }
 
     LazyRow(modifier = Modifier) {
+
         items(items = pinnedRepoList) { repo ->
             ItemPinnedRepo(
                 modifier = Modifier.padding(horizontal = 6.dp),
@@ -216,7 +244,7 @@ fun PinnedRepoSection(pinnedRepo: List<UserProfileQuery.Node2?>?) {
 @Composable
 fun RepositoriesSection(
     modifier: Modifier = Modifier,
-    repos: List<UserProfileQuery.Node3?>?
+    repos: List<LoggedInUserProfileQuery.Node3?>?
 ) {
 
     var selectedTabIndex by remember { mutableStateOf(0) }
@@ -226,8 +254,7 @@ fun RepositoriesSection(
     when (selectedTabIndex) {
         0 -> RepositoriesTab(repos = repos)
     }
-
-}*/
+}
 
 @ExperimentalMaterialApi
 @Preview

@@ -12,7 +12,7 @@ import com.vickikbt.gistagram.ui.components.profile.ItemProfileRepo
 @Composable
 fun RepositoriesTab(
     modifier: Modifier = Modifier,
-    repos: List<LoggedInUserProfileQuery.OnRepository>?
+    repos: List<LoggedInUserProfileQuery.Node3?>?
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
         repos?.forEach { repo ->

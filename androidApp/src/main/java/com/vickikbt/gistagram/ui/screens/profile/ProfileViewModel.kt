@@ -11,6 +11,7 @@ import com.vickikbt.gistagram.utils.UiState
 import com.vickikbt.shared.domain.repositories.ProfileRepository
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class ProfileViewModel constructor(private val profileRepository: ProfileRepository) : ViewModel() {
 
@@ -18,15 +19,25 @@ class ProfileViewModel constructor(private val profileRepository: ProfileReposit
         MutableLiveData<UiState<ApolloResponse<LoggedInUserProfileQuery.Data>>>()
     val userProfile: LiveData<UiState<ApolloResponse<LoggedInUserProfileQuery.Data>>> get() = _userProfile
 
-    fun getLoggedInUserProfile(login: String = "VictorKabata") = viewModelScope.launch {
+    init {
+        getLoggedInUserProfile()
+    }
+
+    private fun getLoggedInUserProfile() = viewModelScope.launch {
         _userProfile.postValue(UiState.Loading())
+        Timber.e("Is Loading")
 
         try {
+            Timber.e("Success")
             val response = profileRepository.getLoggedInUserProfile()
             response.collectLatest {
                 _userProfile.postValue(UiState.Success(data = it))
             }
+        } catch (e: Exception) {
+            Timber.e("Failure ${e.localizedMessage}")
+            _userProfile.postValue(UiState.Error(error = e.localizedMessage))
         } catch (e: ApolloException) {
+            Timber.e("Failure ${e.localizedMessage}")
             _userProfile.postValue(UiState.Error(error = e.localizedMessage))
         }
     }

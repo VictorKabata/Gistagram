@@ -43,7 +43,7 @@ val commonModule = module {
      * calls to GitHub graphql API made by Apollo and provided to the Apollo Client instance
      * as a HttpInterceptor
      */
-    // single { AuthorizationInterceptor(tokenDao = get()) }
+    single { AuthorizationInterceptor() }
     single {
         ApolloClient.Builder()
             .serverUrl("https://api.github.com/graphql")
