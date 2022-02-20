@@ -3,6 +3,7 @@ package com.vickikbt.gistagram.ui.components.profile
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
@@ -32,52 +33,69 @@ fun ItemProfileRepo(
         crossfade(true)
     }
 
-    Card(modifier = modifier.fillMaxWidth(), onClick = { onItemClicked(repo?.id!!) }) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Image(
-                modifier = Modifier
-                    .size(40.dp)
-                    .clip(CircleShape)
-                    .aspectRatio(1f, matchHeightConstraintsFirst = true)
-                    .weight(.2f),
-                painter = painter,
-                contentDescription = stringResource(id = R.string.profile_picture)
-            )
-
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(.8f),
-                horizontalAlignment = Alignment.Start,
-                verticalArrangement = Arrangement.SpaceAround
+    Card(
+        modifier = modifier,
+        onClick = { onItemClicked(repo?.id!!) },
+        shape = RoundedCornerShape(4.dp),
+        elevation = 16.dp
+    ) {
+        Column {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    text = repo?.name ?: stringResource(R.string.repository),
-                    style = MaterialTheme.typography.h4,
-                    maxLines = 1,
-                    fontSize = 14.sp,
-                    overflow = TextOverflow.Ellipsis,
-                    color = MaterialTheme.colors.onBackground
+                Image(
+                    modifier = Modifier
+                        .size(38.dp)
+                        .clip(CircleShape)
+                        .aspectRatio(1f, matchHeightConstraintsFirst = true)
+                        .weight(.2f),
+                    painter = painter,
+                    contentDescription = stringResource(id = R.string.profile_picture)
                 )
 
-                Row(horizontalArrangement = Arrangement.spacedBy(3.dp)) {
-                    repo?.languages?.nodes?.forEach {
-                        Text(
-                            text = it?.name ?: stringResource(R.string.language),
-                            style = MaterialTheme.typography.body1,
-                            maxLines = 1,
-                            fontSize = 12.sp,
-                            overflow = TextOverflow.Ellipsis,
-                            color = MaterialTheme.colors.onBackground
-                        )
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(.8f),
+                    horizontalAlignment = Alignment.Start,
+                    verticalArrangement = Arrangement.SpaceAround
+                ) {
+                    Text(
+                        text = repo?.name ?: stringResource(R.string.repository),
+                        style = MaterialTheme.typography.h4,
+                        maxLines = 1,
+                        fontSize = 14.sp,
+                        overflow = TextOverflow.Ellipsis,
+                        color = MaterialTheme.colors.onBackground
+                    )
+
+                    Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                        repo?.languages?.nodes?.forEach {
+                            Text(
+                                text = it?.name ?: stringResource(R.string.language),
+                                style = MaterialTheme.typography.body1,
+                                maxLines = 1,
+                                fontSize = 12.sp,
+                                overflow = TextOverflow.Ellipsis,
+                                color = MaterialTheme.colors.onBackground
+                            )
+                        }
                     }
                 }
             }
+
+            Spacer(modifier = Modifier.height(4.dp))
+
+            Text(
+                modifier = Modifier.padding(horizontal = 10.dp),
+                text = repo?.description ?: stringResource(R.string.no_description),
+                style = MaterialTheme.typography.body1,
+                maxLines = 4,
+                fontSize = 16.sp,
+                overflow = TextOverflow.Ellipsis,
+                color = MaterialTheme.colors.onBackground
+            )
         }
     }
 }

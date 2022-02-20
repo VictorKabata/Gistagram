@@ -28,4 +28,6 @@ sealed class NavigationItem(
 
     object Issues : NavigationItem("issues", R.string.title_issues, null)
     object Mentions : NavigationItem("mentions", R.string.title_mentions, null)
+
+    object Error : NavigationItem("error", R.string.title_error, null)
 }

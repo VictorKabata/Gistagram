@@ -38,16 +38,16 @@ import org.koin.androidx.compose.getViewModel
 @ExperimentalMaterialApi
 @Composable
 fun ProfileScreen(
-    navController: NavController? = null,
+    navController: NavController,
     viewModel: ProfileViewModel = getViewModel()
 ) {
 
     val userProfileResult = viewModel.userProfile.observeAsState().value
-    val user = userProfileResult?.data?.data?.viewer
+    val viewer = userProfileResult?.data?.data?.viewer
 
     Column(modifier = Modifier.fillMaxSize()) {
         ProfileAppBar(
-            title = user?.login ?: stringResource(id = R.string.title_profile),
+            title = viewer?.login ?: stringResource(id = R.string.title_profile),
             onSettingsClicked = {
                 // ToDo: Navigate to settings
             }
@@ -60,21 +60,21 @@ fun ProfileScreen(
             verticalArrangement = Arrangement.spacedBy(6.dp)
         ) {
             item {
-                StatSection(user = user)
+                StatSection(user = viewer)
             }
 
             item {
-                BioSection(user = user)
+                BioSection(user = viewer)
             }
 
             item {
                 Spacer(modifier = Modifier.height(18.dp))
-                // PinnedRepoSection(pinnedRepo = user?.pinnedItems()?.nodes())
+                PinnedRepoSection(pinnedRepo = viewer?.pinnedItems?.nodes)
             }
 
             item {
                 Spacer(modifier = Modifier.height(14.dp))
-                RepositoriesSection(repos = user?.repositories?.nodes)
+                RepositoriesSection(repos = viewer?.repositories?.nodes)
             }
         }
     }
@@ -224,9 +224,8 @@ fun BioSection(user: LoggedInUserProfileQuery.Viewer?) {
 }
 
 @Composable
-fun PinnedRepoSection(pinnedRepo: List<LoggedInUserProfileQuery.PinnedItems?>?) {
+fun PinnedRepoSection(pinnedRepo: List<LoggedInUserProfileQuery.Node1?>?) {
     val pinnedRepoList = mutableListOf<LoggedInUserProfileQuery.OnRepository?>()
-    // pinnedRepo?.forEach { pinnedRepoList.add(it?.asRepository) }
 
     LazyRow(modifier = Modifier) {
 
@@ -249,7 +248,7 @@ fun RepositoriesSection(
 
     var selectedTabIndex by remember { mutableStateOf(0) }
 
-    ProfileTabRow(modifier = Modifier, onTabSelected = { selectedTabIndex = it })
+    ProfileTabRow(modifier = modifier, onTabSelected = { selectedTabIndex = it })
 
     when (selectedTabIndex) {
         0 -> RepositoriesTab(repos = repos)
@@ -260,5 +259,5 @@ fun RepositoriesSection(
 @Preview
 @Composable
 fun Preview() {
-    ProfileScreen()
+    // ProfileScreen()
 }

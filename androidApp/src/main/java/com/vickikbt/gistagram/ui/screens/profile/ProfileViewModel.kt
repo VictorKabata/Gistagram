@@ -15,23 +15,19 @@ import timber.log.Timber
 
 class ProfileViewModel constructor(private val profileRepository: ProfileRepository) : ViewModel() {
 
-    private val _userProfile =
-        MutableLiveData<UiState<ApolloResponse<LoggedInUserProfileQuery.Data>>>()
+    private val _userProfile = MutableLiveData<UiState<ApolloResponse<LoggedInUserProfileQuery.Data>>>()
     val userProfile: LiveData<UiState<ApolloResponse<LoggedInUserProfileQuery.Data>>> get() = _userProfile
 
     init {
         getLoggedInUserProfile()
     }
 
-    private fun getLoggedInUserProfile() = viewModelScope.launch {
+    fun getLoggedInUserProfile() = viewModelScope.launch {
         _userProfile.postValue(UiState.Loading())
-        Timber.e("Is Loading")
 
         try {
-            Timber.e("Success")
             val response = profileRepository.getLoggedInUserProfile()
             response.collectLatest {
-                Timber.e("Response: $it")
                 _userProfile.postValue(UiState.Success(data = it))
             }
         } catch (e: ApolloHttpException) {

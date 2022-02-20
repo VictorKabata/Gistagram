@@ -27,4 +27,7 @@
     <string name="gists">Gists</string>
     <string name="repository">Repository</string>
     <string name="language">Language</string>
+    <string name="retry">Retry</string>
+    <string name="title_error">Error</string>
+    <string name="no_description">This repository does not have a description</string>
 </resources>
