@@ -18,7 +18,7 @@ fun RepositoriesTab(
     repos: List<LoggedInUserProfileQuery.Node3?>?
 ) {
     Column(
-        modifier = modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp)
+        modifier = modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         repos?.forEach { repo ->
             ItemProfileRepo(
