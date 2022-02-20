@@ -32,8 +32,8 @@ object Versions {
     const val okhttp = "5.0.0-alpha.2"
     const val coroutinesKmm = "1.5.0-native-mt"
 
-    const val realm = "0.9.0"
-    // const val sqlDelight="1.5.2"
+    // const val realm = "0.9.0"
+    const val sqlDelight = "1.5.3"
 
     const val cabretLog = "1.0.4"
 

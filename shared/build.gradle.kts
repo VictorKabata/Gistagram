@@ -3,6 +3,7 @@ plugins {
     id("com.android.library")
     id("com.apollographql.apollo3").version(Versions.apollo)
     kotlin("plugin.serialization") version Versions.kotlinSerialization
+    id("com.squareup.sqldelight")
     // id("io.realm.kotlin") version Versions.realm
     // id("de.jensklingenberg.cabret")
     // id("io.gitlab.arturbosch.detekt").version(Versions.detekt)
@@ -25,6 +26,7 @@ kotlin {
                 implementation(Dependencies.ktorLogging)
 
                 // implementation(Dependencies.realm)
+                implementation(Dependencies.sqlDelight)
 
                 api(Dependencies.apolloRuntime)
                 api(Dependencies.apolloNormalizedCache)
@@ -42,6 +44,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
+                implementation(Dependencies.sqlDelightAndroid)
             }
         }
         val androidTest by getting {
@@ -65,6 +68,12 @@ android {
 apollo {
     packageName.set("com.vickikbt.gistagram")
     generateOptionalOperationVariables.set(false)
+}
+
+sqldelight {
+    database(name = "AppDatabase") {
+        packageName = "com.vickikbt.gistagram"
+    }
 }
 
 /*configure<de.jensklingenberg.gradle.CabretGradleExtension> {
