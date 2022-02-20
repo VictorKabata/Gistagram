@@ -1,21 +1,11 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
-    //id("com.apollographql.apollo3")
+     id("com.apollographql.apollo3")
 }
 
 kotlin {
     android()
-
-    /*listOf(
-        iosX64(),
-        iosArm64()
-        iosSimulatorArm64(),
-    ).forEach {
-        it.binaries.framework {
-            baseName = "shared"
-        }
-    }*/
 
     sourceSets {
         val commonMain by getting {
@@ -25,11 +15,12 @@ kotlin {
                 }
 
                 // koin
-                /*api(Koin.core)
+                // api(Koin.core)
 
-                api(Deps.apolloRuntime)
-                api(Deps.apolloNormalizedCache)
-                api(Deps.multiplatformPaging)*/
+                api(Dependencies.apolloRuntime)
+                api(Dependencies.apolloNormalizedCache)
+
+                api(Dependencies.multiplatformPaging)
             }
         }
         val commonTest by getting {
@@ -48,22 +39,6 @@ kotlin {
                 implementation("junit:junit:4.13.1")
             }
         }
-
-        /*val iosX64Main by getting
-        val iosArm64Main by getting
-        val iosMain by creating {
-            dependsOn(commonMain)
-            iosX64Main.dependsOn(this)
-            iosArm64Main.dependsOn(this)
-        }
-        val iosX64Test by getting
-        val iosArm64Test by getting
-        val iosTest by creating {
-            dependsOn(commonTest)
-            iosX64Test.dependsOn(this)
-            iosArm64Test.dependsOn(this)
-        }*/
-
     }
 }
 
@@ -76,8 +51,7 @@ android {
     }
 }
 
-
-/*apollo {
+apollo {
     packageName.set("com.vickikbt.gistagram")
     generateOptionalOperationVariables.set(false)
-}*/
+}

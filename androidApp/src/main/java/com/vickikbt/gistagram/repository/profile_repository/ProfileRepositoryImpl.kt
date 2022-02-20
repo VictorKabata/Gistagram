@@ -1,15 +1,9 @@
 package com.vickikbt.gistagram.repository.profile_repository
 
-import com.apollographql.apollo.ApolloClient
-import com.apollographql.apollo.api.Input
-import com.apollographql.apollo.api.Response
-import com.apollographql.apollo.coroutines.await
-import com.vickikbt.gistagram.UserProfileQuery
-
-class ProfileRepositoryImpl constructor(private val apolloClient: ApolloClient) :
+class ProfileRepositoryImpl :
     ProfileRepository {
 
-    override suspend fun getLoggedInUserProfile(login: String): Response<UserProfileQuery.Data> {
+    /*override suspend fun getLoggedInUserProfile(login: String): Response<UserProfileQuery.Data> {
         return apolloClient.query(
             UserProfileQuery(
                 login,
@@ -20,6 +14,5 @@ class ProfileRepositoryImpl constructor(private val apolloClient: ApolloClient) 
                 Input.optional(false)
             )
         ).await()
-    }
-
+    }*/
 }

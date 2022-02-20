@@ -1,20 +1,17 @@
 package com.vickikbt.gistagram.di
 
-import com.apollographql.apollo.ApolloClient
-import com.vickikbt.gistagram.utils.Constants
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import java.util.concurrent.TimeUnit
 
-
 val networkModule = module {
-    single {
-        ApolloClient.builder()
-            .serverUrl(Constants.BASE_URL)
-            .okHttpClient(provideOkHttpClient())
-            .build()
-    }
+    /* single {
+         ApolloClient.builder()
+             .serverUrl(Constants.BASE_URL)
+             .okHttpClient(provideOkHttpClient())
+             .build()
+     }*/
 }
 
 fun provideLoggingInterceptor(): HttpLoggingInterceptor {
@@ -27,7 +24,7 @@ private fun provideOkHttpClient(): OkHttpClient {
         .addInterceptor(provideLoggingInterceptor())
         .addInterceptor { chain ->
             val newRequest = chain.request().newBuilder()
-                .addHeader("Authorization", "Bearer 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") //ToDo: Add to Git Igore
+                .addHeader("Authorization", "Bearer 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") // ToDo: Add to Git Igore
                 .build()
             chain.proceed(newRequest)
         }

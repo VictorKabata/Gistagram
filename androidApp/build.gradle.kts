@@ -2,7 +2,6 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("kotlin-kapt")
-    id("com.apollographql.apollo").version("2.4.0")
 }
 
 android {
@@ -60,12 +59,11 @@ android {
             excludes += setOf("META-INF/licenses/**", "META-INF/AL2.0", "META-INF/LGPL2.1")
         }
     }
-
 }
 
 dependencies {
 
-    //implementation(project(":shared"))
+    // implementation(project(":shared"))
 
     implementation(Dependencies.androidCore)
     implementation(Dependencies.appCompat)
@@ -75,38 +73,33 @@ dependencies {
     implementation(Dependencies.composeUi)
     implementation(Dependencies.composeMaterial)
     implementation(Dependencies.composeTooling)
-    //androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+    // androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     implementation(Dependencies.composeLiveData)
-    //debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+    // debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     implementation(Dependencies.composeActivity)
 
     implementation(Dependencies.lifeCycleRuntime)
 
-    //Koin-Dependency injection
+    // Koin-Dependency injection
     implementation(Dependencies.koinAndroid)
     implementation(Dependencies.koinCompose)
 
-    //OkHttp
+    // OkHttp
     implementation(Dependencies.okhttp)
     implementation(Dependencies.loggingInterceptor)
 
-    //Apollo
-    implementation(Dependencies.apolloRuntime)
-    implementation(Dependencies.apolloCoroutines)
-
-    //Accompanist Libs
+    // Accompanist Libs
     implementation(Dependencies.accompanistNavigationAnimation)
 
-    //Splash Screen API
+    // Splash Screen API
     implementation(Dependencies.splashScreen)
 
-    //Coil-Image Loader
+    // Coil-Image Loader
     implementation(Dependencies.coil)
 
-    //Timber-Logging
+    // Timber-Logging
     implementation(Dependencies.timber)
 
-    //Compose Navigation-Navigation between various screens
+    // Compose Navigation-Navigation between various screens
     implementation(Dependencies.navigation)
-
 }

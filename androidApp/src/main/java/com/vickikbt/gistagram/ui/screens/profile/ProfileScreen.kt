@@ -1,34 +1,9 @@
 package com.vickikbt.gistagram.ui.screens.profile
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.runtime.*
-import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import coil.compose.rememberImagePainter
-import com.vickikbt.gistagram.R
-import com.vickikbt.gistagram.UserProfileQuery
-import com.vickikbt.gistagram.ui.components.ItemCircleImage
-import com.vickikbt.gistagram.ui.components.profile.*
-import com.vickikbt.gistagram.ui.screens.profile.tabs.RepositoriesTab
 import org.koin.androidx.compose.getViewModel
 
 @ExperimentalMaterialApi
@@ -38,7 +13,7 @@ fun ProfileScreen(
     viewModel: ProfileViewModel = getViewModel()
 ) {
 
-    val userProfileResult = viewModel.userProfile.observeAsState().value
+    /*val userProfileResult = viewModel.userProfile.observeAsState().value
     val user = userProfileResult?.data?.data?.user()
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -73,11 +48,10 @@ fun ProfileScreen(
                 RepositoriesSection(repos = user?.repositories()?.nodes())
             }
         }
-    }
-
+    }*/
 }
 
-@Composable
+/*@Composable
 private fun StatSection(user: UserProfileQuery.User?) {
     val userProfilePainter = rememberImagePainter(data = user?.avatarUrl()) {
         placeholder(R.drawable.ic_logo)
@@ -253,7 +227,7 @@ fun RepositoriesSection(
         0 -> RepositoriesTab(repos = repos)
     }
 
-}
+}*/
 
 @ExperimentalMaterialApi
 @Preview

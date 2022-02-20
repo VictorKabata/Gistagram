@@ -5,5 +5,5 @@ import com.vickikbt.gistagram.repository.profile_repository.ProfileRepositoryImp
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    single<ProfileRepository> { ProfileRepositoryImpl(get()) }
+    single<ProfileRepository> { ProfileRepositoryImpl() }
 }

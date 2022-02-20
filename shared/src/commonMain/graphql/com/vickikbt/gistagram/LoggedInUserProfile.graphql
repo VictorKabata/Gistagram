@@ -1,0 +1,13 @@
+query LoggedInUserProfile {
+    viewer {
+        bio
+        company
+        email
+        followers {
+            totalCount
+        }
+        following {
+            totalCount
+        }
+    }
+}
