@@ -6,10 +6,14 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.vickikbt.gistagram.LoggedInUserProfileQuery
+import com.vickikbt.gistagram.ui.components.profile.ItemProfileRepo
 
 @ExperimentalMaterialApi
 @Composable
-fun RepositoriesTab(modifier: Modifier = Modifier, repos: List<LoggedInUserProfileQuery.Node3>?) {
+fun RepositoriesTab(
+    modifier: Modifier = Modifier,
+    repos: List<LoggedInUserProfileQuery.OnRepository>?
+) {
     Column(modifier = modifier.fillMaxWidth()) {
         repos?.forEach { repo ->
             ItemProfileRepo(repo = repo) {
