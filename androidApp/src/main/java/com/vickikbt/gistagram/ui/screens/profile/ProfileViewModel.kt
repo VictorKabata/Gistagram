@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.apollographql.apollo3.api.ApolloResponse
-import com.apollographql.apollo3.exception.ApolloException
+import com.apollographql.apollo3.exception.ApolloHttpException
 import com.vickikbt.gistagram.LoggedInUserProfileQuery
 import com.vickikbt.gistagram.utils.UiState
 import com.vickikbt.shared.domain.repositories.ProfileRepository
@@ -31,13 +31,14 @@ class ProfileViewModel constructor(private val profileRepository: ProfileReposit
             Timber.e("Success")
             val response = profileRepository.getLoggedInUserProfile()
             response.collectLatest {
+                Timber.e("Response: $it")
                 _userProfile.postValue(UiState.Success(data = it))
             }
-        } catch (e: Exception) {
+        } catch (e: ApolloHttpException) {
             Timber.e("Failure ${e.localizedMessage}")
             _userProfile.postValue(UiState.Error(error = e.localizedMessage))
-        } catch (e: ApolloException) {
-            Timber.e("Failure ${e.localizedMessage}")
+        } catch (e: Exception) {
+            Timber.e("Failure ${e.message}")
             _userProfile.postValue(UiState.Error(error = e.localizedMessage))
         }
     }

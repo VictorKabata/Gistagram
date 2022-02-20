@@ -15,7 +15,7 @@ class AuthorizationInterceptor : HttpInterceptor {
     ): HttpResponse {
         return chain.proceed(
             request.newBuilder()
-                .addHeader("Authorization", "Bearer: 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")
+                .addHeader("Authorization", "Bearer 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")
                 .build()
         )
     }

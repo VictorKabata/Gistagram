@@ -6,7 +6,8 @@ import com.vickikbt.gistagram.LoggedInUserProfileQuery
 import com.vickikbt.shared.domain.repositories.ProfileRepository
 import kotlinx.coroutines.flow.Flow
 
-class ProfileRepositoryImpl constructor(private val apolloClient: ApolloClient) : ProfileRepository {
+class ProfileRepositoryImpl constructor(private val apolloClient: ApolloClient) :
+    ProfileRepository {
 
     override suspend fun getLoggedInUserProfile(): Flow<ApolloResponse<LoggedInUserProfileQuery.Data>> {
 
