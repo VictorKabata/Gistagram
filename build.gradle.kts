@@ -8,6 +8,7 @@ buildscript {
     dependencies {
         classpath("com.android.tools.build:gradle:${Versions.gradle}")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
-        classpath("com.apollographql.apollo3:apollo-gradle-plugin:${Versions.apollo}")
+        // classpath("de.jensklingenberg.cabret:cabret-gradle:${Versions.cabretLog}")
+        // classpath("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${Versions.detekt}")
     }
 }

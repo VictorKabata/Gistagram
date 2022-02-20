@@ -1,7 +1,11 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
-     id("com.apollographql.apollo3")
+    id("com.apollographql.apollo3").version(Versions.apollo)
+    kotlin("plugin.serialization") version Versions.kotlinSerialization
+    // id("io.realm.kotlin") version Versions.realm
+    // id("de.jensklingenberg.cabret")
+    // id("io.gitlab.arturbosch.detekt").version(Versions.detekt)
 }
 
 kotlin {
@@ -10,17 +14,24 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0") {
-                    isForce = true
-                }
+                implementation(Dependencies.coroutinesKmm)
 
-                // koin
-                // api(Koin.core)
+                implementation(Dependencies.koinCore)
+
+                implementation(Dependencies.kotlinxSerialization)
+
+                implementation(Dependencies.ktorCore)
+                implementation(Dependencies.ktorSerialization)
+                implementation(Dependencies.ktorLogging)
+
+                // implementation(Dependencies.realm)
 
                 api(Dependencies.apolloRuntime)
                 api(Dependencies.apolloNormalizedCache)
 
                 api(Dependencies.multiplatformPaging)
+
+                // implementation(Dependencies.cabretLog)
             }
         }
         val commonTest by getting {
@@ -43,11 +54,11 @@ kotlin {
 }
 
 android {
-    compileSdk = 30
+    compileSdk = AndroidSdk.compileSdkVersion
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdk = 21
-        targetSdk = 30
+        minSdk = AndroidSdk.minSdkVersion
+        targetSdk = AndroidSdk.targetSdkVersion
     }
 }
 
@@ -55,3 +66,14 @@ apollo {
     packageName.set("com.vickikbt.gistagram")
     generateOptionalOperationVariables.set(false)
 }
+
+/*configure<de.jensklingenberg.gradle.CabretGradleExtension> {
+    enabled = true
+    version = Versions.cabretLog
+}*/
+
+/*detekt {
+    toolVersion = Versions.detekt
+    config = files("config/detekt/detekt.yml")
+    buildUponDefaultConfig = true
+}*/

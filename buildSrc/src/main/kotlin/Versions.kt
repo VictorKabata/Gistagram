@@ -1,13 +1,17 @@
 object Versions {
     const val gradle = "7.0.4"
     const val kotlin = "1.5.30"
+    const val detekt = "1.19.0"
+
     const val androidCore = "1.7.0"
     const val appCompat = "1.4.1"
     const val material = "1.4.0"
+
     const val compose = "1.0.3"
     const val composeActivity = "1.4.0"
     const val composeCompiler = "1.5.21"
     const val composeConstraint = "1.0.0-rc01"
+
     const val lifecycle = "2.4.0"
     const val accompanist = "0.20.0"
     const val koin = "3.1.2"
@@ -15,11 +19,9 @@ object Versions {
     const val coil = "1.4.0"
     const val palette = "28.0.0"
     const val timber = "5.0.1"
-    const val paging = "3.0.0"
     const val coroutines = "1.5.2"
     const val firebaseBOM = "29.0.3"
     const val ratingBar = "1.1.1"
-    const val pagingCompose = "1.0.0-alpha14"
     const val splashScreen = "1.0.0-beta01"
 
     const val ktor = "1.6.7"

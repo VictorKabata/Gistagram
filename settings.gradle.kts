@@ -6,6 +6,7 @@ dependencyResolutionManagement {
         maven { url = uri("https://jitpack.io") }
     }
 }
+
 rootProject.name = "Gistagram"
 
 include(":androidApp", ":shared")
