@@ -36,17 +36,20 @@ kotlin {
                 // implementation(Dependencies.cabretLog)
             }
         }
+
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
             }
         }
+
         val androidMain by getting {
             dependencies {
                 implementation(Dependencies.sqlDelightAndroid)
             }
         }
+
         val androidTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
@@ -72,7 +75,7 @@ apollo {
 
 sqldelight {
     database(name = "AppDatabase") {
-        packageName = "com.vickikbt.gistagram"
+        packageName = "com.vickikbt.shared.data.cache.sqldelight"
     }
 }
 
