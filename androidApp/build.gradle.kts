@@ -27,7 +27,7 @@ android {
 
     composeOptions {
         kotlinCompilerExtensionVersion = Versions.compose
-        kotlinCompilerVersion = Versions.composeCompiler
+        // kotlinCompilerVersion = Versions.composeCompiler
     }
 
     buildTypes {
@@ -82,10 +82,6 @@ dependencies {
     // Koin-Dependency injection
     implementation(Dependencies.koinAndroid)
     implementation(Dependencies.koinCompose)
-
-    // OkHttp
-    implementation(Dependencies.okhttp)
-    implementation(Dependencies.loggingInterceptor)
 
     // Accompanist Libs
     implementation(Dependencies.accompanistNavigationAnimation)

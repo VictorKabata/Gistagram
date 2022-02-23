@@ -1,3 +1,14 @@
+/*pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+    plugins {
+        id("org.jetbrains.kotlin.android").version(Versions.kotlin)
+    }
+}*/
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {

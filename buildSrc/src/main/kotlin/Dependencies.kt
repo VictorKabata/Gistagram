@@ -11,8 +11,8 @@ object Dependencies {
     const val composeTooling = "androidx.compose.ui:ui-tooling-preview:${Versions.compose}"
     const val composeLiveData = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
     const val composeActivity = "androidx.activity:activity-compose:${Versions.composeActivity}"
-    const val composeCompiler = "1.5.21"
-    const val composeConstraint = "1.0.0-rc01"
+    // const val composeCompiler = "1.5.21"
+    // const val composeConstraint = "1.0.0-rc01"
 
     const val lifeCycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
     const val accompanistNavigationAnimation =
