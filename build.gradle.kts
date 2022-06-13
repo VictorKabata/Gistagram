@@ -1,15 +1,60 @@
 buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        maven("https://plugins.gradle.org/m2/")
+    }
+
+    dependencies {
+        classpath(Plugins.kotlin)
+        classpath(Plugins.gradle)
+        classpath(Plugins.kmpNativeCoroutines)
+    }
+}
+
+plugins {
+    id(Plugins.ktLint) version Versions.ktLint
+    id(Plugins.detekt) version (Versions.detekt)
+    id(Plugins.gradleVersionUpdates) version (Versions.gradleVersionUpdate)
+}
+
+allprojects {
 
     repositories {
         google()
         mavenCentral()
+        maven("https://jitpack.io")
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+    }
+}
+
+subprojects {
+    apply(plugin = Plugins.ktLint)
+    ktlint {
+        debug.set(true)
+        verbose.set(true)
+        android.set(false)
+        outputToConsole.set(true)
+        outputColorName.set("RED")
+        filter {
+            exclude("**/generated/**")
+            include("**/kotlin/**")
+        }
     }
 
-    dependencies {
-        classpath("com.android.tools.build:gradle:7.1.1")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
-        classpath("com.squareup.sqldelight:gradle-plugin:${Versions.sqlDelight}")
-        // classpath("de.jensklingenberg.cabret:cabret-gradle:${Versions.cabretLog}")
-        // classpath("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${Versions.detekt}")
+    apply(plugin = Plugins.detekt)
+    detekt {
+        parallel = true
+        config = files("${project.rootDir}/config/detekt/detekt.yml")
     }
+
+    tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
+        checkForGradleUpdate = true
+        outputDir = "build/dependencyUpdates"
+        reportfileName = "report"
+    }
+}
+
+tasks.register("clean").configure {
+    delete("build")
 }

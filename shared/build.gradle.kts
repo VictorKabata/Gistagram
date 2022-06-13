@@ -1,62 +1,12 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+
 plugins {
-    kotlin("multiplatform")
-    id("com.android.library")
-    id("com.apollographql.apollo3").version(Versions.apollo)
-    kotlin("plugin.serialization") version Versions.kotlinSerialization
-    id("com.squareup.sqldelight")
-    // id("io.realm.kotlin") version Versions.realm
-    // id("de.jensklingenberg.cabret")
-    // id("io.gitlab.arturbosch.detekt").version(Versions.detekt)
-}
-
-kotlin {
-    android()
-
-    sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation(Dependencies.coroutinesKmm)
-
-                implementation(Dependencies.koinCore)
-
-                implementation(Dependencies.kotlinxSerialization)
-
-                implementation(Dependencies.ktorCore)
-                implementation(Dependencies.ktorSerialization)
-                implementation(Dependencies.ktorLogging)
-
-                // implementation(Dependencies.realm)
-                implementation(Dependencies.sqlDelight)
-
-                api(Dependencies.apolloRuntime)
-                api(Dependencies.apolloNormalizedCache)
-
-                api(Dependencies.multiplatformPaging)
-
-                // implementation(Dependencies.cabretLog)
-            }
-        }
-
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test-common"))
-                implementation(kotlin("test-annotations-common"))
-            }
-        }
-
-        val androidMain by getting {
-            dependencies {
-                implementation(Dependencies.sqlDelightAndroid)
-            }
-        }
-
-        val androidTest by getting {
-            dependencies {
-                implementation(kotlin("test-junit"))
-                implementation("junit:junit:4.13.1")
-            }
-        }
-    }
+    kotlin(Plugins.multiplatform)
+    id(Plugins.androidLibrary)
+    kotlin(Plugins.kotlinXSerialization) version Versions.kotlinSerialization
+    id(Plugins.nativeCoroutines)
+    id(Plugins.apollo).version(Versions.apollo)
+    id(Plugins.sqlDelight) version Versions.sqlDelight
 }
 
 android {
@@ -65,6 +15,68 @@ android {
     defaultConfig {
         minSdk = AndroidSdk.minSdkVersion
         targetSdk = AndroidSdk.targetSdkVersion
+    }
+}
+
+kotlin {
+    android()
+
+    val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
+        when {
+            System.getenv("SDK_NAME")?.startsWith("iphoneos") == true -> ::iosArm64
+            System.getenv("NATIVE_ARCH")?.startsWith("arm") == true -> ::iosSimulatorArm64
+            else -> ::iosX64
+        }
+    iosTarget("iOS") {}
+
+    sourceSets {
+        sourceSets["commonMain"].dependencies {
+            implementation(MultiplatformDependencies.kotlinxCoroutines)
+
+            api(MultiplatformDependencies.koinCore)
+
+            implementation(MultiplatformDependencies.kotlinxSerialization)
+
+            implementation(MultiplatformDependencies.ktorCore)
+            implementation(MultiplatformDependencies.ktorSerialization)
+            implementation(MultiplatformDependencies.ktorLogging)
+
+            implementation(MultiplatformDependencies.sqlDelight)
+            implementation(MultiplatformDependencies.sqlDelightCoroutine)
+
+            api(MultiplatformDependencies.apolloRuntime)
+            api(MultiplatformDependencies.apolloNormalizedCache)
+
+            api(MultiplatformDependencies.multiplatformPaging)
+
+            implementation(MultiplatformDependencies.multiplatformSettings)
+            implementation(MultiplatformDependencies.multiplatformSettingsCoroutines)
+
+            api(MultiplatformDependencies.napier)
+        }
+
+        sourceSets["commonTest"].dependencies {
+            implementation(kotlin("test-common"))
+            implementation(kotlin("test-annotations-common"))
+        }
+
+        sourceSets["androidMain"].dependencies {
+            implementation(MultiplatformDependencies.ktorAndroid)
+            implementation(MultiplatformDependencies.sqlDelightAndroid)
+        }
+
+        sourceSets["androidTest"].dependencies {
+            implementation(kotlin("test-junit"))
+            implementation("junit:junit:4.13.1")
+        }
+
+        sourceSets["iOSMain"].dependencies {
+            implementation(MultiplatformDependencies.ktoriOS)
+            implementation(MultiplatformDependencies.sqlDelightNative)
+        }
+
+        sourceSets["iOSTest"].dependencies {
+        }
     }
 }
 
@@ -78,14 +90,3 @@ sqldelight {
         packageName = "com.vickikbt.shared.data.cache.sqldelight"
     }
 }
-
-/*configure<de.jensklingenberg.gradle.CabretGradleExtension> {
-    enabled = true
-    version = Versions.cabretLog
-}*/
-
-/*detekt {
-    toolVersion = Versions.detekt
-    config = files("config/detekt/detekt.yml")
-    buildUponDefaultConfig = true
-}*/
