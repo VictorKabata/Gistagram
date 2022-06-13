@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.flowOn
 import java.io.IOException
 
 suspend fun <T : Any> safeApiCall(apiCall: suspend () -> Result<T>) = flow {
-    //ToDo: Check if internet connected-Return internet error
+    // ToDo: Check if internet connected-Return internet error
     try {
         emit(Result.Success(data = apiCall.invoke()))
     } catch (throwable: Throwable) {

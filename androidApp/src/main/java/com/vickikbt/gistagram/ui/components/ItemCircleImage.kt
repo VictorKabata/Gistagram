@@ -31,5 +31,4 @@ fun ItemCircleImage(
         contentDescription = contentDescription,
         contentScale = ContentScale.Crop
     )
-
 }

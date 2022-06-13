@@ -35,7 +35,6 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
 }
 
 @ExperimentalMaterialApi
@@ -70,14 +69,11 @@ fun MainScreen() {
     ) {
         Navigation(navController = navController)
     }
-
 }
-
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     GistagramTheme {
-
     }
 }

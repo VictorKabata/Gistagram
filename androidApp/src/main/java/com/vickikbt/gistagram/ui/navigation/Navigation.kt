@@ -7,7 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.vickikbt.gistagram.ui.components.ErrorScreen
 import com.vickikbt.gistagram.ui.screens.home.HomeScreen
 import com.vickikbt.gistagram.ui.screens.notifications.NotificationsScreen
 import com.vickikbt.gistagram.ui.screens.profile.ProfileScreen

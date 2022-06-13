@@ -86,7 +86,5 @@ fun BottomNavBar(
                 )
             }
         }
-
     }
-
 }

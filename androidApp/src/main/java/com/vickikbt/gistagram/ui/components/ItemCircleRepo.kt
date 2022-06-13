@@ -39,5 +39,4 @@ fun ItemCircleRepo(
         contentDescription = contentDescription,
         tint = tintColor ?: MaterialTheme.colors.onSurface
     )
-
 }

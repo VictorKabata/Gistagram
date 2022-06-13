@@ -6,7 +6,6 @@ import com.vickikbt.shared.di.initKoin
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.logger.Level
-import timber.log.Timber
 
 class GistagramApplication : Application() {
 
@@ -20,7 +19,5 @@ class GistagramApplication : Application() {
             androidContext(this@GistagramApplication)
             modules(appModules)
         }
-
-        if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
     }
 }

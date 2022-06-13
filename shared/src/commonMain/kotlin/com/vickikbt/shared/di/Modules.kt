@@ -2,7 +2,6 @@ package com.vickikbt.shared.di
 
 import com.apollographql.apollo3.ApolloClient
 import com.vickikbt.shared.data.data_source.ProfileRepositoryImpl
-import com.vickikbt.shared.data.network.graphql.AuthorizationInterceptor
 import com.vickikbt.shared.data.network.rest.ApiClient
 import com.vickikbt.shared.data.network.rest.ApiClientImpl
 import com.vickikbt.shared.domain.repositories.ProfileRepository
