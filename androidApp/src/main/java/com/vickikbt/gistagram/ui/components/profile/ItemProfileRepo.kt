@@ -46,7 +46,7 @@ fun ItemProfileRepo(
             ) {
                 Image(
                     modifier = Modifier
-                        .size(38.dp)
+                        .size(32.dp)
                         .clip(CircleShape)
                         .aspectRatio(1f, matchHeightConstraintsFirst = true)
                         .weight(.2f),
@@ -88,11 +88,11 @@ fun ItemProfileRepo(
             Spacer(modifier = Modifier.height(4.dp))
 
             Text(
-                modifier = Modifier.padding(horizontal = 10.dp),
+                modifier = Modifier.padding(horizontal = 13.dp),
                 text = repo?.description ?: stringResource(R.string.no_description),
                 style = MaterialTheme.typography.body1,
                 maxLines = 4,
-                fontSize = 16.sp,
+                fontSize = 14.sp,
                 overflow = TextOverflow.Ellipsis,
                 color = MaterialTheme.colors.onBackground
             )

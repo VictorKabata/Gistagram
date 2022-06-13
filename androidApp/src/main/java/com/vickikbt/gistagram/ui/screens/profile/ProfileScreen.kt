@@ -69,7 +69,7 @@ fun ProfileScreen(
 
             item {
                 Spacer(modifier = Modifier.height(18.dp))
-                PinnedRepoSection(pinnedRepo = viewer?.pinnedItems?.nodes)
+                viewer?.pinnedItems?.nodes?.let { PinnedRepoSection(pinnedRepo = it) }
             }
 
             item {
@@ -224,8 +224,9 @@ fun BioSection(user: LoggedInUserProfileQuery.Viewer?) {
 }
 
 @Composable
-fun PinnedRepoSection(pinnedRepo: List<LoggedInUserProfileQuery.Node1?>?) {
+fun PinnedRepoSection(pinnedRepo: List<LoggedInUserProfileQuery.Node1?>) {
     val pinnedRepoList = mutableListOf<LoggedInUserProfileQuery.OnRepository?>()
+    pinnedRepo.forEach { pinnedRepoList.add(it?.onRepository) }
 
     LazyRow(modifier = Modifier) {
 
@@ -251,7 +252,7 @@ fun RepositoriesSection(
     ProfileTabRow(modifier = modifier, onTabSelected = { selectedTabIndex = it })
 
     when (selectedTabIndex) {
-        0 -> RepositoriesTab(repos = repos)
+        0 -> RepositoriesTab(repos = repos?.asReversed())
     }
 }
 

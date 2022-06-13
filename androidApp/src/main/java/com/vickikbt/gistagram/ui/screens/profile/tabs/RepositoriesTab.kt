@@ -25,7 +25,7 @@ fun RepositoriesTab(
                 repo = repo,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
+                    .padding(vertical = 2.dp)
             ) {
                 // ToDo: On Item Clicked
             }
