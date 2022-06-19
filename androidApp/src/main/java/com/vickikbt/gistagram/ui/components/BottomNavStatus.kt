@@ -29,7 +29,7 @@ fun BottomNavStatus(
             .fillMaxWidth()
             .wrapContentHeight()
             .background(backgroundColor)
-            .padding(vertical = 16.dp),
+            .padding(vertical = 16.dp, horizontal = 10.dp),
         horizontalArrangement = Arrangement.End,
         verticalAlignment = Alignment.CenterVertically
     ) {
