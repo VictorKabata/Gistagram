@@ -40,4 +40,6 @@ object AndroidDependencies {
     const val coroutines = "1.5.2"
     const val firebaseBOM = "29.0.3"
     const val splashScreen = "androidx.core:core-splashscreen:${Versions.splashScreen}"
+    const val composeMarkDown = "com.github.jeziellago:compose-markdown:${Versions.composeMarkDown}"
+    const val markDownView = "com.github.tiagohm.MarkdownView:library:${Versions.markDownView}"
 }

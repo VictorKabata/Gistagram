@@ -2,10 +2,12 @@ package com.vickikbt.gistagram.ui.screens.profile
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ExperimentalMaterialApi
@@ -15,6 +17,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -31,6 +34,7 @@ import com.vickikbt.gistagram.ui.components.profile.ItemBioText
 import com.vickikbt.gistagram.ui.components.profile.ProfileAppBar
 import com.vickikbt.gistagram.ui.components.profile.ProfileStats
 import com.vickikbt.gistagram.ui.components.profile.ProfileTabRow
+import com.vickikbt.gistagram.ui.navigation.NavigationItem
 import com.vickikbt.gistagram.ui.screens.profile.tabs.ItemPinnedRepo
 import com.vickikbt.gistagram.ui.screens.profile.tabs.RepositoriesTab
 import org.koin.androidx.compose.getViewModel
@@ -60,7 +64,7 @@ fun ProfileScreen(
             verticalArrangement = Arrangement.spacedBy(6.dp)
         ) {
             item {
-                StatSection(user = viewer)
+                StatSection(user = viewer, navController = navController)
             }
 
             item {
@@ -81,7 +85,7 @@ fun ProfileScreen(
 }
 
 @Composable
-private fun StatSection(user: LoggedInUserProfileQuery.Viewer?) {
+private fun StatSection(navController: NavController, user: LoggedInUserProfileQuery.Viewer?) {
     val userProfilePainter = rememberImagePainter(data = user?.avatarUrl) {
         placeholder(R.drawable.ic_logo)
         crossfade(true)
@@ -97,10 +101,13 @@ private fun StatSection(user: LoggedInUserProfileQuery.Viewer?) {
         ItemCircleImage(
             modifier = Modifier
                 .size(100.dp)
-                .weight(3f),
+                .weight(3f)
+                .border(width = 2.dp, color = Color.Gray, shape = CircleShape),
             image = userProfilePainter,
             contentDescription = stringResource(R.string.profile_picture)
-        )
+        ) {
+            navController.navigate(NavigationItem.UserStatus.route, null)
+        }
 
         ProfileStats(modifier = Modifier.weight(7f), user = user)
     }

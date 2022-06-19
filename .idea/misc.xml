@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Projects/Kotlin/Gistagram/androidApp/src/main/res/drawable/more_ellipsis.xml" value="0.1855" />
         <entry key="..\:/Projects/Kotlin/Gistagram/app/src/main/res/drawable-night/ic_logo.xml" value="0.25462962962962965" />
         <entry key="..\:/Projects/Kotlin/Gistagram/app/src/main/res/drawable/ic_add_user.xml" value="0.2361111111111111" />
         <entry key="..\:/Projects/Kotlin/Gistagram/app/src/main/res/drawable/ic_email.xml" value="0.2361111111111111" />

@@ -41,6 +41,8 @@ object Versions {
     const val coroutines = "1.5.2"
     const val firebaseBOM = "29.0.3"
     const val splashScreen = "1.0.0-beta01"
+    const val composeMarkDown = "0.2.6"
+    const val markDownView = "0.19.0"
 
     // Test Dependencies
     const val jUnit = "4.13.2"

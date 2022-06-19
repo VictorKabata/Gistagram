@@ -26,6 +26,8 @@ sealed class NavigationItem(
 
     object Settings : NavigationItem("settings", R.string.title_settings, R.drawable.ic_settings)
 
+    object UserStatus : NavigationItem("user status", R.string.title_user_status, null)
+
     object Issues : NavigationItem("issues", R.string.title_issues, null)
     object Mentions : NavigationItem("mentions", R.string.title_mentions, null)
 

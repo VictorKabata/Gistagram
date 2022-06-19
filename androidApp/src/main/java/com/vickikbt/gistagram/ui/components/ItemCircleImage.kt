@@ -2,6 +2,7 @@ package com.vickikbt.gistagram.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
@@ -18,7 +19,7 @@ fun ItemCircleImage(
     modifier: Modifier = Modifier,
     image: Painter,
     contentDescription: String,
-    borderColor: Color? = null
+    onClick: () -> Unit
 ) {
 
     Image(
@@ -26,7 +27,7 @@ fun ItemCircleImage(
             .padding(3.dp)
             .clip(CircleShape)
             .aspectRatio(1f, matchHeightConstraintsFirst = true)
-            .border(width = 2.dp, color = borderColor ?: Color.Gray, shape = CircleShape),
+            .clickable { onClick() },
         painter = image,
         contentDescription = contentDescription,
         contentScale = ContentScale.Crop

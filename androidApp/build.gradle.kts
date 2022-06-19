@@ -92,4 +92,7 @@ dependencies {
 
     // Compose Navigation-Navigation between various screens
     implementation(AndroidDependencies.navigation)
+
+    implementation(AndroidDependencies.composeMarkDown)
+    implementation(AndroidDependencies.markDownView)
 }
