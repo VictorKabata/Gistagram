@@ -20,8 +20,9 @@ import com.vickikbt.gistagram.utils.UiState
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun UserStatusScreen(
+fun RepoStatusScreen(
     userLogin: String = "VictorKabata",
+    repoName: String = "Notflix",
     viewModel: StatusViewModel = getViewModel()
 ) {
 
@@ -35,7 +36,7 @@ fun UserStatusScreen(
                 topBar = { StatusToolbar(modifier = Modifier.height(56.dp)) },
                 bottomBar = { BottomNavStatus() }
             ) { it ->
-                UserStatus(userLogin = userLogin, paddingValues = it)
+                RepoStatus(userLogin = userLogin, repoName = repoName, paddingValues = it)
             }
         }
         else -> {
@@ -46,9 +47,10 @@ fun UserStatusScreen(
 }
 
 @Composable
-private fun UserStatus(
+private fun RepoStatus(
     modifier: Modifier = Modifier,
     userLogin: String,
+    repoName: String,
     paddingValues: PaddingValues
 ) {
     Card(
@@ -63,7 +65,7 @@ private fun UserStatus(
         elevation = 0.dp
     ) {
         MarkDownComposable(
-            url = "https://raw.githubusercontent.com/${userLogin}/$userLogin/master/README.md",
+            url = "https://raw.githubusercontent.com/${userLogin}/$repoName/master/README.md",
             modifier = Modifier.fillMaxSize()
         )
     }

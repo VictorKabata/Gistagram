@@ -29,12 +29,16 @@ fun ItemPinnedRepo(
 ) {
 
     Column(
-        modifier = modifier.clickable { onItemClicked(pinnedRepo?.id!!) },
+        // modifier = modifier.clickable { onItemClicked(pinnedRepo?.id!!) },
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         ItemCircleRepo(
-            modifier = Modifier.size(64.dp),
+            modifier = Modifier
+                .size(64.dp)
+                .clickable {
+                    pinnedRepo?.id?.let { onItemClicked(it) }
+                },
             image = painterResource(id = image),
             contentDescription = pinnedRepo?.name ?: stringResource(R.string.pinned_repo),
             borderColor = Color(parseColor(pinnedRepo?.languages?.nodes?.get(0)?.color))

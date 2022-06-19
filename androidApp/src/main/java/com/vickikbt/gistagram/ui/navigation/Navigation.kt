@@ -12,6 +12,7 @@ import com.vickikbt.gistagram.ui.screens.notifications.NotificationsScreen
 import com.vickikbt.gistagram.ui.screens.profile.ProfileScreen
 import com.vickikbt.gistagram.ui.screens.search.SearchScreen
 import com.vickikbt.gistagram.ui.screens.settings.SettingsScreen
+import com.vickikbt.gistagram.ui.screens.status.RepoStatusScreen
 import com.vickikbt.gistagram.ui.screens.status.UserStatusScreen
 
 @ExperimentalFoundationApi
@@ -47,6 +48,10 @@ fun Navigation(navController: NavHostController) {
 
         composable(route = NavigationItem.UserStatus.route) {
             UserStatusScreen(userLogin = "VictorKabata")
+        }
+
+        composable(route = NavigationItem.RepoStatus.route) {
+            RepoStatusScreen(userLogin = "VictorKabata", repoName = "Notflix")
         }
 
         /*composable(route = NavigationItem.Error.route) {

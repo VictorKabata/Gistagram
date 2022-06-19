@@ -1,11 +1,12 @@
 package com.vickikbt.gistagram.ui.components
 
-import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -22,26 +23,38 @@ import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import coil.transform.CircleCropTransformation
 import com.vickikbt.gistagram.R
+import kotlinx.coroutines.delay
 
 @Composable
 fun StatusToolbar(
     modifier: Modifier = Modifier,
     userName: String? = "VictorKabata",
     profilePicUrl: String = "https://avatars.githubusercontent.com/u/39780120?u=bb50900c4214570b711aca1da85a84209b79fed0&v=4",
-    backgroundColor:Color=MaterialTheme.colors.surface,
-    contentColor:Color=MaterialTheme.colors.onSurface
+    backgroundColor: Color = MaterialTheme.colors.surface,
+    contentColor: Color = MaterialTheme.colors.onSurface
 ) {
-    var progress by remember { mutableStateOf(0f) }
-    var indicatorProgress = 1f
-    val progressAnimDuration = 10000
-    val progressAnimation by animateFloatAsState(
-        targetValue = indicatorProgress,
-        animationSpec = tween(durationMillis = progressAnimDuration, easing = FastOutSlowInEasing)
+    var progress by remember { mutableStateOf(0.0f) }
+    val enabled by remember { mutableStateOf(true) }
+    LaunchedEffect(key1 = progress, key2 = enabled) {
+        if (progress < 1.0f && enabled) {
+            delay(100L)
+            progress += 0.001f
+        }
+    }
+    val progressAnimation: Float by animateFloatAsState(
+        if (enabled) 1f else 0.0f,
+        animationSpec = tween(
+            durationMillis = 10000,
+            delayMillis = 40,
+            easing = LinearOutSlowInEasing
+        )
     )
 
-    LaunchedEffect(indicatorProgress) {
-        progress = indicatorProgress
-    }
+    /* val progressAnimation by animateFloatAsState(
+         targetValue = 1f,
+         animationSpec = tween(durationMillis = progressAnimDuration, easing = FastOutSlowInEasing),
+         visibilityThreshold = 0.001f
+     )*/
 
     val profilePicPainter = rememberImagePainter(
         data = profilePicUrl,
@@ -56,7 +69,8 @@ fun StatusToolbar(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(vertical = 4.dp)
+            .height(56.dp)
+            .padding(vertical = 6.dp)
             .background(backgroundColor),
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.Center
@@ -64,14 +78,15 @@ fun StatusToolbar(
         LinearProgressIndicator(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 8.dp)
+                .height(2.dp)
+                .padding(horizontal = 12.dp)
                 .clip(RoundedCornerShape(20.dp)),
-            progress = progressAnimation,
+            progress = progress,
             color = MaterialTheme.colors.onSurface,
             backgroundColor = Color.Gray
         )
 
-        Spacer(modifier = Modifier.height(2.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
         Row(
             modifier = Modifier
@@ -85,29 +100,33 @@ fun StatusToolbar(
 
             Box {
                 ItemCircleImage(
-                    modifier = Modifier.size(20.dp),
+                    modifier = Modifier.size(40.dp),
                     image = profilePicPainter,
                     contentDescription = "Profile picture"
                 ) {}
 
                 FloatingActionButton(
                     modifier = Modifier
-                        .size(12.dp)
-                        .align(Alignment.BottomEnd)
-                        .border(2.dp, backgroundColor),
+                        .border(1.dp, contentColor, CircleShape)
+                        .size(16.dp)
+                        .align(Alignment.BottomEnd),
                     onClick = {},
-                    backgroundColor = contentColor,
-                    contentColor = backgroundColor
+                    backgroundColor = backgroundColor,
+                    contentColor = contentColor
                 ) {
-                    Icon(imageVector = Icons.Rounded.Edit, contentDescription = "Edit Status")
+                    Icon(
+                        modifier = Modifier.size(8.dp),
+                        imageVector = Icons.Rounded.Edit,
+                        contentDescription = "Edit Status"
+                    )
                 }
             }
 
-            Spacer(modifier = Modifier.width(8.dp))
+            Spacer(modifier = Modifier.width(12.dp))
 
             Text(
                 text = userName ?: stringResource(R.string.username),
-                style = MaterialTheme.typography.h3,
+                style = MaterialTheme.typography.h4,
                 color = contentColor,
                 fontSize = 12.sp,
                 letterSpacing = .5.sp,

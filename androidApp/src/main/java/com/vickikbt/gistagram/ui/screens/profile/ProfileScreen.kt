@@ -30,6 +30,7 @@ import coil.compose.rememberImagePainter
 import com.vickikbt.gistagram.LoggedInUserProfileQuery
 import com.vickikbt.gistagram.R
 import com.vickikbt.gistagram.ui.components.ItemCircleImage
+import com.vickikbt.gistagram.ui.components.ItemLoadingScreen
 import com.vickikbt.gistagram.ui.components.profile.ItemBioText
 import com.vickikbt.gistagram.ui.components.profile.ProfileAppBar
 import com.vickikbt.gistagram.ui.components.profile.ProfileStats
@@ -37,6 +38,7 @@ import com.vickikbt.gistagram.ui.components.profile.ProfileTabRow
 import com.vickikbt.gistagram.ui.navigation.NavigationItem
 import com.vickikbt.gistagram.ui.screens.profile.tabs.ItemPinnedRepo
 import com.vickikbt.gistagram.ui.screens.profile.tabs.RepositoriesTab
+import com.vickikbt.gistagram.utils.UiState
 import org.koin.androidx.compose.getViewModel
 
 @ExperimentalMaterialApi
@@ -46,40 +48,56 @@ fun ProfileScreen(
     viewModel: ProfileViewModel = getViewModel()
 ) {
 
-    val userProfileResult = viewModel.userProfile.observeAsState().value
-    val viewer = userProfileResult?.data?.data?.viewer
+    val userProfileUiState = viewModel.userProfile.observeAsState().value
 
-    Column(modifier = Modifier.fillMaxSize()) {
-        ProfileAppBar(
-            title = viewer?.login ?: stringResource(id = R.string.title_profile),
-            onSettingsClicked = {
-                // ToDo: Navigate to settings
+    when (userProfileUiState) {
+        is UiState.Error -> {
+
+        }
+        is UiState.Success -> {
+            val viewer = userProfileUiState.data?.data?.viewer
+
+            Column(modifier = Modifier.fillMaxSize()) {
+                ProfileAppBar(
+                    title = viewer?.login ?: stringResource(id = R.string.title_profile),
+                    onSettingsClicked = {
+                        // ToDo: Navigate to settings
+                    }
+                )
+
+                Spacer(modifier = Modifier.height(4.dp))
+
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.spacedBy(6.dp)
+                ) {
+                    item {
+                        StatSection(user = viewer, navController = navController)
+                    }
+
+                    item {
+                        BioSection(user = viewer)
+                    }
+
+                    item {
+                        Spacer(modifier = Modifier.height(18.dp))
+                        viewer?.pinnedItems?.nodes?.let {
+                            PinnedRepoSection(
+                                navController = navController,
+                                pinnedRepo = it
+                            )
+                        }
+                    }
+
+                    item {
+                        Spacer(modifier = Modifier.height(14.dp))
+                        RepositoriesSection(repos = viewer?.repositories?.nodes)
+                    }
+                }
             }
-        )
-
-        Spacer(modifier = Modifier.height(4.dp))
-
-        LazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(6.dp)
-        ) {
-            item {
-                StatSection(user = viewer, navController = navController)
-            }
-
-            item {
-                BioSection(user = viewer)
-            }
-
-            item {
-                Spacer(modifier = Modifier.height(18.dp))
-                viewer?.pinnedItems?.nodes?.let { PinnedRepoSection(pinnedRepo = it) }
-            }
-
-            item {
-                Spacer(modifier = Modifier.height(14.dp))
-                RepositoriesSection(repos = viewer?.repositories?.nodes)
-            }
+        }
+        else -> {
+            ItemLoadingScreen()
         }
     }
 }
@@ -231,7 +249,10 @@ fun BioSection(user: LoggedInUserProfileQuery.Viewer?) {
 }
 
 @Composable
-fun PinnedRepoSection(pinnedRepo: List<LoggedInUserProfileQuery.Node1?>) {
+fun PinnedRepoSection(
+    navController: NavController,
+    pinnedRepo: List<LoggedInUserProfileQuery.Node1?>
+) {
     val pinnedRepoList = mutableListOf<LoggedInUserProfileQuery.OnRepository?>()
     pinnedRepo.forEach { pinnedRepoList.add(it?.onRepository) }
 
@@ -240,7 +261,12 @@ fun PinnedRepoSection(pinnedRepo: List<LoggedInUserProfileQuery.Node1?>) {
         items(items = pinnedRepoList) { repo ->
             ItemPinnedRepo(
                 modifier = Modifier.padding(horizontal = 6.dp),
-                onItemClicked = {},
+                onItemClicked = {
+                    navController.navigate(
+                        NavigationItem.RepoStatus.route,
+                        navOptions = null
+                    )
+                },
                 pinnedRepo = repo
             )
         }
