@@ -23,10 +23,12 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
@@ -35,6 +37,8 @@ android {
 dependencies {
 
     implementation("androidx.core:core-ktx:1.8.0")
+
+    implementation("org.jsoup:jsoup:1.15.1")
 
     implementation(AndroidDependencies.composeUi)
     implementation(AndroidDependencies.composeMaterial)
