@@ -28,7 +28,9 @@ import kotlinx.coroutines.delay
 @Composable
 fun StatusToolbar(
     modifier: Modifier = Modifier,
-    userName: String? = "VictorKabata",
+    userName: String,
+    title: String? = userName,
+    subTitle: String? = null,
     profilePicUrl: String = "https://avatars.githubusercontent.com/u/39780120?u=bb50900c4214570b711aca1da85a84209b79fed0&v=4",
     backgroundColor: Color = MaterialTheme.colors.surface,
     contentColor: Color = MaterialTheme.colors.onSurface
@@ -124,16 +126,36 @@ fun StatusToolbar(
 
             Spacer(modifier = Modifier.width(12.dp))
 
-            Text(
-                text = userName ?: stringResource(R.string.username),
-                style = MaterialTheme.typography.h4,
-                color = contentColor,
-                fontSize = 12.sp,
-                letterSpacing = .5.sp,
-                lineHeight = 20.sp,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
+            Column(
+                modifier = Modifier.wrapContentHeight(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.Start
+            ) {
+
+                Text(
+                    text = title ?: stringResource(R.string.username),
+                    style = MaterialTheme.typography.h4,
+                    color = contentColor,
+                    fontSize = 12.sp,
+                    letterSpacing = .5.sp,
+                    lineHeight = 20.sp,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+
+                if (!subTitle.isNullOrEmpty()) {
+                    Text(
+                        text = subTitle,
+                        style = MaterialTheme.typography.h3,
+                        color = contentColor.copy(alpha = .8f),
+                        fontSize = 11.sp,
+                        letterSpacing = .5.sp,
+                        lineHeight = 20.sp,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+            }
         }
     }
 }

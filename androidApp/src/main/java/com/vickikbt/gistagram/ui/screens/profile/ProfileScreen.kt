@@ -35,7 +35,6 @@ import com.vickikbt.gistagram.ui.components.profile.ItemBioText
 import com.vickikbt.gistagram.ui.components.profile.ProfileAppBar
 import com.vickikbt.gistagram.ui.components.profile.ProfileStats
 import com.vickikbt.gistagram.ui.components.profile.ProfileTabRow
-import com.vickikbt.gistagram.ui.navigation.NavigationItem
 import com.vickikbt.gistagram.ui.screens.profile.tabs.ItemPinnedRepo
 import com.vickikbt.gistagram.ui.screens.profile.tabs.RepositoriesTab
 import com.vickikbt.gistagram.utils.UiState
@@ -81,10 +80,12 @@ fun ProfileScreen(
 
                     item {
                         Spacer(modifier = Modifier.height(18.dp))
-                        viewer?.pinnedItems?.nodes?.let {
+                        
+                        viewer.let {
                             PinnedRepoSection(
                                 navController = navController,
-                                pinnedRepo = it
+                                user = it,
+                                pinnedRepo = it?.pinnedItems?.nodes ?: listOf()
                             )
                         }
                     }
@@ -124,7 +125,7 @@ private fun StatSection(navController: NavController, user: LoggedInUserProfileQ
             image = userProfilePainter,
             contentDescription = stringResource(R.string.profile_picture)
         ) {
-            navController.navigate(NavigationItem.UserStatus.route, null)
+            user?.login?.let { navController.navigate("status/$it", null) }
         }
 
         ProfileStats(modifier = Modifier.weight(7f), user = user)
@@ -251,6 +252,7 @@ fun BioSection(user: LoggedInUserProfileQuery.Viewer?) {
 @Composable
 fun PinnedRepoSection(
     navController: NavController,
+    user: LoggedInUserProfileQuery.Viewer?,
     pinnedRepo: List<LoggedInUserProfileQuery.Node1?>
 ) {
     val pinnedRepoList = mutableListOf<LoggedInUserProfileQuery.OnRepository?>()
@@ -262,10 +264,14 @@ fun PinnedRepoSection(
             ItemPinnedRepo(
                 modifier = Modifier.padding(horizontal = 6.dp),
                 onItemClicked = {
-                    navController.navigate(
-                        NavigationItem.RepoStatus.route,
-                        navOptions = null
-                    )
+                    user?.login?.let { login ->
+                        repo?.name?.let { repo ->
+                            navController.navigate(
+                                "status/$login/$repo",
+                                navOptions = null
+                            )
+                        }
+                    }
                 },
                 pinnedRepo = repo
             )

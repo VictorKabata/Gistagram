@@ -33,7 +33,13 @@ fun RepoStatusScreen(
         is UiState.Success -> {
 
             Scaffold(
-                topBar = { StatusToolbar(modifier = Modifier.height(56.dp)) },
+                topBar = {
+                    StatusToolbar(
+                        modifier = Modifier.height(56.dp),
+                        userName = userLogin,
+                        subTitle = repoName
+                    )
+                },
                 bottomBar = { BottomNavStatus() }
             ) { it ->
                 RepoStatus(userLogin = userLogin, repoName = repoName, paddingValues = it)

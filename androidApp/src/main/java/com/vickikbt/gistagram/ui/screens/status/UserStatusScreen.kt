@@ -32,7 +32,7 @@ fun UserStatusScreen(
         is UiState.Success -> {
 
             Scaffold(
-                topBar = { StatusToolbar(modifier = Modifier.height(56.dp)) },
+                topBar = { StatusToolbar(modifier = Modifier.height(56.dp), userName = userLogin) },
                 bottomBar = { BottomNavStatus() }
             ) { it ->
                 UserStatus(userLogin = userLogin, paddingValues = it)

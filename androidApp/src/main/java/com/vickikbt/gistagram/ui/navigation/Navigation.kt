@@ -5,8 +5,10 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.vickikbt.gistagram.ui.screens.home.HomeScreen
 import com.vickikbt.gistagram.ui.screens.notifications.NotificationsScreen
 import com.vickikbt.gistagram.ui.screens.profile.ProfileScreen
@@ -46,12 +48,37 @@ fun Navigation(navController: NavHostController) {
             SettingsScreen(navController = navController)
         }
 
-        composable(route = NavigationItem.UserStatus.route) {
-            UserStatusScreen(userLogin = "VictorKabata")
+        composable(
+            route = NavigationItem.UserStatus.route,
+            arguments = listOf(
+                navArgument("userLogin") {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            val userLogin = it.arguments?.getString("userLogin")
+
+            userLogin?.let { UserStatusScreen(userLogin = userLogin) }
         }
 
-        composable(route = NavigationItem.RepoStatus.route) {
-            RepoStatusScreen(userLogin = "VictorKabata", repoName = "Notflix")
+        composable(
+            route = NavigationItem.RepoStatus.route,
+            arguments = listOf(
+                navArgument("userLogin") {
+                    type = NavType.StringType
+                },
+                navArgument("repoName") {
+                    type = NavType.StringType
+                }
+            )) {
+            val userLogin = it.arguments?.getString("userLogin")
+            val repoName = it.arguments?.getString("repoName")
+
+            userLogin?.let {
+                repoName?.let {
+                    RepoStatusScreen(userLogin = userLogin, repoName = repoName)
+                }
+            }
         }
 
         /*composable(route = NavigationItem.Error.route) {
