@@ -1,4 +1,4 @@
 rootProject.name = "Gistagram"
 
-include(":androidApp", ":shared", ":core:library")
-include(":library")
+include(":androidApp", ":shared")
+include(":core:library")

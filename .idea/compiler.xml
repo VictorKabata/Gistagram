@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="1.7">
-      <module name="Gistagram.androidApp" target="11" />
-      <module name="Gistagram.buildSrc" target="11" />
-      <module name="Gistagram.buildSrc.main" target="11" />
-      <module name="Gistagram.buildSrc.test" target="11" />
-      <module name="Gistagram.shared" target="11" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="11" />
   </component>
 </project>
