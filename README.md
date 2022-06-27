@@ -1,2 +1,2 @@
 # Gistagram
- GitHub/Instagram clone Android application built using Jetpack Compose
+ GitHub/Instagram clone KMM application built using Kotlin.
