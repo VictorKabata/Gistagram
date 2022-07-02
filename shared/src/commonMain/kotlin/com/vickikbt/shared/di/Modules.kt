@@ -2,6 +2,7 @@ package com.vickikbt.shared.di
 
 import com.apollographql.apollo3.ApolloClient
 import com.vickikbt.shared.data.data_source.ProfileRepositoryImpl
+import com.vickikbt.shared.data.network.graphql.AuthorizationInterceptor
 import com.vickikbt.shared.data.network.rest.ApiClient
 import com.vickikbt.shared.data.network.rest.ApiClientImpl
 import com.vickikbt.shared.domain.repositories.ProfileRepository
@@ -9,6 +10,8 @@ import io.ktor.client.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.features.logging.*
+import kotlinx.coroutines.Dispatchers
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val commonModule = module {
@@ -42,11 +45,12 @@ val commonModule = module {
      * calls to GitHub graphql API made by Apollo and provided to the Apollo Client instance
      * as a HttpInterceptor
      */
+    single(named("IODispatcher")) { Dispatchers.Default }
+
     single {
         ApolloClient.Builder()
             .serverUrl("https://api.github.com/graphql")
-            .addHttpHeader("Authorization", "Bearer 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")
-            // .addHttpInterceptor(AuthorizationInterceptor())
+            .addHttpInterceptor(AuthorizationInterceptor(ioDispatcher = get(named("IODispatcher"))))
             .build()
     }
 

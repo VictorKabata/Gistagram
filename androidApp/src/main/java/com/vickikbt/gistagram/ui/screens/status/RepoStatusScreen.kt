@@ -9,14 +9,17 @@ import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.vickikbt.gistagram.ui.components.BottomNavStatus
 import com.vickikbt.gistagram.ui.components.ItemLoadingScreen
 import com.vickikbt.gistagram.ui.components.StatusToolbar
-import com.vickikbt.gistagram.utils.MarkDownComposable
 import com.vickikbt.gistagram.utils.UiState
+import com.vickikbt.library.ComposeMarkdown
+import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
 
 @Composable
@@ -70,9 +73,19 @@ private fun RepoStatus(
         backgroundColor = MaterialTheme.colors.surface,
         elevation = 0.dp
     ) {
-        MarkDownComposable(
+        /*MarkDownComposable(
             url = "https://raw.githubusercontent.com/${userLogin}/$repoName/master/README.md",
             modifier = Modifier.fillMaxSize()
-        )
+        )*/
+
+        val markDownScope = rememberCoroutineScope()
+
+        val url = "https://raw.githubusercontent.com/${userLogin}/$repoName/master/README.md"
+
+        LaunchedEffect(key1 = url) {
+            markDownScope.launch {
+                ComposeMarkdown().loadFromUrl(url = url)
+            }
+        }
     }
 }

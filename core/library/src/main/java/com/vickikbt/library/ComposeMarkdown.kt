@@ -1,55 +1,18 @@
 package com.vickikbt.library
 
-import android.content.Context
-import kotlinx.coroutines.CoroutineScope
+import android.util.Log
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
-import java.io.File
 
-class ComposeMarkdown constructor(private val context: Context) {
+class ComposeMarkdown {
 
-    private var markdownDocument: Document? = null
-    private var connectionTimeout: Int = 5000
+    suspend fun loadFromUrl(url: String) = withContext(Dispatchers.IO) {
+        val document = Jsoup.connect(url).get()
 
-    fun setConnectionTimeout(mills: Int) {
-        connectionTimeout = mills
-    }
+        Log.e("TAG", "Document: $document")
 
-    fun loadFromString(markdown: String) {
-        try {
-            markdownDocument = Jsoup.parse(markdown)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            return
-        }
-    }
-
-    fun loadFromFile(file: File) {
-        try {
-            CoroutineScope(Dispatchers.IO).launch {
-                markdownDocument = Jsoup.parse(file)
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-            return
-        }
-    }
-
-    fun loadFromUrl(url: String) {
-        if (!url.startsWith("https://") || !url.startsWith("http://")) {
-            return
-        } else {
-            try {
-                CoroutineScope(Dispatchers.IO).launch {
-                    markdownDocument = Jsoup.connect(url).timeout(connectionTimeout).get()
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-                return
-            }
-        }
-
+        val imageUrl = document.select("#").firstOrNull()
+        Log.e("TAG", "Image URL: $imageUrl")
     }
 }

@@ -1,7 +1,5 @@
 package com.vickikbt.gistagram.utils
 
-import android.view.ViewGroup.LayoutParams.MATCH_PARENT
-import android.widget.LinearLayout
 import androidx.annotation.FontRes
 import androidx.annotation.IdRes
 import androidx.compose.material.LocalTextStyle
@@ -11,9 +9,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.viewinterop.AndroidView
-import br.tiagohm.markdownview.MarkdownView
 import br.tiagohm.markdownview.css.styles.Bootstrap
+import com.vickikbt.library.ComposeMarkdown
 
 @Composable
 fun MarkDownComposable(
@@ -28,7 +25,8 @@ fun MarkDownComposable(
     @IdRes viewId: Int? = null
 ) {
 
-    AndroidView(
+
+    /*AndroidView(
         factory = { context ->
             MarkdownView(context).apply {
                 viewId?.let { id = it }
@@ -40,7 +38,7 @@ fun MarkDownComposable(
         update = { markDownView ->
             markDownView.loadMarkdownFromUrl(url)
         }
-    )
+    )*/
 
 }
 

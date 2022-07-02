@@ -16,7 +16,7 @@ plugins {
     id(Plugins.ktLint) version Versions.ktLint
     id(Plugins.detekt) version (Versions.detekt)
     id(Plugins.gradleVersionUpdates) version (Versions.gradleVersionUpdate)
-    id("org.jetbrains.kotlin.android") version "1.6.21" apply false
+    id("org.jetbrains.kotlin.android") version "1.6.20" apply false
 }
 
 allprojects {
