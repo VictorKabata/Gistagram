@@ -88,5 +88,6 @@ apollo {
 sqldelight {
     database(name = "AppDatabase") {
         packageName = "com.vickikbt.shared.data.cache.sqldelight"
+        sourceFolders = listOf("kotlin")
     }
 }

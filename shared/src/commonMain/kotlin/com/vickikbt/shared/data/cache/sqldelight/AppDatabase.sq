@@ -1,0 +1,15 @@
+CREATE TABLE TokenEntity(
+accessToken TEXT NOT NULL PRIMARY KEY,
+scope TEXT DEFAULT NULL,
+tokenType TEXT NOT NULL
+);
+
+saveToken:
+INSERT OR REPLACE INTO TokenEntity(accessToken,scope,tokenType)
+VALUES ?;
+
+getToken:
+SELECT * FROM TokenEntity;
+
+deleteToken:
+DELETE FROM TokenEntity;

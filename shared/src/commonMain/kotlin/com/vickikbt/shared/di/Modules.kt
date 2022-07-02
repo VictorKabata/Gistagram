@@ -1,10 +1,13 @@
 package com.vickikbt.shared.di
 
 import com.apollographql.apollo3.ApolloClient
+import com.vickikbt.shared.data.cache.sqldelight.dao.TokenDao
+import com.vickikbt.shared.data.data_source.AuthRepositoryImpl
 import com.vickikbt.shared.data.data_source.ProfileRepositoryImpl
 import com.vickikbt.shared.data.network.graphql.AuthorizationInterceptor
 import com.vickikbt.shared.data.network.rest.ApiClient
 import com.vickikbt.shared.data.network.rest.ApiClientImpl
+import com.vickikbt.shared.domain.repositories.AuthRepository
 import com.vickikbt.shared.domain.repositories.ProfileRepository
 import io.ktor.client.*
 import io.ktor.client.features.json.*
@@ -55,8 +58,13 @@ val commonModule = module {
     }
 
     /**
+     * Create instance of database abstract objects
+     */
+    single { TokenDao(databaseDriverFactory = get()) }
+
+    /**
      * Injecting to repositories
      */
-    // single<AuthRepository> { AuthRepositoryImpl(apiClient = get(), tokenDao = get()) }
+    single<AuthRepository> { AuthRepositoryImpl(apiClient = get(), tokenDao = get()) }
     single<ProfileRepository> { ProfileRepositoryImpl(apolloClient = get()) }
 }
