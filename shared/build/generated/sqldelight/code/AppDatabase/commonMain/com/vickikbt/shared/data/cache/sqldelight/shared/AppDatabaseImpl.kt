@@ -76,8 +76,8 @@ private class AppDatabaseQueriesImpl(
     )
   }
 
-  public override fun upsertToken(TokenEntity: TokenEntity): Unit {
-    driver.execute(-1101929318, """
+  public override fun saveToken(TokenEntity: TokenEntity): Unit {
+    driver.execute(-1100439284, """
     |INSERT OR REPLACE INTO TokenEntity(accessToken,scope,tokenType)
     |VALUES (?, ?, ?)
     """.trimMargin(), 3) {
@@ -85,7 +85,7 @@ private class AppDatabaseQueriesImpl(
       bindString(2, TokenEntity.scope)
       bindString(3, TokenEntity.tokenType)
     }
-    notifyQueries(-1101929318, {database.appDatabaseQueries.getToken})
+    notifyQueries(-1100439284, {database.appDatabaseQueries.getToken})
   }
 
   public override fun deleteToken(): Unit {

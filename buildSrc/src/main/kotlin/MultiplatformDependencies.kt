@@ -13,6 +13,7 @@ object MultiplatformDependencies {
     const val ktorLogging = "io.ktor:ktor-client-logging:${Versions.ktor}"
     const val ktorAndroid = "io.ktor:ktor-client-android:${Versions.ktor}"
     const val ktoriOS = "io.ktor:ktor-client-ios:${Versions.ktor}"
+    const val ktorJvm = "io.ktor:ktor-client-java:${Versions.ktor}"
 
     const val apolloRuntime = "com.apollographql.apollo3:apollo-runtime:${Versions.apollo}"
     const val apolloCoroutines =
@@ -28,6 +29,7 @@ object MultiplatformDependencies {
         "com.squareup.sqldelight:coroutines-extensions:${Versions.sqlDelight}"
     const val sqlDelightAndroid = "com.squareup.sqldelight:android-driver:${Versions.sqlDelight}"
     const val sqlDelightNative = "com.squareup.sqldelight:native-driver:${Versions.sqlDelight}"
+    const val sqlDelightJVM = "com.squareup.sqldelight:sqlite-driver:${Versions.sqlDelight}"
 
     const val napier = "io.github.aakira:napier:${Versions.napier}"
 

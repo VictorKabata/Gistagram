@@ -29,6 +29,8 @@ kotlin {
         }
     iosTarget("iOS") {}
 
+    jvm()
+
     sourceSets {
         sourceSets["commonMain"].dependencies {
             implementation(MultiplatformDependencies.kotlinxCoroutines)
@@ -76,6 +78,14 @@ kotlin {
         }
 
         sourceSets["iOSTest"].dependencies {
+        }
+
+        sourceSets["jvmMain"].dependencies {
+            api(MultiplatformDependencies.ktorJvm)
+            implementation(MultiplatformDependencies.sqlDelightJVM)
+        }
+
+        sourceSets["jvmTest"].dependencies {
         }
     }
 }

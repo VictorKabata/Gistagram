@@ -23,7 +23,8 @@ object Versions {
 
     const val mockk = "1.12.3"
 
-    // Desktop Dependencies
+    // Desktop Dependencies Version
+    const val composeDesktop = "1.2.0-alpha01-dev683"
 
     // Android Dependencies
     const val androidCore = "1.7.0"
