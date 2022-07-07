@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -34,10 +35,15 @@ fun AuthScreen(navController: NavController, viewModel: AuthViewModel = getViewM
     when (val authUiState = viewModel.authUiState.observeAsState().value) {
         is UiState.Error -> {
             isLoading = false
+            Toast.makeText(context, "Success", Toast.LENGTH_LONG).show()
+
             Log.e("TAG", "Error: ${authUiState.error}")
         }
         is UiState.Success -> {
             isLoading = false
+
+            Toast.makeText(context, "Success", Toast.LENGTH_LONG).show()
+
             Log.e("TAG", "Token: ${authUiState.data}")
             // navController.navigate(NavigationItem.Profile.route)
         }
