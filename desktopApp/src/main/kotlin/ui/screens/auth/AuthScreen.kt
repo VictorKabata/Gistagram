@@ -1,9 +1,7 @@
 package ui.screens.auth
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,8 +18,10 @@ fun AuthScreen() {
     Box(modifier = Modifier.fillMaxSize()) {
         Icon(
             modifier = Modifier.size(200.dp).align(Alignment.Center),
-            painter = painterResource("ic_logo.png"),
-            contentDescription = "Logo"
+            painter = if (MaterialTheme.colors.isLight) painterResource("ic_logo_dark.png")
+            else painterResource("ic_logo_light.png"),
+            contentDescription = "Logo",
+            tint = MaterialTheme.colors.onSurface
         )
 
         Column(
@@ -33,6 +33,7 @@ fun AuthScreen() {
                     Desktop.getDesktop().browse(URI("https://github.com/VictorKabata"))
                     //ToDo: Open browser for Oauth flow
                 },
+                colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.onSurface)
             ) {
                 Text(
                     modifier = Modifier.padding(horizontal = 88.dp),
@@ -40,6 +41,7 @@ fun AuthScreen() {
                     fontSize = 24.sp,
                     fontWeight = FontWeight.SemiBold,
                     textAlign = TextAlign.Center,
+                    color = MaterialTheme.colors.surface
                 )
             }
 
@@ -49,14 +51,16 @@ fun AuthScreen() {
                 text = "Powered By",
                 fontSize = 14.sp,
                 fontWeight = FontWeight.SemiBold,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colors.onSurface
             )
 
             Text(
                 text = "GitHub API",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Black,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colors.onSurface
             )
 
             Spacer(modifier = Modifier.height(24.dp))
