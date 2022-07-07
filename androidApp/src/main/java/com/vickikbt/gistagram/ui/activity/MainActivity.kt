@@ -12,11 +12,8 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.navigation.compose.currentBackStackEntryAsState
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
-import com.vickikbt.gistagram.ui.components.BottomNavBar
 import com.vickikbt.gistagram.ui.navigation.Navigation
-import com.vickikbt.gistagram.ui.navigation.NavigationItem
 import com.vickikbt.gistagram.ui.theme.GistagramTheme
 
 @ExperimentalMaterialApi
@@ -37,7 +34,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@ExperimentalMaterialApi
+/*@ExperimentalMaterialApi
 @ExperimentalFoundationApi
 @ExperimentalAnimationApi
 @Composable
@@ -66,7 +63,19 @@ fun MainScreen() {
                 )
             }
         }
-    ) {
+    ) { paddingValues ->
+        Navigation(navController = navController)
+    }
+}*/
+
+@ExperimentalMaterialApi
+@ExperimentalFoundationApi
+@ExperimentalAnimationApi
+@Composable
+fun MainScreen() {
+    val navController = rememberAnimatedNavController()
+
+    Scaffold { paddingValues ->
         Navigation(navController = navController)
     }
 }
