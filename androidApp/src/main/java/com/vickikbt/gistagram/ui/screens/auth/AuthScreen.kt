@@ -18,7 +18,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.vickikbt.gistagram.R
-import com.vickikbt.gistagram.ui.navigation.NavigationItem
 import com.vickikbt.gistagram.utils.UiState
 import com.vickikbt.gistagram.utils.findActivity
 import com.vickikbt.shared.domain.utils.Constants
@@ -34,11 +33,13 @@ fun AuthScreen(navController: NavController, viewModel: AuthViewModel = getViewM
 
     when (val authUiState = viewModel.authUiState.observeAsState().value) {
         is UiState.Error -> {
+            isLoading = false
             Log.e("TAG", "Error: ${authUiState.error}")
         }
         is UiState.Success -> {
+            isLoading = false
             Log.e("TAG", "Token: ${authUiState.data}")
-            navController.navigate(NavigationItem.Profile.route)
+            // navController.navigate(NavigationItem.Profile.route)
         }
         is UiState.Loading -> {
             isLoading = true

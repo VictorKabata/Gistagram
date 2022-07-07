@@ -59,6 +59,11 @@ val commonModule = module {
     }
 
     /**
+     * Custom dispatcher
+     */
+    single(named("DefaultDispatcher")) { Dispatchers.Default }
+
+    /**
      * Create instance of database abstract objects
      */
     single { AccessTokenDao(databaseDriverFactory = get()) }

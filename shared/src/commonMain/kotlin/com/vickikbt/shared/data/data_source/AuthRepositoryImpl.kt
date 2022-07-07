@@ -17,17 +17,12 @@ class AuthRepositoryImpl constructor(
 
     override suspend fun fetchAccessToken(code: String): AccessToken? {
         val response = apiClient.fetchAccessToken(code = code)
-        return try {
-            val responseEntity = response?.toEntity()
-            responseEntity?.let {
-                saveAccessToken(accessTokenEntity = it)
-            }
-
-            responseEntity?.toDomain()
-        } catch (e: Exception) {
-            AccessToken() //Replace with UiState
+        val responseEntity = response?.toEntity()
+        responseEntity?.let {
+            saveAccessToken(accessTokenEntity = it)
         }
 
+        return responseEntity?.toDomain()
     }
 
     override suspend fun getAccessToken(): Flow<AccessToken?> {
