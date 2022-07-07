@@ -128,6 +128,7 @@ fun onResume(context: Context, viewModel: AuthViewModel) {
 
     if (uri != null && uri.toString().contains(Constants.REDIRECT_URL)) {
         val code = uri.getQueryParameter("code")
+        Log.e("TAG", "URI: $uri")
 
         if (code != null) {
             Log.e("TAG", "Code: $code")

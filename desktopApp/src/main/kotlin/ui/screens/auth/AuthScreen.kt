@@ -67,3 +67,20 @@ fun AuthScreen() {
         }
     }
 }
+
+/*suspend fun onResume() {
+    suspendCancellableCoroutine { continuation ->
+        val server = HttpServer.create(InetSocketAddress(5789), 0)
+
+        server.createContext("/callback") { http ->
+            val parameters = http.requestURI.query
+
+            if (parameters != null && parameters.contains(Constants.REDIRECT_URL)) {
+                val code = parameters.substringAfter("?code=")
+
+                // sendResponse(code)
+                continuation.resume(code)
+            }
+        }
+    }
+}*/
