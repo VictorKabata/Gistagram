@@ -1,7 +1,7 @@
 CREATE TABLE AccessTokenEntity(
-accessToken TEXT NOT NULL PRIMARY KEY,
+accessToken TEXT DEFAULT NULL PRIMARY KEY,
 scope TEXT DEFAULT NULL,
-tokenType TEXT NOT NULL
+tokenType TEXT DEFAULT NULL
 );
 
 saveToken:

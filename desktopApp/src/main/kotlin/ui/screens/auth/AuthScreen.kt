@@ -10,6 +10,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.vickikbt.shared.domain.utils.Constants
 import java.awt.Desktop
 import java.net.URI
 
@@ -30,8 +31,7 @@ fun AuthScreen() {
         ) {
             Button(
                 onClick = {
-                    Desktop.getDesktop().browse(URI("https://github.com/VictorKabata"))
-                    //ToDo: Open browser for Oauth flow
+                    Desktop.getDesktop().browse(URI(Constants.OAUTH_FULL_URL))
                 },
                 colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.onSurface)
             ) {

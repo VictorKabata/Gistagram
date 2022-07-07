@@ -33,9 +33,9 @@ private class AppDatabaseImpl(
     public override fun create(driver: SqlDriver): Unit {
       driver.execute(null, """
           |CREATE TABLE AccessTokenEntity(
-          |accessToken TEXT NOT NULL PRIMARY KEY,
+          |accessToken TEXT DEFAULT NULL PRIMARY KEY,
           |scope TEXT DEFAULT NULL,
-          |tokenType TEXT NOT NULL
+          |tokenType TEXT DEFAULT NULL
           |)
           """.trimMargin(), 0)
     }
@@ -58,13 +58,13 @@ private class AppDatabaseQueriesImpl(
   public override fun <T : Any> getToken(mapper: (
     accessToken: String,
     scope: String?,
-    tokenType: String
+    tokenType: String?
   ) -> T): Query<T> = Query(-1399874637, getToken, driver, "AppDatabase.sq", "getToken",
       "SELECT * FROM AccessTokenEntity") { cursor ->
     mapper(
       cursor.getString(0)!!,
       cursor.getString(1),
-      cursor.getString(2)!!
+      cursor.getString(2)
     )
   }
 

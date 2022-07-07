@@ -29,7 +29,8 @@ class AuthRepositoryImpl constructor(
         return accessTokenDao.getToken.map { it?.toDomain() }
     }
 
-    fun saveAccessToken(accessTokenEntity: AccessTokenEntity) =
+    fun saveAccessToken(accessTokenEntity: AccessTokenEntity) {
         accessTokenDao.saveToken(accessTokenEntity = accessTokenEntity)
+    }
 
 }

@@ -14,14 +14,16 @@ class AuthViewModel constructor(private val authRepository: AuthRepository) : Vi
     private val _authUiState = MutableLiveData<UiState<AccessToken?>>()
     val authUiState: LiveData<UiState<AccessToken?>> get() = _authUiState
 
-    fun fetchAccessToken(code: String) = viewModelScope.launch {
-        _authUiState.postValue(UiState.Loading())
+    fun fetchAccessToken(code: String) {
+        viewModelScope.launch {
+            _authUiState.postValue(UiState.Loading())
 
-        try {
-            val response = authRepository.fetchAccessToken(code = code)
-            _authUiState.postValue(UiState.Success(data = response))
-        } catch (e: Exception) {
-            _authUiState.postValue(UiState.Error(error = e.localizedMessage))
+            try {
+                val response = authRepository.fetchAccessToken(code = code)
+                _authUiState.postValue(UiState.Success(data = response))
+            } catch (e: Exception) {
+                _authUiState.postValue(UiState.Error(error = e.localizedMessage))
+            }
         }
     }
 

@@ -79,12 +79,12 @@ fun MainScreen() {
 @Composable
 fun MainScreen(viewModel: MainActivityViewModel = getViewModel()) {
     val navController = rememberAnimatedNavController()
-    val accessToken by remember { mutableStateOf(viewModel.accessToken) }.value
+    val accessToken by remember { mutableStateOf(viewModel.accessToken) }
 
-    Log.e("TAG", "Main Access token: $accessToken")
+    Log.e("TAG", "Main Access token: ${accessToken.value}")
 
     Scaffold { paddingValues ->
-        Navigation(navController = navController, isLoggedIn = accessToken != null)
+        Navigation(navController = navController, isLoggedIn = accessToken.value != null)
     }
 }
 

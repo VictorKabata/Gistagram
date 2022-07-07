@@ -10,7 +10,7 @@ public interface AppDatabaseQueries : Transacter {
   public fun <T : Any> getToken(mapper: (
     accessToken: String,
     scope: String?,
-    tokenType: String
+    tokenType: String?
   ) -> T): Query<T>
 
   public fun getToken(): Query<AccessTokenEntity>
