@@ -1,20 +1,20 @@
 package com.vickikbt.shared.domain.repositories
 
-import com.vickikbt.shared.domain.models.Token
+import com.vickikbt.shared.domain.models.AccessToken
 import kotlinx.coroutines.flow.Flow
 
 interface AuthRepository {
 
     /**
      * Return a token data class from the
-     * GitHub RESTful API
+     * GitHub REST API
      */
-    suspend fun fetchToken(): Token
+    suspend fun fetchAccessToken(code:String): AccessToken?
 
     /**
      * Returns a flow of token data class
      * cached in sqlDelight
      */
-    suspend fun getToken(): Flow<Token?>
+    suspend fun getAccessToken(): Flow<AccessToken?>
 
 }

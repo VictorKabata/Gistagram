@@ -1,10 +1,10 @@
 package com.vickikbt.shared.data.mappers
 
-import com.vickikbt.shared.data.cache.sqldelight.TokenEntity
-import com.vickikbt.shared.data.network.rest.models.TokenDto
+import com.vickikbt.shared.data.cache.sqldelight.AccessTokenEntity
+import com.vickikbt.shared.data.network.rest.models.AccessTokenDto
 
-internal fun TokenDto.toEntity(): TokenEntity {
-    return TokenEntity(
+internal fun AccessTokenDto.toEntity(): AccessTokenEntity {
+    return AccessTokenEntity(
         accessToken = this.accessToken,
         scope = this.scope,
         tokenType = this.tokenType,

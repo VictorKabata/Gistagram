@@ -4,7 +4,7 @@ import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
 
 fun initKoin(isDebug: Boolean = false,appDeclaration: KoinAppDeclaration = {}) = startKoin {
-    val sharedModules = listOf(commonModule)
+    val sharedModules = listOf(commonModule, platformModule())
 
     appDeclaration()
     modules(sharedModules)

@@ -1,7 +1,7 @@
 package com.vickikbt.shared.di
 
 import com.apollographql.apollo3.ApolloClient
-import com.vickikbt.shared.data.cache.sqldelight.dao.TokenDao
+import com.vickikbt.shared.data.cache.sqldelight.dao.AccessTokenDao
 import com.vickikbt.shared.data.data_source.AuthRepositoryImpl
 import com.vickikbt.shared.data.data_source.ProfileRepositoryImpl
 import com.vickikbt.shared.data.network.graphql.AuthorizationInterceptor
@@ -14,6 +14,7 @@ import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.features.logging.*
 import kotlinx.coroutines.Dispatchers
+import org.koin.core.module.Module
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -60,11 +61,13 @@ val commonModule = module {
     /**
      * Create instance of database abstract objects
      */
-    single { TokenDao(databaseDriverFactory = get()) }
+    single { AccessTokenDao(databaseDriverFactory = get()) }
 
     /**
      * Injecting to repositories
      */
-    single<AuthRepository> { AuthRepositoryImpl(apiClient = get(), tokenDao = get()) }
+    single<AuthRepository> { AuthRepositoryImpl(apiClient = get(), accessTokenDao = get()) }
     single<ProfileRepository> { ProfileRepositoryImpl(apolloClient = get()) }
 }
+
+expect fun platformModule(): Module
