@@ -1,4 +1,4 @@
-package com.vickikbt.gistagram.utils
+package com.vickikbt.shared.domain.utils
 
 sealed class UiState<T>(
     val data: T? = null,

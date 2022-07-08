@@ -17,8 +17,8 @@ import androidx.compose.ui.unit.dp
 import com.vickikbt.gistagram.ui.components.BottomNavStatus
 import com.vickikbt.gistagram.ui.components.ItemLoadingScreen
 import com.vickikbt.gistagram.ui.components.StatusToolbar
-import com.vickikbt.gistagram.utils.UiState
 import com.vickikbt.library.ComposeMarkdown
+import com.vickikbt.shared.domain.utils.UiState
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
 

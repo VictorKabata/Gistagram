@@ -7,8 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.apollographql.apollo3.api.ApolloResponse
 import com.apollographql.apollo3.exception.ApolloHttpException
 import com.vickikbt.gistagram.UserStatusQuery
-import com.vickikbt.gistagram.utils.UiState
 import com.vickikbt.shared.domain.repositories.ProfileRepository
+import com.vickikbt.shared.domain.utils.UiState
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 

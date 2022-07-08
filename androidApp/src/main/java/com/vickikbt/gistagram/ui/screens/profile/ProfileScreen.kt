@@ -37,7 +37,7 @@ import com.vickikbt.gistagram.ui.components.profile.ProfileStats
 import com.vickikbt.gistagram.ui.components.profile.ProfileTabRow
 import com.vickikbt.gistagram.ui.screens.profile.tabs.ItemPinnedRepo
 import com.vickikbt.gistagram.ui.screens.profile.tabs.RepositoriesTab
-import com.vickikbt.gistagram.utils.UiState
+import com.vickikbt.shared.domain.utils.UiState
 import org.koin.androidx.compose.getViewModel
 
 @ExperimentalMaterialApi
