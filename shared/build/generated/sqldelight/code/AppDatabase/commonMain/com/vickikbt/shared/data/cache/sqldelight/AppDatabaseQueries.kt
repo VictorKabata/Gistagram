@@ -13,9 +13,9 @@ public interface AppDatabaseQueries : Transacter {
     tokenType: String
   ) -> T): Query<T>
 
-  public fun getToken(): Query<TokenEntity>
+  public fun getToken(): Query<AccessTokenEntity>
 
-  public fun saveToken(TokenEntity: TokenEntity): Unit
+  public fun saveToken(AccessTokenEntity: AccessTokenEntity): Unit
 
   public fun deleteToken(): Unit
 }

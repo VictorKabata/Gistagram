@@ -1,15 +1,15 @@
-CREATE TABLE TokenEntity(
+CREATE TABLE AccessTokenEntity(
 accessToken TEXT NOT NULL PRIMARY KEY,
 scope TEXT DEFAULT NULL,
 tokenType TEXT NOT NULL
 );
 
 saveToken:
-INSERT OR REPLACE INTO TokenEntity(accessToken,scope,tokenType)
+INSERT OR REPLACE INTO AccessTokenEntity(accessToken,scope,tokenType)
 VALUES ?;
 
 getToken:
-SELECT * FROM TokenEntity;
+SELECT * FROM AccessTokenEntity;
 
 deleteToken:
-DELETE FROM TokenEntity;
+DELETE FROM AccessTokenEntity;

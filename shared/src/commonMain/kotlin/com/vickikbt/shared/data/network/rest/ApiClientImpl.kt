@@ -1,6 +1,7 @@
 package com.vickikbt.shared.data.network.rest
 
-import com.vickikbt.shared.data.network.rest.models.TokenDto
+import com.vickikbt.shared.data.network.rest.models.AccessTokenDto
+import com.vickikbt.shared.domain.utils.Constants
 import io.ktor.client.*
 import io.ktor.client.features.*
 import io.ktor.client.request.*
@@ -9,14 +10,14 @@ import io.ktor.http.*
 
 class ApiClientImpl constructor(private val httpClient: HttpClient) : ApiClient {
 
-    override suspend fun getUserToken(
+    override suspend fun fetchAccessToken(
         clientId: String,
         clientSecret: String,
         code: String
-    ): TokenDto? {
+    ): AccessTokenDto? {
         return try {
-            httpClient.submitForm<TokenDto>(
-                url = "https://github.com/login/oauth/access_token",
+            httpClient.submitForm<AccessTokenDto>(
+                url = Constants.OAUTH_BASE_URL,
                 formParameters = Parameters.build {
                     append("client_id", clientId)
                     append("client_secret", clientSecret)

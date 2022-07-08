@@ -4,9 +4,9 @@ import com.squareup.sqldelight.Query
 import com.squareup.sqldelight.TransacterImpl
 import com.squareup.sqldelight.`internal`.copyOnWriteList
 import com.squareup.sqldelight.db.SqlDriver
+import com.vickikbt.shared.`data`.cache.sqldelight.AccessTokenEntity
 import com.vickikbt.shared.`data`.cache.sqldelight.AppDatabase
 import com.vickikbt.shared.`data`.cache.sqldelight.AppDatabaseQueries
-import com.vickikbt.shared.`data`.cache.sqldelight.TokenEntity
 import kotlin.Any
 import kotlin.Int
 import kotlin.String
@@ -32,7 +32,7 @@ private class AppDatabaseImpl(
 
     public override fun create(driver: SqlDriver): Unit {
       driver.execute(null, """
-          |CREATE TABLE TokenEntity(
+          |CREATE TABLE AccessTokenEntity(
           |accessToken TEXT NOT NULL PRIMARY KEY,
           |scope TEXT DEFAULT NULL,
           |tokenType TEXT NOT NULL
@@ -60,7 +60,7 @@ private class AppDatabaseQueriesImpl(
     scope: String?,
     tokenType: String
   ) -> T): Query<T> = Query(-1399874637, getToken, driver, "AppDatabase.sq", "getToken",
-      "SELECT * FROM TokenEntity") { cursor ->
+      "SELECT * FROM AccessTokenEntity") { cursor ->
     mapper(
       cursor.getString(0)!!,
       cursor.getString(1),
@@ -68,28 +68,29 @@ private class AppDatabaseQueriesImpl(
     )
   }
 
-  public override fun getToken(): Query<TokenEntity> = getToken { accessToken, scope, tokenType ->
-    TokenEntity(
+  public override fun getToken(): Query<AccessTokenEntity> = getToken { accessToken, scope,
+      tokenType ->
+    AccessTokenEntity(
       accessToken,
       scope,
       tokenType
     )
   }
 
-  public override fun saveToken(TokenEntity: TokenEntity): Unit {
+  public override fun saveToken(AccessTokenEntity: AccessTokenEntity): Unit {
     driver.execute(-1100439284, """
-    |INSERT OR REPLACE INTO TokenEntity(accessToken,scope,tokenType)
+    |INSERT OR REPLACE INTO AccessTokenEntity(accessToken,scope,tokenType)
     |VALUES (?, ?, ?)
     """.trimMargin(), 3) {
-      bindString(1, TokenEntity.accessToken)
-      bindString(2, TokenEntity.scope)
-      bindString(3, TokenEntity.tokenType)
+      bindString(1, AccessTokenEntity.accessToken)
+      bindString(2, AccessTokenEntity.scope)
+      bindString(3, AccessTokenEntity.tokenType)
     }
     notifyQueries(-1100439284, {database.appDatabaseQueries.getToken})
   }
 
   public override fun deleteToken(): Unit {
-    driver.execute(-1638996578, """DELETE FROM TokenEntity""", 0)
+    driver.execute(-1638996578, """DELETE FROM AccessTokenEntity""", 0)
     notifyQueries(-1638996578, {database.appDatabaseQueries.getToken})
   }
 }
