@@ -4,7 +4,7 @@ plugins {
     kotlin(Plugins.multiplatform)
     id(Plugins.androidLibrary)
     kotlin(Plugins.kotlinXSerialization) version Versions.kotlinSerialization
-    id(Plugins.nativeCoroutines)
+    id(Plugins.nativeCoroutines) version Versions.kmpNativeCoroutines
     id(Plugins.apollo).version(Versions.apollo)
     id(Plugins.sqlDelight) version Versions.sqlDelight
 }

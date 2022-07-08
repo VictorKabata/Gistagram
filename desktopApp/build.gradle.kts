@@ -10,7 +10,6 @@ repositories {
 
 dependencies {
     implementation(project(":shared"))
-    //implementation(project(":shared"))
     // implementation(project(":core:library"))
 
     implementation(compose.desktop.currentOs)

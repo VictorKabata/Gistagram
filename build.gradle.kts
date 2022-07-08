@@ -8,7 +8,6 @@ buildscript {
     dependencies {
         classpath(Plugins.kotlin)
         classpath(Plugins.gradle)
-        classpath(Plugins.kmpNativeCoroutines)
     }
 }
 
@@ -16,7 +15,6 @@ plugins {
     id(Plugins.ktLint) version Versions.ktLint
     id(Plugins.detekt) version (Versions.detekt)
     id(Plugins.gradleVersionUpdates) version (Versions.gradleVersionUpdate)
-    id("org.jetbrains.kotlin.android") version "1.6.20" apply false
 }
 
 allprojects {
