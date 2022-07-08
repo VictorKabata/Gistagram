@@ -8,5 +8,5 @@ object Constants {
     const val CLIENT_ID = ""
     const val CLIENT_SECRET = ""
     const val REDIRECT_URL = ""
-    const val OAUTH_URL = ""
+    const val OAUTH_FULL_URL = ""
 }

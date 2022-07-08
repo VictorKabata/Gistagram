@@ -15,6 +15,7 @@ import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.features.logging.*
 import kotlinx.coroutines.Dispatchers
+import org.koin.core.module.Module
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -74,3 +75,5 @@ val commonModule = module {
      */
     single { SharedAuthViewModel(authRepository = get()) }
 }
+
+expect fun platformModule(): Module
