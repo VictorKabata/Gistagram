@@ -1,5 +1,7 @@
 package com.vickikbt.shared.domain.utils
 
-actual class Platform actual constructor() {
-    actual val platform: String = "Desktop"
+import org.koin.dsl.module
+
+actual fun platformModule() = module {
+    single { DatabaseDriverFactory() }
 }
