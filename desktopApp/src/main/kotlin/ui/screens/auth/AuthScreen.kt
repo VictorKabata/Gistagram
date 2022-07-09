@@ -19,7 +19,7 @@ import java.net.URI
 @Composable
 fun AuthScreen(viewModel: SharedAuthViewModel = koin.get()) {
 
-    Box(modifier = Modifier.fillMaxWidth()) {
+    Box(modifier = Modifier.fillMaxSize()) {
         val icon = if (MaterialTheme.colors.isLight) painterResource("ic_logo.png")
         else painterResource("ic_logo_dark.png")
 
@@ -35,13 +35,13 @@ fun AuthScreen(viewModel: SharedAuthViewModel = koin.get()) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Button(
-                onClick = {Desktop.getDesktop().browse(URI(Constants.OAUTH_FULL_URL))},
+                onClick = { Desktop.getDesktop().browse(URI(Constants.OAUTH_FULL_URL)) },
                 colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.onSurface)
             ) {
                 Text(
                     modifier = Modifier.padding(horizontal = 96.dp),
                     text = "LOGIN",
-                    fontWeight = FontWeight.SemiBold,
+                    fontWeight = FontWeight.Bold,
                     fontSize = 22.sp,
                     color = MaterialTheme.colors.surface,
                     textAlign = TextAlign.Center

@@ -1,10 +1,8 @@
 package ui.screens.main
 
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.ApplicationScope
 import androidx.compose.ui.window.Window
@@ -26,7 +24,7 @@ fun MainScreen(applicationScope: ApplicationScope) {
         )
     ) {
         GistagramTheme {
-            Surface(modifier = Modifier.fillMaxSize()) {
+            Surface {
                 AuthScreen()
             }
         }
