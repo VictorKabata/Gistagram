@@ -12,8 +12,9 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.rememberWindowState
 import koin
-import ui.screens.auth.AuthScreen
-import ui.screens.profile.ProfileScreen
+import ui.navigation.Navigation
+import ui.navigation.NavigationItem
+import ui.navigation.rememberNavController
 import ui.theme.GistagramTheme
 
 @Composable
@@ -21,6 +22,12 @@ fun MainScreen(applicationScope: ApplicationScope, viewModel: MainViewModel = ko
 
     val accessToken by remember { mutableStateOf(viewModel.accessToken.value) }
     println("Access Token: $accessToken")
+
+    val navController by rememberNavController(
+        startDestination = if (accessToken != null) NavigationItem.Profile.route else NavigationItem.Auth.route
+    )
+
+    println("Current destination: ${navController.currentDestination.value}")
 
     Window(
         onCloseRequest = { applicationScope.exitApplication() },
@@ -33,11 +40,7 @@ fun MainScreen(applicationScope: ApplicationScope, viewModel: MainViewModel = ko
     ) {
         GistagramTheme {
             Surface {
-                if (!accessToken?.accessToken.isNullOrEmpty()) {
-                    ProfileScreen()
-                } else {
-                    AuthScreen()
-                }
+                Navigation(navController = navController)
             }
         }
     }

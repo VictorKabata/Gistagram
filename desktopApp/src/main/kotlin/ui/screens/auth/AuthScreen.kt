@@ -12,9 +12,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vickikbt.shared.domain.utils.UiState
 import koin
+import ui.navigation.NavController
 
 @Composable
-fun AuthScreen(viewModel: AuthViewModel = koin.get()) {
+fun AuthScreen(navController: NavController, viewModel: AuthViewModel = koin.get()) {
 
     val authUiState by remember { mutableStateOf(viewModel.accessToken.value) }
     var isLoading by remember { mutableStateOf(false) }
