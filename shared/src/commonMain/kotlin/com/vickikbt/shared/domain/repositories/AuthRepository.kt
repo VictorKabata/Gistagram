@@ -15,6 +15,6 @@ interface AuthRepository {
      * Returns a flow of token data class
      * cached in sqlDelight
      */
-    suspend fun getToken(): Flow<AccessToken?>
+    suspend fun getAccessToken(): Flow<AccessToken?>
 
 }

@@ -35,7 +35,7 @@ fun AuthScreen(viewModel: SharedAuthViewModel = koin.get()) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Button(
-                onClick = { Desktop.getDesktop().browse(URI(Constants.OAUTH_FULL_URL)) },
+                onClick = { Desktop.getDesktop().browse(URI(Constants.WEB_URL)) },
                 colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.onSurface)
             ) {
                 Text(

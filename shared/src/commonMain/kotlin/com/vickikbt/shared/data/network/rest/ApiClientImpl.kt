@@ -17,7 +17,7 @@ class ApiClientImpl constructor(private val httpClient: HttpClient) : ApiClient 
     ): AccessTokenDto? {
         return try {
             httpClient.submitForm<AccessTokenDto>(
-                url = Constants.OAUTH_BASE_URL,
+                url = Constants.TOKEN_BASE_URL,
                 formParameters = Parameters.build {
                     append("client_id", clientId)
                     append("client_secret", clientSecret)

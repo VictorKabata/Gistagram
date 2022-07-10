@@ -1,10 +1,16 @@
 package com.vickikbt.gistagram.ui.screens.auth
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -12,9 +18,31 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.vickikbt.gistagram.R
+import com.vickikbt.gistagram.ui.navigation.NavigationItem
+import com.vickikbt.gistagram.utils.findActivity
+import com.vickikbt.shared.domain.utils.Constants
+import com.vickikbt.shared.domain.utils.UiState
+import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun AuthScreen(navController: NavController) {
+fun AuthScreen(navController: NavController, viewModel: AuthViewModel = getViewModel()) {
+
+    val context = LocalContext.current
+
+    val authUiState = viewModel.userProfile.observeAsState().value
+    var isLoading by remember { mutableStateOf(false) }
+
+    when (authUiState) {
+        is UiState.Error -> {
+            //ToDo: Display error message in snackbar
+        }
+        is UiState.Loading -> {
+            isLoading = true
+        }
+        is UiState.Success -> {
+            navController.navigate(NavigationItem.Profile.route)
+        }
+    }
 
     Box(modifier = Modifier.fillMaxSize()) {
         Icon(
@@ -34,18 +62,24 @@ fun AuthScreen(navController: NavController) {
         ) {
             Button(
                 onClick = {
-                    //ToDo: Request URL
+                    githubOAuth(context = context)
                 },
-                colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.onSurface)
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = MaterialTheme.colors.onSurface,
+                    contentColor = MaterialTheme.colors.surface
+                ),
+                contentPadding = PaddingValues(horizontal = 96.dp, vertical = 8.dp)
             ) {
-                Text(
-                    modifier = Modifier.padding(horizontal = 96.dp),
-                    text = "LOGIN",
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 22.sp,
-                    color = MaterialTheme.colors.surface,
-                    textAlign = TextAlign.Center
-                )
+                if (isLoading) {
+                    CircularProgressIndicator(color = MaterialTheme.colors.surface)
+                } else {
+                    Text(
+                        text = "LOGIN",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 22.sp,
+                        textAlign = TextAlign.Center
+                    )
+                }
             }
 
             Spacer(modifier = Modifier.height(32.dp))
@@ -70,8 +104,31 @@ fun AuthScreen(navController: NavController) {
         }
     }
 
+    DisposableEffect(key1 = viewModel) {
+        onResume(context = context, viewModel = viewModel)
+        onDispose { /*ToDo*/ }
+    }
+
 }
 
-private fun githubOAuth(){
-
+private fun githubOAuth(context: Context) {
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(Constants.WEB_URL))
+    context.startActivity(intent)
 }
+
+fun onResume(context: Context, viewModel: AuthViewModel) {
+    val uri = context.findActivity()?.intent?.data
+
+    if (uri != null && uri.toString().contains(Constants.REDIRECT_URI)) {
+        val code = uri.getQueryParameter("code")
+
+        if (code != null) {
+            viewModel.fetchAccessToken(code = code)
+        } else uri.getQueryParameter("error")?.let {
+            Log.e("TAG", "ERROR: $it")
+        }
+    } else {
+        Log.e("TAG", "Nothing was returned")
+    }
+}
+

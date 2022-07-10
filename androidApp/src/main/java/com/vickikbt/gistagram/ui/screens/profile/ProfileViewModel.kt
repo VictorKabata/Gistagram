@@ -19,7 +19,7 @@ class ProfileViewModel constructor(private val profileRepository: ProfileReposit
     val userProfile: LiveData<UiState<ApolloResponse<LoggedInUserProfileQuery.Data>>> get() = _userProfile
 
     init {
-        getLoggedInUserProfile()
+        //getLoggedInUserProfile()
     }
 
     private fun getLoggedInUserProfile() = viewModelScope.launch {

@@ -26,7 +26,7 @@ class AuthRepositoryImpl constructor(
         return responseEntity?.toDomain()
     }
 
-    override suspend fun getToken(): Flow<AccessToken?> {
+    override suspend fun getAccessToken(): Flow<AccessToken?> {
         return tokenDao.getAccessToken.map { it?.toDomain() }
     }
 
