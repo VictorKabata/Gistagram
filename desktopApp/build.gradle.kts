@@ -26,3 +26,22 @@ compose.desktop {
         mainClass = "DesktopApplicationKt"
     }
 }
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions.jvmTarget = "15"
+}
+
+compose.desktop {
+    application {
+        mainClass = ".GistagramApplicationKt"
+        nativeDistributions {
+            targetFormats(
+                org.jetbrains.compose.desktop.application.dsl.TargetFormat.Dmg,
+                org.jetbrains.compose.desktop.application.dsl.TargetFormat.Msi,
+                org.jetbrains.compose.desktop.application.dsl.TargetFormat.Deb
+            )
+            packageName = "Gistagram"
+            packageVersion = "1.0.0"
+        }
+    }
+}
