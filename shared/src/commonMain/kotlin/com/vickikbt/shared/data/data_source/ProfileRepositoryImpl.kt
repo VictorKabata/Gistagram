@@ -10,7 +10,9 @@ import kotlinx.coroutines.flow.Flow
 class ProfileRepositoryImpl constructor(private val apolloClient: ApolloClient) :
     ProfileRepository {
 
-    override suspend fun getLoggedInUserProfile(): Flow<ApolloResponse<LoggedInUserProfileQuery.Data>> {
+    override suspend fun fetchLoggedInUserProfile(): Flow<ApolloResponse<LoggedInUserProfileQuery.Data>> {
+
+        println("Fetching logged in user")
 
         val loggedInUserQuery = apolloClient.query(
             LoggedInUserProfileQuery(
@@ -25,7 +27,7 @@ class ProfileRepositoryImpl constructor(private val apolloClient: ApolloClient) 
         return loggedInUserQuery.toFlow()
     }
 
-    override suspend fun getUserStatus(userLogin: String): Flow<ApolloResponse<UserStatusQuery.Data>> {
+    override suspend fun fetchUserStatus(userLogin: String): Flow<ApolloResponse<UserStatusQuery.Data>> {
         val userStatusQuery = apolloClient.query(UserStatusQuery(userLogin = userLogin))
 
         return userStatusQuery.toFlow()

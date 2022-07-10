@@ -1,6 +1,7 @@
 package com.vickikbt.shared.di
 
 import com.apollographql.apollo3.ApolloClient
+import com.apollographql.apollo3.network.http.LoggingInterceptor
 import com.vickikbt.shared.data.cache.sqldelight.dao.AccessTokenDao
 import com.vickikbt.shared.data.data_source.AuthRepositoryImpl
 import com.vickikbt.shared.data.data_source.ProfileRepositoryImpl
@@ -56,6 +57,7 @@ val commonModule = module {
     single {
         ApolloClient.Builder()
             .serverUrl(Constants.BASE_URL)
+            .addHttpInterceptor(LoggingInterceptor())
             .addHttpInterceptor(
                 AuthorizationInterceptor(
                     ioDispatcher = get(named("IODispatcher")),

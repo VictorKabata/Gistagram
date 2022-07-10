@@ -19,21 +19,21 @@ class ProfileViewModel constructor(private val profileRepository: ProfileReposit
     val userProfile: LiveData<UiState<ApolloResponse<LoggedInUserProfileQuery.Data>>> get() = _userProfile
 
     init {
-        //getLoggedInUserProfile()
+        getLoggedInUserProfile()
     }
 
     private fun getLoggedInUserProfile() = viewModelScope.launch {
-        _userProfile.postValue(UiState.Loading())
+        _userProfile.value = UiState.Loading()
 
         try {
-            val response = profileRepository.getLoggedInUserProfile()
+            val response = profileRepository.fetchLoggedInUserProfile()
             response.collectLatest {
-                _userProfile.postValue(UiState.Success(data = it))
+                _userProfile.value = UiState.Success(data = it)
             }
         } catch (e: ApolloHttpException) {
-            _userProfile.postValue(UiState.Error(error = e.localizedMessage))
+            _userProfile.value = UiState.Error(error = e.localizedMessage)
         } catch (e: Exception) {
-            _userProfile.postValue(UiState.Error(error = e.localizedMessage))
+            _userProfile.value = UiState.Error(error = e.localizedMessage)
         }
     }
 }

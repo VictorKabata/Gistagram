@@ -25,7 +25,7 @@ class StatusViewModel constructor(private val profileRepository: ProfileReposito
         _userStatus.postValue(UiState.Loading())
 
         try {
-            val response = profileRepository.getUserStatus(userLogin = userLogin)
+            val response = profileRepository.fetchUserStatus(userLogin = userLogin)
             response.collectLatest {
                 _userStatus.postValue(UiState.Success(data = it))
             }

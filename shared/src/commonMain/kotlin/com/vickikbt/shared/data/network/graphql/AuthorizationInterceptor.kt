@@ -23,6 +23,8 @@ class AuthorizationInterceptor constructor(
             accessTokenDao.getAccessToken.first()?.accessToken
         }
 
+        println("Token: $token")
+
         return chain.proceed(
             request.newBuilder()
                 .addHeader("Authorization", "Bearer $token")

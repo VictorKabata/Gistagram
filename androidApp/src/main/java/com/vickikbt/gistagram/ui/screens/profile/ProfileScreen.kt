@@ -1,9 +1,11 @@
 package com.vickikbt.gistagram.ui.screens.profile
 
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -29,11 +31,14 @@ import coil.compose.rememberImagePainter
 import com.vickikbt.gistagram.LoggedInUserProfileQuery
 import com.vickikbt.gistagram.R
 import com.vickikbt.gistagram.ui.components.ItemCircleImage
+import com.vickikbt.gistagram.ui.components.ItemLoadingScreen
 import com.vickikbt.gistagram.ui.components.profile.ItemBioText
+import com.vickikbt.gistagram.ui.components.profile.ProfileAppBar
 import com.vickikbt.gistagram.ui.components.profile.ProfileStats
 import com.vickikbt.gistagram.ui.components.profile.ProfileTabRow
 import com.vickikbt.gistagram.ui.screens.profile.tabs.ItemPinnedRepo
 import com.vickikbt.gistagram.ui.screens.profile.tabs.RepositoriesTab
+import com.vickikbt.shared.domain.utils.UiState
 import org.koin.androidx.compose.getViewModel
 
 @ExperimentalMaterialApi
@@ -42,21 +47,17 @@ fun ProfileScreen(
     navController: NavController,
     viewModel: ProfileViewModel = getViewModel()
 ) {
+
     val userProfileUiState = viewModel.userProfile.observeAsState().value
 
-    Text(
-        text = "Profile Screen",
-        style = MaterialTheme.typography.h5,
-        color = MaterialTheme.colors.onSurface,
-        fontSize = 32.sp
-    )
-
-    /*when (userProfileUiState) {
+    when (userProfileUiState) {
         is UiState.Error -> {
-
+            Log.e("TAG", "Viewer error: ${userProfileUiState.error}")
         }
         is UiState.Success -> {
             val viewer = userProfileUiState.data?.data?.viewer
+
+            Log.e("TAG", "Viewer: $viewer")
 
             Column(modifier = Modifier.fillMaxSize()) {
                 ProfileAppBar(
@@ -82,7 +83,7 @@ fun ProfileScreen(
 
                     item {
                         Spacer(modifier = Modifier.height(18.dp))
-                        
+
                         viewer.let {
                             PinnedRepoSection(
                                 navController = navController,
@@ -99,10 +100,10 @@ fun ProfileScreen(
                 }
             }
         }
-        else -> {
+        is UiState.Loading -> {
             ItemLoadingScreen()
         }
-    }*/
+    }
 }
 
 @Composable

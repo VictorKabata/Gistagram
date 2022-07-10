@@ -11,7 +11,7 @@ interface ProfileRepository {
      * Fetches currently logged in user profile and
      * returns a flow of the response(user profile)
      */
-    suspend fun getLoggedInUserProfile(): Flow<ApolloResponse<LoggedInUserProfileQuery.Data>>
+    suspend fun fetchLoggedInUserProfile(): Flow<ApolloResponse<LoggedInUserProfileQuery.Data>>
 
-    suspend fun getUserStatus(userLogin: String): Flow<ApolloResponse<UserStatusQuery.Data>>
+    suspend fun fetchUserStatus(userLogin: String): Flow<ApolloResponse<UserStatusQuery.Data>>
 }
