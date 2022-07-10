@@ -28,7 +28,7 @@ compose.desktop {
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions.jvmTarget = "15"
+    kotlinOptions.jvmTarget = "18"
 }
 
 compose.desktop {
