@@ -9,6 +9,7 @@ import com.vickikbt.shared.data.network.rest.ApiClient
 import com.vickikbt.shared.data.network.rest.ApiClientImpl
 import com.vickikbt.shared.domain.repositories.AuthRepository
 import com.vickikbt.shared.domain.repositories.ProfileRepository
+import com.vickikbt.shared.domain.utils.Constants
 import com.vickikbt.shared.presentation.SharedAuthViewModel
 import io.ktor.client.*
 import io.ktor.client.features.json.*
@@ -54,8 +55,13 @@ val commonModule = module {
 
     single {
         ApolloClient.Builder()
-            .serverUrl("https://api.github.com/graphql")
-            .addHttpInterceptor(AuthorizationInterceptor(ioDispatcher = get(named("IODispatcher"))))
+            .serverUrl(Constants.BASE_URL)
+            .addHttpInterceptor(
+                AuthorizationInterceptor(
+                    ioDispatcher = get(named("IODispatcher")),
+                    accessTokenDao = get()
+                )
+            )
             .build()
     }
 

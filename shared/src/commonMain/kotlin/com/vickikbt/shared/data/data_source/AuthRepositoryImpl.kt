@@ -30,9 +30,7 @@ class AuthRepositoryImpl constructor(
         return tokenDao.getAccessToken.map { it?.toDomain() }
     }
 
-    suspend fun saveAccessToken(accessTokenEntity: AccessTokenEntity) {
-        println("Saving access token: $accessTokenEntity")
+    suspend fun saveAccessToken(accessTokenEntity: AccessTokenEntity) =
         tokenDao.saveAccessToken(accessTokenEntity = accessTokenEntity)
-    }
 
 }
