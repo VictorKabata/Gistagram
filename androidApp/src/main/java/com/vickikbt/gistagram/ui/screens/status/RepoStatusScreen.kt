@@ -17,7 +17,6 @@ import androidx.compose.ui.unit.dp
 import com.vickikbt.gistagram.ui.components.BottomNavStatus
 import com.vickikbt.gistagram.ui.components.ItemLoadingScreen
 import com.vickikbt.gistagram.ui.components.StatusToolbar
-import com.vickikbt.library.ComposeMarkdown
 import com.vickikbt.shared.domain.utils.UiState
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
@@ -84,7 +83,7 @@ private fun RepoStatus(
 
         LaunchedEffect(key1 = url) {
             markDownScope.launch {
-                ComposeMarkdown().loadFromUrl(url = url)
+                //ComposeMarkdown().loadFromUrl(url = url)
             }
         }
     }

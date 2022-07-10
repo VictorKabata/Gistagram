@@ -61,7 +61,7 @@ android {
 dependencies {
 
     implementation(project(":shared"))
-    implementation(project(":core:library"))
+    // implementation(project(":core:library"))
 
     implementation(AndroidDependencies.androidCore)
     implementation(AndroidDependencies.appCompat)
