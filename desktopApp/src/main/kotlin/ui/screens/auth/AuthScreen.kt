@@ -2,7 +2,7 @@ package ui.screens.auth
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -10,14 +10,29 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.vickikbt.shared.domain.utils.Constants
-import com.vickikbt.shared.presentation.SharedAuthViewModel
+import com.vickikbt.shared.domain.utils.UiState
 import koin
-import java.awt.Desktop
-import java.net.URI
 
 @Composable
-fun AuthScreen(viewModel: SharedAuthViewModel = koin.get()) {
+fun AuthScreen(viewModel: AuthViewModel = koin.get()) {
+
+    val authUiState by remember { mutableStateOf(viewModel.accessToken.value) }
+    var isLoading by remember { mutableStateOf(false) }
+
+    when (authUiState) {
+        is UiState.Error -> {
+            println("Error!!!")
+            //ToDo: Display error message in snackbar
+        }
+        is UiState.Loading -> {
+            isLoading = true
+            println("Loading!!!")
+        }
+        is UiState.Success -> {
+            println("Success!!!")
+            println("Access token: ${authUiState.data}")
+        }
+    }
 
     Box(modifier = Modifier.fillMaxSize()) {
         val icon = if (MaterialTheme.colors.isLight) painterResource("ic_logo.png")
@@ -35,7 +50,7 @@ fun AuthScreen(viewModel: SharedAuthViewModel = koin.get()) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Button(
-                onClick = { Desktop.getDesktop().browse(URI(Constants.WEB_URL)) },
+                onClick = { viewModel.fetchOAuthCode() },
                 colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.onSurface)
             ) {
                 Text(

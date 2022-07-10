@@ -11,7 +11,6 @@ import com.vickikbt.shared.data.network.rest.ApiClientImpl
 import com.vickikbt.shared.domain.repositories.AuthRepository
 import com.vickikbt.shared.domain.repositories.ProfileRepository
 import com.vickikbt.shared.domain.utils.Constants
-import com.vickikbt.shared.presentation.SharedAuthViewModel
 import io.ktor.client.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
@@ -77,11 +76,6 @@ val commonModule = module {
      */
     single<AuthRepository> { AuthRepositoryImpl(apiClient = get(), tokenDao = get()) }
     single<ProfileRepository> { ProfileRepositoryImpl(apolloClient = get()) }
-
-    /**
-     * Shared ViewModels
-     */
-    single { SharedAuthViewModel(authRepository = get()) }
 }
 
 expect fun platformModule(): Module

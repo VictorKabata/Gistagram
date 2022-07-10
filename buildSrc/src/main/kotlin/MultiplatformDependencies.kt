@@ -2,6 +2,7 @@ object MultiplatformDependencies {
 
     const val kotlinxCoroutines =
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinxCoroutines}"
+    const val kotlinxJvm ="org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:${Versions.kotlinxCoroutines}"
 
     const val kotlinxSerialization =
         "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerialization}"
@@ -14,6 +15,9 @@ object MultiplatformDependencies {
     const val ktorAndroid = "io.ktor:ktor-client-android:${Versions.ktor}"
     const val ktoriOS = "io.ktor:ktor-client-ios:${Versions.ktor}"
     const val ktorJvm = "io.ktor:ktor-client-java:${Versions.ktor}"
+
+    const val ktorServerCore="io.ktor:ktor-server-core:${Versions.ktor}"
+    const val ktorServerNetty="io.ktor:ktor-server-netty:${Versions.ktor}"
 
     const val apolloRuntime = "com.apollographql.apollo3:apollo-runtime:${Versions.apollo}"
     const val apolloCoroutines =
