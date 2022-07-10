@@ -16,7 +16,7 @@ class AccessTokenDao constructor(private val databaseDriverFactory: DatabaseDriv
      */
     fun saveAccessToken(accessTokenEntity: AccessTokenEntity) {
         dbQuery.transaction {
-            dbQuery.saveToken(accessTokenEntity)
+            dbQuery.saveAccessToken(accessTokenEntity)
         }
     }
 
@@ -24,11 +24,11 @@ class AccessTokenDao constructor(private val databaseDriverFactory: DatabaseDriv
      * Returns all data store in access token entity table in SQLDelight database
      * as a flow
      */
-    val getAccessToken = dbQuery.getToken().asFlow().map { it.executeAsOneOrNull() }
+    val getAccessToken = dbQuery.getAccessToken().asFlow().map { it.executeAsOneOrNull() }
 
     /**
      * Deletes all data in access token entity table in SQLDelight database
      */
-    fun deleteAccessToken() = dbQuery.deleteToken()
+    fun deleteAccessToken() = dbQuery.deleteAccessToken()
 
 }

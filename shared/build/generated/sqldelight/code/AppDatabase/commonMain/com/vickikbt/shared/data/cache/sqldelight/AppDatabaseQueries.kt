@@ -7,15 +7,15 @@ import kotlin.String
 import kotlin.Unit
 
 public interface AppDatabaseQueries : Transacter {
-  public fun <T : Any> getToken(mapper: (
+  public fun <T : Any> getAccessToken(mapper: (
     accessToken: String,
     scope: String?,
     tokenType: String
   ) -> T): Query<T>
 
-  public fun getToken(): Query<AccessTokenEntity>
+  public fun getAccessToken(): Query<AccessTokenEntity>
 
-  public fun saveToken(AccessTokenEntity: AccessTokenEntity): Unit
+  public fun saveAccessToken(AccessTokenEntity: AccessTokenEntity): Unit
 
-  public fun deleteToken(): Unit
+  public fun deleteAccessToken(): Unit
 }

@@ -22,14 +22,17 @@ import com.vickikbt.gistagram.ui.screens.status.UserStatusScreen
 @ExperimentalAnimationApi
 @ExperimentalMaterialApi
 @Composable
-fun Navigation(navController: NavHostController) {
+fun Navigation(navController: NavHostController, isLoggedIn: Boolean) {
 
     // val defaultEnterAnimationDuration = 600
     // val defaultExitAnimationDuration = 1100
     // val slideDefaultInitialOffset = 1800
     // val slideDefaultTargetOffset = 1500
 
-    NavHost(navController = navController, startDestination = NavigationItem.Auth.route) {
+    NavHost(
+        navController = navController,
+        startDestination = if (isLoggedIn) NavigationItem.Profile.route else NavigationItem.Auth.route
+    ) {
         composable(route = NavigationItem.Auth.route) {
             AuthScreen(navController = navController)
         }

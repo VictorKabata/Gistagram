@@ -1,5 +1,6 @@
 package com.vickikbt.gistagram.ui.screens.auth
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,19 +12,21 @@ import kotlinx.coroutines.launch
 
 class AuthViewModel constructor(private val authRepository: AuthRepository) : ViewModel() {
 
-    private val _userProfile =
+    private val _accessToken =
         MutableLiveData<UiState<AccessToken?>>()
-    val userProfile: LiveData<UiState<AccessToken?>> get() = _userProfile
+    val accessToken: LiveData<UiState<AccessToken?>> get() = _accessToken
 
     fun fetchAccessToken(code: String) {
-        _userProfile.postValue(UiState.Loading())
+        _accessToken.value = UiState.Loading()
 
         viewModelScope.launch {
             try {
                 val response = authRepository.fetchAccessToken(code = code)
-                _userProfile.postValue(UiState.Success(data = response))
+                Log.e("TAG", "Fetched access token: $response")
+                Log.e("TAG", "Code: $code")
+                _accessToken.value = UiState.Success(data = response)
             } catch (e: Exception) {
-                _userProfile.postValue(UiState.Error(error = e.localizedMessage))
+                _accessToken.value = UiState.Error(error = e.localizedMessage)
             }
         }
     }

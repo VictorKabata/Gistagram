@@ -29,7 +29,7 @@ fun AuthScreen(navController: NavController, viewModel: AuthViewModel = getViewM
 
     val context = LocalContext.current
 
-    val authUiState = viewModel.userProfile.observeAsState().value
+    val authUiState = viewModel.accessToken.observeAsState().value
     var isLoading by remember { mutableStateOf(false) }
 
     when (authUiState) {

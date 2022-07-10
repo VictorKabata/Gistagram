@@ -53,13 +53,13 @@ private class AppDatabaseQueriesImpl(
   private val database: AppDatabaseImpl,
   private val driver: SqlDriver
 ) : TransacterImpl(driver), AppDatabaseQueries {
-  internal val getToken: MutableList<Query<*>> = copyOnWriteList()
+  internal val getAccessToken: MutableList<Query<*>> = copyOnWriteList()
 
-  public override fun <T : Any> getToken(mapper: (
+  public override fun <T : Any> getAccessToken(mapper: (
     accessToken: String,
     scope: String?,
     tokenType: String
-  ) -> T): Query<T> = Query(-1399874637, getToken, driver, "AppDatabase.sq", "getToken",
+  ) -> T): Query<T> = Query(-684916433, getAccessToken, driver, "AppDatabase.sq", "getAccessToken",
       "SELECT * FROM AccessTokenEntity") { cursor ->
     mapper(
       cursor.getString(0)!!,
@@ -68,8 +68,8 @@ private class AppDatabaseQueriesImpl(
     )
   }
 
-  public override fun getToken(): Query<AccessTokenEntity> = getToken { accessToken, scope,
-      tokenType ->
+  public override fun getAccessToken(): Query<AccessTokenEntity> = getAccessToken { accessToken,
+      scope, tokenType ->
     AccessTokenEntity(
       accessToken,
       scope,
@@ -77,8 +77,8 @@ private class AppDatabaseQueriesImpl(
     )
   }
 
-  public override fun saveToken(AccessTokenEntity: AccessTokenEntity): Unit {
-    driver.execute(-1100439284, """
+  public override fun saveAccessToken(AccessTokenEntity: AccessTokenEntity): Unit {
+    driver.execute(1165549512, """
     |INSERT OR REPLACE INTO AccessTokenEntity(accessToken,scope,tokenType)
     |VALUES (?, ?, ?)
     """.trimMargin(), 3) {
@@ -86,11 +86,11 @@ private class AppDatabaseQueriesImpl(
       bindString(2, AccessTokenEntity.scope)
       bindString(3, AccessTokenEntity.tokenType)
     }
-    notifyQueries(-1100439284, {database.appDatabaseQueries.getToken})
+    notifyQueries(1165549512, {database.appDatabaseQueries.getAccessToken})
   }
 
-  public override fun deleteToken(): Unit {
-    driver.execute(-1638996578, """DELETE FROM AccessTokenEntity""", 0)
-    notifyQueries(-1638996578, {database.appDatabaseQueries.getToken})
+  public override fun deleteAccessToken(): Unit {
+    driver.execute(1944710874, """DELETE FROM AccessTokenEntity""", 0)
+    notifyQueries(1944710874, {database.appDatabaseQueries.getAccessToken})
   }
 }

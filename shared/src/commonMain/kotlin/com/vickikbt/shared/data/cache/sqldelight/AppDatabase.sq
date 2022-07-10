@@ -4,12 +4,12 @@ scope TEXT DEFAULT NULL,
 tokenType TEXT NOT NULL
 );
 
-saveToken:
+saveAccessToken:
 INSERT OR REPLACE INTO AccessTokenEntity(accessToken,scope,tokenType)
 VALUES ?;
 
-getToken:
+getAccessToken:
 SELECT * FROM AccessTokenEntity;
 
-deleteToken:
+deleteAccessToken:
 DELETE FROM AccessTokenEntity;
