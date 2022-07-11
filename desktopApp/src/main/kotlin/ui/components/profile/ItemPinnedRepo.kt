@@ -9,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -25,30 +26,30 @@ fun ItemPinnedRepo(
 ) {
 
     Column(
-        // modifier = modifier.clickable { onItemClicked(pinnedRepo?.id!!) },
+        modifier = modifier.clickable { onItemClicked(pinnedRepo?.id!!) },
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         ItemCircleRepo(
             modifier = Modifier
-                .size(64.dp)
+                .size(80.dp)
                 .clickable {
                     pinnedRepo?.id?.let { onItemClicked(it) }
                 },
             image = image,
             contentDescription = "Pinned repositories"
-            //borderColor = Color(parseColor(pinnedRepo?.languages?.nodes?.get(0)?.color))
+            //borderColor = Color(pinnedRepo?.languages?.nodes?.get(0)?.color)
         )
 
         Spacer(modifier = Modifier.height(3.dp))
 
         Text(
-            modifier = Modifier.width(70.dp),
+            modifier = Modifier.width(105.dp),
             text = pinnedRepo?.name ?: "Pinned repository",
-            style = MaterialTheme.typography.body1,
+            fontWeight = FontWeight.Medium,
             maxLines = 1,
             textAlign = TextAlign.Center,
-            fontSize = 13.sp,
+            fontSize = 16.sp,
             overflow = TextOverflow.Ellipsis,
             color = MaterialTheme.colors.onBackground
         )

@@ -254,7 +254,7 @@ fun PinnedRepoSection(
 
         items(items = pinnedRepoList) { repo ->
             ItemPinnedRepo(
-                modifier = Modifier.padding(horizontal = 6.dp),
+                modifier = Modifier.padding(horizontal = 8.dp),
                 onItemClicked = {
                     user?.login?.let { login ->
                         repo?.name?.let { repo ->

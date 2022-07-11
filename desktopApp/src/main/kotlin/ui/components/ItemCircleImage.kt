@@ -24,6 +24,7 @@ fun ItemCircleImage(
 
     Image(
         modifier = modifier
+            .padding(3.dp)
             .clip(CircleShape)
             .aspectRatio(1f, matchHeightConstraintsFirst = true)
             .border(width = 2.dp, color = Color.Gray, shape = CircleShape)
