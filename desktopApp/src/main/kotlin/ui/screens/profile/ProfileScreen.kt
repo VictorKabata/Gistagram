@@ -47,12 +47,12 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel = ko
             println("Viewer: $viewer")
 
             Column(modifier = Modifier.fillMaxSize()) {
-                ProfileAppBar(
+                /*ProfileAppBar(
                     title = viewer?.login ?: "Profile",
                     onSettingsClicked = {
                         // ToDo: Navigate to settings
                     }
-                )
+                )*/
 
                 Spacer(modifier = Modifier.height(4.dp))
 
