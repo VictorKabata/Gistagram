@@ -15,5 +15,5 @@ fun Navigation(navController: NavController) {
         composable(route = NavigationItem.Profile.route) {
             ProfileScreen(navController = navController)
         }
-    }
+    }.build()
 }

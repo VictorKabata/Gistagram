@@ -11,27 +11,27 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vickikbt.shared.domain.utils.UiState
-import koin
 import ui.navigation.NavController
+import ui.navigation.NavigationItem
 
 @Composable
-fun AuthScreen(navController: NavController, viewModel: AuthViewModel = koin.get()) {
+fun AuthScreen(navController: NavController) {
 
-    val authUiState by remember { mutableStateOf(viewModel.accessToken.value) }
+    val viewModel = remember { AuthViewModel() }
+
+    val authUiState = viewModel.accessToken.collectAsState()
     var isLoading by remember { mutableStateOf(false) }
 
-    when (authUiState) {
+    when (authUiState.value) {
         is UiState.Error -> {
             println("Error!!!")
-            //ToDo: Display error message in snackbar
+            //ToDo: Display error message in snack bar
         }
         is UiState.Loading -> {
             isLoading = true
-            println("Loading!!!")
         }
         is UiState.Success -> {
-            println("Success!!!")
-            println("Access token: ${authUiState.data}")
+            navController.navigate(NavigationItem.Profile.route)
         }
     }
 
@@ -54,14 +54,18 @@ fun AuthScreen(navController: NavController, viewModel: AuthViewModel = koin.get
                 onClick = { viewModel.fetchOAuthCode() },
                 colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.onSurface)
             ) {
-                Text(
-                    modifier = Modifier.padding(horizontal = 96.dp),
-                    text = "LOGIN",
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 22.sp,
-                    color = MaterialTheme.colors.surface,
-                    textAlign = TextAlign.Center
-                )
+                if (isLoading) {
+                    CircularProgressIndicator(color = MaterialTheme.colors.surface)
+                } else {
+                    Text(
+                        modifier = Modifier.padding(horizontal = 96.dp),
+                        text = "LOGIN",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 22.sp,
+                        color = MaterialTheme.colors.surface,
+                        textAlign = TextAlign.Center
+                    )
+                }
             }
 
             Spacer(modifier = Modifier.height(32.dp))

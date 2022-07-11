@@ -1,11 +1,14 @@
 package ui.screens.main
 
+import androidx.compose.foundation.background
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.ApplicationScope
 import androidx.compose.ui.window.Window
@@ -15,6 +18,7 @@ import koin
 import ui.navigation.Navigation
 import ui.navigation.NavigationItem
 import ui.navigation.rememberNavController
+import ui.screens.auth.AuthScreen
 import ui.theme.GistagramTheme
 
 @Composable
@@ -39,7 +43,7 @@ fun MainScreen(applicationScope: ApplicationScope, viewModel: MainViewModel = ko
         )
     ) {
         GistagramTheme {
-            Surface {
+            Surface(modifier = Modifier.background(color = MaterialTheme.colors.surface)) {
                 Navigation(navController = navController)
             }
         }

@@ -9,20 +9,20 @@ import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
+import koin
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import org.koin.core.component.KoinComponent
+import kotlinx.coroutines.flow.asStateFlow
 import java.awt.Desktop
 import java.net.URI
 import java.net.URLEncoder
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
 
-class AuthViewModel constructor(private val authRepository: AuthRepository) : KoinComponent {
+class AuthViewModel constructor(private val authRepository: AuthRepository = koin.get()) {
 
-    private val _accessToken = MutableStateFlow<UiState<AccessToken?>>(UiState.Loading())
-    val accessToken: StateFlow<UiState<AccessToken?>> get() = _accessToken
+    private val _accessToken = MutableStateFlow<UiState<AccessToken?>?>(null)
+    val accessToken = _accessToken.asStateFlow()
 
     private val viewModelScope = CoroutineScope(Dispatchers.IO)
     private val callbackJob = MutableStateFlow<Job?>(null)
@@ -51,7 +51,10 @@ class AuthViewModel constructor(private val authRepository: AuthRepository) : Ko
         }
 
         callbackJob.value = job
-        job.invokeOnCompletion { callbackJob.value = null }
+        job.invokeOnCompletion {
+            callbackJob.value?.cancel()
+            callbackJob.value = null
+        }
     }
 
     private suspend fun waitForCallback(): String {
@@ -63,7 +66,7 @@ class AuthViewModel constructor(private val authRepository: AuthRepository) : Ko
                     get("/callback") {
                         val code = call.parameters["code"]
                             ?: throw RuntimeException("Received a response with no code")
-                        println("got code: $code")
+                        println("Code: $code")
                         call.respondText("OK")
 
                         continuation.resume(code)
@@ -79,18 +82,17 @@ class AuthViewModel constructor(private val authRepository: AuthRepository) : Ko
         return code
     }
 
-    private fun fetchAccessToken(code: String) {
+    private suspend fun fetchAccessToken(code: String) {
+        print("Fetching access token...\n")
         _accessToken.value = UiState.Loading()
 
-        viewModelScope.launch {
-            try {
-                val response = authRepository.fetchAccessToken(code = code)
-                println("Fetched access token: $response")
-                println("Code: $code")
-                _accessToken.value = UiState.Success(data = response)
-            } catch (e: Exception) {
-                _accessToken.value = UiState.Error(error = e.message)
-            }
+        try {
+            val response = authRepository.fetchAccessToken(code = code)
+            print("Fetched access token: $response")
+            _accessToken.value = UiState.Success(data = response)
+            //_userId.value = response?.accessToken
+        } catch (e: Exception) {
+            _accessToken.value = UiState.Error(error = e.message)
         }
     }
 
