@@ -11,10 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import org.jetbrains.skia.Bitmap
 
 @Composable
 fun ItemCircleImage(
@@ -26,9 +24,9 @@ fun ItemCircleImage(
 
     Image(
         modifier = modifier
-            .padding(3.dp)
             .clip(CircleShape)
             .aspectRatio(1f, matchHeightConstraintsFirst = true)
+            .border(width = 2.dp, color = Color.Gray, shape = CircleShape)
             .clickable { onClick() },
         bitmap = image,
         contentDescription = contentDescription,
