@@ -9,12 +9,14 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Info
+import androidx.compose.material.icons.rounded.LocationOn
 import androidx.compose.material.icons.rounded.Settings
+import androidx.compose.material.icons.rounded.ThumbUp
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -50,7 +52,7 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel = ko
             Row {
                 Spacer(modifier = Modifier.weight(1f))
 
-                Column(modifier = Modifier.fillMaxSize().weight(4f)) {
+                Column(modifier = Modifier.fillMaxSize().weight(3f)) {
                     LazyColumn(
                         modifier = Modifier.fillMaxSize(),
                         verticalArrangement = Arrangement.spacedBy(6.dp)
@@ -95,22 +97,16 @@ private fun StatSection(navController: NavController, user: LoggedInUserProfileQ
         mutableStateOf(loadImageBitmap(url = user?.avatarUrl?.toString() ?: ""))
     }
 
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 24.dp),
-        horizontalArrangement = Arrangement.spacedBy(24.dp),
-        verticalAlignment = Alignment.Top
-    ) {
+    Box(modifier = Modifier.fillMaxWidth().padding(horizontal = 32.dp)) {
         ItemCircleImage(
-            modifier = Modifier.size(140.dp),
+            modifier = Modifier.size(150.dp).align(Alignment.TopStart),
             image = userProfilePainter,
             contentDescription = "Profile Picture"
         ) {
             // user?.login?.let { navController.navigate("status/$it", null) } ToDo: Navigate to user profile status
         }
 
-        BioSection(modifier = Modifier, user = user)
+        BioSection(modifier = Modifier.wrapContentWidth().align(Alignment.TopCenter), user = user)
     }
 }
 
@@ -175,59 +171,67 @@ fun BioSection(modifier: Modifier, user: LoggedInUserProfileQuery.Viewer?) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        //region Bio
+        //region Username
         Text(
             text = user?.name ?: "Username",
-            style = MaterialTheme.typography.h5,
+            fontWeight = FontWeight.Bold,
             color = MaterialTheme.colors.onSurface,
-            fontSize = 16.sp,
+            fontSize = 18.sp,
             letterSpacing = letterSpacing,
             lineHeight = lineHeight,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
         )
+        //endregion
 
+        Spacer(modifier = Modifier.height(10.dp))
+
+        //region Bio
         Text(
             modifier = Modifier.padding(end = 16.dp),
             text = user?.bio ?: "Bio",
-            style = MaterialTheme.typography.body1,
+            fontWeight = FontWeight.Normal,
             color = MaterialTheme.colors.onSurface,
-            fontSize = 14.sp,
+            fontSize = 16.sp,
             letterSpacing = letterSpacing
         )
         //endregion
 
+        Spacer(modifier = Modifier.height(6.dp))
+
         //region Location and Company
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(end = 16.dp),
+            modifier = Modifier.padding(end = 16.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start
         ) {
             ItemBioText(
-                image = painterResource("ic_logo.png"),
+                image = Icons.Rounded.LocationOn,
                 text = user?.location ?: "Location"
             )
             Spacer(modifier = Modifier.width(5.dp))
             ItemBioText(
-                image = painterResource("ic_logo.png"),
+                image = Icons.Rounded.LocationOn,
                 text = user?.company ?: "Company"
             )
         }
         //endregion
 
+        Spacer(modifier = Modifier.height(6.dp))
+
         //region Personal Website
         ItemBioText(
             textColor = MaterialTheme.colors.secondaryVariant,
-            image = painterResource("ic_logo.png"),
+            image = Icons.Rounded.Info,
             text = user?.websiteUrl?.toString() ?: "Website"
         )
         //endregion
 
+        Spacer(modifier = Modifier.height(6.dp))
+
         //region Twitter Username
         ItemBioText(
-            image = painterResource("ic_logo.png"),
+            image = Icons.Rounded.ThumbUp,
             text = user?.twitterUsername ?: "Twitter username"
         )
         //endregion

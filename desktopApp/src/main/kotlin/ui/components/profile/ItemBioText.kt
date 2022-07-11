@@ -8,8 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -18,7 +18,7 @@ fun ItemBioText(
     modifier: Modifier = Modifier,
     textColor: Color? = null,
     text: String,
-    image: Painter? = null
+    image: ImageVector? = null
 ) {
 
     Row(
@@ -27,20 +27,22 @@ fun ItemBioText(
         horizontalArrangement = Arrangement.Start
     ) {
 
-        Icon(
-            modifier = Modifier.size(16.dp),
-            painter = image ?: painterResource("ic_logo.png"),
-            contentDescription = text,
-            tint = MaterialTheme.colors.onSurface
-        )
+        image?.let {
+            Icon(
+                modifier = Modifier.size(16.dp),
+                imageVector = it,
+                contentDescription = text,
+                tint = MaterialTheme.colors.onSurface
+            )
+        }
 
         Spacer(modifier = Modifier.width(4.dp))
 
         Text(
             text = text,
-            style = MaterialTheme.typography.body1,
+            fontWeight = FontWeight.Normal,
+            fontSize = 16.sp,
             color = textColor ?: MaterialTheme.colors.onSurface,
-            fontSize = 14.sp,
             letterSpacing = 0.5.sp,
         )
     }
