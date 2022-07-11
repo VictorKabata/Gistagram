@@ -25,8 +25,8 @@ fun MainAppBar(
     var searchQuery by remember { mutableStateOf("") }
 
     Column(
-        modifier = Modifier.padding(vertical = 48.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
+        modifier = Modifier.padding(vertical = 16.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Row(

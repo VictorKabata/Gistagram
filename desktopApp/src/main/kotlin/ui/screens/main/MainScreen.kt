@@ -1,8 +1,6 @@
 package ui.screens.main
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
@@ -57,34 +55,27 @@ fun MainScreen(applicationScope: ApplicationScope, viewModel: MainViewModel = ko
 
         GistagramTheme {
             Surface(modifier = Modifier.background(color = MaterialTheme.colors.surface)) {
-                Row {
-                    Spacer(modifier = Modifier.weight(1f))
-
-                    Scaffold(
-                        modifier = Modifier.weight(3f),
-                        topBar = {
-                            if (currentDestination in topLevelDestinations.map { it.route }) {
-                                MainAppBar(
-                                    modifier = Modifier.height(48.dp),
-                                    onSearch = {
-                                        //ToDo: Search item-Drop down UI
-                                    },
-                                    onSettingsClicked = {
-                                        //ToDo: Navigate to settings
-                                    }
-                                ) {
-                                    NavigationBar(
-                                        navController = navController,
-                                        navigationDestinations = topLevelDestinations
-                                    )
+                Scaffold(
+                    topBar = {
+                        if (currentDestination in topLevelDestinations.map { it.route }) {
+                            MainAppBar(
+                                modifier = Modifier.height(52.dp),
+                                onSearch = {
+                                    //ToDo: Search item-Drop down UI
+                                },
+                                onSettingsClicked = {
+                                    //ToDo: Navigate to settings
                                 }
+                            ) {
+                                NavigationBar(
+                                    navController = navController,
+                                    navigationDestinations = topLevelDestinations
+                                )
                             }
                         }
-                    ) {
-                        Navigation(navController = navController)
                     }
-
-                    Spacer(modifier = Modifier.weight(1f))
+                ) {
+                    Navigation(navController = navController)
                 }
             }
         }

@@ -26,7 +26,10 @@ import com.vickikbt.shared.domain.utils.UiState
 import koin
 import ui.components.ItemCircleImage
 import ui.components.ItemLoadingScreen
-import ui.components.profile.*
+import ui.components.profile.ItemBioText
+import ui.components.profile.ItemPinnedRepo
+import ui.components.profile.ProfileStats
+import ui.components.profile.ProfileTabRow
 import ui.navigation.NavController
 import ui.screens.profile.tabs.RepositoriesTab
 import utils.loadImageBitmap
@@ -46,45 +49,42 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel = ko
 
             println("Viewer: $viewer")
 
-            Column(modifier = Modifier.fillMaxSize()) {
-                /*ProfileAppBar(
-                    title = viewer?.login ?: "Profile",
-                    onSettingsClicked = {
-                        // ToDo: Navigate to settings
-                    }
-                )*/
+            Row {
+                Spacer(modifier = Modifier.weight(1f))
 
-                Spacer(modifier = Modifier.height(4.dp))
+                Column(modifier = Modifier.fillMaxSize().weight(2f)) {
+                    LazyColumn(
+                        modifier = Modifier.fillMaxSize(),
+                        verticalArrangement = Arrangement.spacedBy(6.dp)
+                    ) {
+                        item {
+                            StatSection(user = viewer, navController = navController)
+                        }
 
-                LazyColumn(
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.spacedBy(6.dp)
-                ) {
-                    item {
-                        StatSection(user = viewer, navController = navController)
-                    }
+                        item {
+                            BioSection(user = viewer)
+                        }
 
-                    item {
-                        BioSection(user = viewer)
-                    }
+                        item {
+                            Spacer(modifier = Modifier.height(18.dp))
 
-                    item {
-                        Spacer(modifier = Modifier.height(18.dp))
+                            viewer.let {
+                                PinnedRepoSection(
+                                    navController = navController,
+                                    user = it,
+                                    pinnedRepo = it?.pinnedItems?.nodes ?: listOf()
+                                )
+                            }
+                        }
 
-                        viewer.let {
-                            PinnedRepoSection(
-                                navController = navController,
-                                user = it,
-                                pinnedRepo = it?.pinnedItems?.nodes ?: listOf()
-                            )
+                        item {
+                            Spacer(modifier = Modifier.height(14.dp))
+                            RepositoriesSection(repos = viewer?.repositories?.nodes)
                         }
                     }
-
-                    item {
-                        Spacer(modifier = Modifier.height(14.dp))
-                        RepositoriesSection(repos = viewer?.repositories?.nodes)
-                    }
                 }
+
+                Spacer(modifier = Modifier.weight(1f))
             }
         }
         is UiState.Loading -> {
