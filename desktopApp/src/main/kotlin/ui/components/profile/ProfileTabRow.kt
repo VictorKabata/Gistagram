@@ -55,7 +55,7 @@ fun ProfileTabRow(
 }
 
 sealed class TabRowItem(val icon: String, val title: String) {
-    object Repos : TabRowItem("ic_logo_dark", "Repositories")
-    object Forks : TabRowItem("ic_logo_dark", "Forks")
-    object Gists : TabRowItem("ic_logo_dark", "Gists")
+    object Repos : TabRowItem("ic_logo_dark.png", "Repositories")
+    object Forks : TabRowItem("ic_logo_dark.png", "Forks")
+    object Gists : TabRowItem("ic_logo_dark.png", "Gists")
 }

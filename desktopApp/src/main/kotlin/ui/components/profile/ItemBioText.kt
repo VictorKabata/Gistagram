@@ -1,6 +1,5 @@
 package ui.components.profile
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -9,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -17,7 +17,8 @@ import androidx.compose.ui.unit.sp
 fun ItemBioText(
     modifier: Modifier = Modifier,
     textColor: Color? = null,
-    text: String
+    text: String,
+    image: Painter? = null
 ) {
 
     Row(
@@ -28,7 +29,7 @@ fun ItemBioText(
 
         Icon(
             modifier = Modifier.size(16.dp),
-            painter = painterResource(if (MaterialTheme.colors.isLight) "ic_logo.png" else "ic_logo_dark.png"),
+            painter = image ?: painterResource("ic_logo.png"),
             contentDescription = text,
             tint = MaterialTheme.colors.onSurface
         )

@@ -12,11 +12,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import com.vickikbt.gistagram.R
+import ui.navigation.NavController
 
 @Composable
 fun ErrorScreen(navController: NavController, isRetriable: Boolean = true, action: () -> Unit) {
@@ -35,7 +33,7 @@ fun ErrorScreen(navController: NavController, isRetriable: Boolean = true, actio
             ) {
                 Text(
                     modifier = Modifier,
-                    text = stringResource(R.string.retry),
+                    text = "Retry",
                     color = MaterialTheme.colors.onSurface,
                     fontSize = 12.sp,
                     style = MaterialTheme.typography.h4

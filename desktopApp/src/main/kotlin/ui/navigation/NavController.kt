@@ -33,7 +33,7 @@ class NavController constructor(
     }
 
     // Function to handle the back
-    fun navigateBack() {
+    fun navigateUp() {
         if (backStackScreens.isNotEmpty()) {
             _currentDestination.value = backStackScreens.last()
             backStackScreens.remove(_currentDestination.value)

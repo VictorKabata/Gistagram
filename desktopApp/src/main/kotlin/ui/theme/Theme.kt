@@ -11,15 +11,17 @@ private val DarkColorPalette = darkColors(
     primary = ColorPrimaryDark,
     primaryVariant = ColorPrimaryDark,
     secondary = ColorSecondaryDark,
+    secondaryVariant = LinkColorDark,
     surface = Color.Black,
     onSurface = Color.White,
-    background = ColorPrimaryDark
+    background = ColorPrimaryDark,
 )
 
 private val LightColorPalette = lightColors(
     primary = ColorPrimary,
     primaryVariant = ColorPrimary,
     secondary = ColorSecondary,
+    secondaryVariant = LinkColor,
     surface = Color.White,
     onSurface = Color.Black,
     background = ColorPrimary

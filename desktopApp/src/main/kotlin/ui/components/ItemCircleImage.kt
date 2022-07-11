@@ -10,14 +10,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import org.jetbrains.skia.Bitmap
 
 @Composable
 fun ItemCircleImage(
     modifier: Modifier = Modifier,
-    image: Painter,
+    image: ImageBitmap,
     contentDescription: String,
     onClick: () -> Unit
 ) {
@@ -28,7 +30,7 @@ fun ItemCircleImage(
             .clip(CircleShape)
             .aspectRatio(1f, matchHeightConstraintsFirst = true)
             .clickable { onClick() },
-        painter = image,
+        bitmap = image,
         contentDescription = contentDescription,
         contentScale = ContentScale.Crop
     )
