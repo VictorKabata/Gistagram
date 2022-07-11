@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vickikbt.gistagram.LoggedInUserProfileQuery
 import com.vickikbt.shared.domain.utils.UiState
+import koin
 import ui.components.ItemCircleImage
 import ui.components.ItemLoadingScreen
 import ui.components.profile.*
@@ -32,8 +33,7 @@ import utils.loadImageBitmap
 
 @ExperimentalMaterialApi
 @Composable
-fun ProfileScreen(navController: NavController) {
-    val viewModel = remember { ProfileViewModel() }
+fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel = koin.get()) {
 
     val userProfileUiState = viewModel.userProfile.collectAsState()
 

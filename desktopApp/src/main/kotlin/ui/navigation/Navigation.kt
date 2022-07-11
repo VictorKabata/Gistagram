@@ -1,9 +1,11 @@
 package ui.navigation
 
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import ui.screens.auth.AuthScreen
 import ui.screens.profile.ProfileScreen
 
+@ExperimentalMaterialApi
 @Composable
 fun Navigation(navController: NavController) {
 

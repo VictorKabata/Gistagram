@@ -13,15 +13,16 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import org.koin.core.component.KoinComponent
 
-class ProfileViewModel constructor(private val profileRepository: ProfileRepository = koin.get()) {
+class ProfileViewModel constructor(private val profileRepository: ProfileRepository = koin.get()):KoinComponent {
 
     private val _userProfile =
         MutableStateFlow<UiState<ApolloResponse<LoggedInUserProfileQuery.Data>>?>(null)
     val userProfile = _userProfile.asStateFlow()
 
+    private val supervisorJob = MutableStateFlow<Job?>(null)
     private val viewModelScope = CoroutineScope(Dispatchers.IO)
-    private val callbackJob = MutableStateFlow<Job?>(null)
 
     init {
         getLoggedInUserProfile()
@@ -42,10 +43,10 @@ class ProfileViewModel constructor(private val profileRepository: ProfileReposit
             }
         }
 
-        callbackJob.value = job
+        supervisorJob.value = job
         job.invokeOnCompletion {
-            callbackJob.value?.cancel()
-            callbackJob.value = null
+            supervisorJob.value?.cancel()
+            supervisorJob.value = null
         }
     }
 

@@ -1,3 +1,4 @@
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.ui.window.application
 import com.vickikbt.shared.di.initKoin
 import di.presentationModule
@@ -6,6 +7,7 @@ import ui.screens.main.MainScreen
 
 lateinit var koin: Koin
 
+@ExperimentalMaterialApi
 fun main() {
     val desktopModules = listOf(presentationModule)
 

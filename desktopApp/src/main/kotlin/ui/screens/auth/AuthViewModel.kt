@@ -13,13 +13,15 @@ import koin
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import org.koin.core.component.KoinComponent
 import java.awt.Desktop
 import java.net.URI
 import java.net.URLEncoder
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
 
-class AuthViewModel constructor(private val authRepository: AuthRepository = koin.get()) {
+class AuthViewModel constructor(private val authRepository: AuthRepository = koin.get()) :
+    KoinComponent {
 
     private val _accessToken = MutableStateFlow<UiState<AccessToken?>?>(null)
     val accessToken = _accessToken.asStateFlow()
@@ -83,14 +85,11 @@ class AuthViewModel constructor(private val authRepository: AuthRepository = koi
     }
 
     private suspend fun fetchAccessToken(code: String) {
-        print("Fetching access token...\n")
         _accessToken.value = UiState.Loading()
 
         try {
             val response = authRepository.fetchAccessToken(code = code)
-            print("Fetched access token: $response")
             _accessToken.value = UiState.Success(data = response)
-            //_userId.value = response?.accessToken
         } catch (e: Exception) {
             _accessToken.value = UiState.Error(error = e.message)
         }
