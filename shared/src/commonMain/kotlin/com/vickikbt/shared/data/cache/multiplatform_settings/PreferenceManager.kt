@@ -1,21 +1,28 @@
 package com.vickikbt.shared.data.cache.multiplatform_settings
 
-import com.russhwolf.settings.Settings
-import kotlinx.coroutines.flow.flowOf
+import com.russhwolf.settings.coroutines.getStringOrNullFlow
+import com.russhwolf.settings.set
+import com.vickikbt.shared.domain.utils.MultiplatformSettingsWrapper
 
-class PreferenceManager constructor(private val settings: Settings) {
 
-    fun setString(key: String, value: String) = settings.putString(key, value)
+class PreferenceManager constructor(private val multiplatformSettingsWrapper: MultiplatformSettingsWrapper) {
 
-    fun getString(key: String) = flowOf(settings.getStringOrNull(key))
+    private val observableSettings = multiplatformSettingsWrapper.createSettings()
 
-    fun setLong(key: String, value: Long) = settings.putLong(key, value)
+    fun setString(key: String, value: String) {
+        observableSettings.set(key = key, value = value)
+    }
 
-    fun getLong(key: String) = flowOf(settings.getLongOrNull(key))
+    fun getString(key: String) = observableSettings.getStringOrNullFlow(key = key)
 
-    fun setInt(key: String, value: Int) = settings.putInt(key, value)
+    fun setInt(key: String, value: String) {
+        observableSettings.set(key = key, value = value)
+    }
 
-    fun getInt(key: String) = flowOf(settings.getIntOrNull(key))
+    fun getInt(key: String) = observableSettings.getStringOrNullFlow(key = key)
 
-    fun clearPreferences() = settings.clear()
+    companion object {
+        const val APP_THEME_KEY = "app_theme_key"
+    }
+
 }

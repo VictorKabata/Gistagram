@@ -10,13 +10,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.vickikbt.shared.domain.utils.UiState
+import com.vickikbt.shared.presentation.UiState
 import koin
 import ui.navigation.NavController
 import ui.navigation.NavigationItem
 
 @Composable
-fun AuthScreen(navController: NavController, viewModel: AuthViewModel=koin.get()) {
+fun AuthScreen(navController: NavController, viewModel: AuthViewModel = koin.get()) {
 
     val authUiState = viewModel.accessToken.collectAsState()
     var isLoading by remember { mutableStateOf(false) }

@@ -40,7 +40,7 @@ object MultiplatformDependencies {
     const val multiplatformSettings =
         "com.russhwolf:multiplatform-settings-no-arg:${Versions.multiplatformSettings}"
     const val multiplatformSettingsCoroutines =
-        "com.russhwolf:multiplatform-settings-coroutines:${Versions.multiplatformSettings}"
+        "com.russhwolf:multiplatform-settings-coroutines-native-mt:${Versions.multiplatformSettings}"
 
     const val mockk = "io.mockk:mockk:${Versions.mockk}"
 

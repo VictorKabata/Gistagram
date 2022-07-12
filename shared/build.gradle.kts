@@ -9,15 +9,6 @@ plugins {
     id(Plugins.sqlDelight) version Versions.sqlDelight
 }
 
-android {
-    compileSdk = AndroidSdk.compileSdkVersion
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    defaultConfig {
-        minSdk = AndroidSdk.minSdkVersion
-        targetSdk = AndroidSdk.targetSdkVersion
-    }
-}
-
 kotlin {
     android()
 
@@ -48,6 +39,9 @@ kotlin {
 
             api(MultiplatformDependencies.apolloRuntime)
             api(MultiplatformDependencies.apolloNormalizedCache)
+
+            implementation(MultiplatformDependencies.multiplatformSettings)
+            implementation(MultiplatformDependencies.multiplatformSettingsCoroutines)
 
             api(MultiplatformDependencies.multiplatformPaging)
 
@@ -87,6 +81,15 @@ kotlin {
 
         sourceSets["jvmTest"].dependencies {
         }
+    }
+}
+
+android {
+    compileSdk = AndroidSdk.compileSdkVersion
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    defaultConfig {
+        minSdk = AndroidSdk.minSdkVersion
+        targetSdk = AndroidSdk.targetSdkVersion
     }
 }
 

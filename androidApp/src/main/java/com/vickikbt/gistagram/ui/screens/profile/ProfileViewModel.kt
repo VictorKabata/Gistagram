@@ -8,7 +8,7 @@ import com.apollographql.apollo3.api.ApolloResponse
 import com.apollographql.apollo3.exception.ApolloHttpException
 import com.vickikbt.gistagram.LoggedInUserProfileQuery
 import com.vickikbt.shared.domain.repositories.ProfileRepository
-import com.vickikbt.shared.domain.utils.UiState
+import com.vickikbt.shared.presentation.UiState
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 

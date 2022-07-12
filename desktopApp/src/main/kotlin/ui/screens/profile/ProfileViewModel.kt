@@ -4,7 +4,7 @@ import com.apollographql.apollo3.api.ApolloResponse
 import com.apollographql.apollo3.exception.ApolloHttpException
 import com.vickikbt.gistagram.LoggedInUserProfileQuery
 import com.vickikbt.shared.domain.repositories.ProfileRepository
-import com.vickikbt.shared.domain.utils.UiState
+import com.vickikbt.shared.presentation.UiState
 import koin
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +15,8 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 
-class ProfileViewModel constructor(private val profileRepository: ProfileRepository = koin.get()):KoinComponent {
+class ProfileViewModel constructor(private val profileRepository: ProfileRepository = koin.get()) :
+    KoinComponent {
 
     private val _userProfile =
         MutableStateFlow<UiState<ApolloResponse<LoggedInUserProfileQuery.Data>>?>(null)

@@ -20,8 +20,9 @@ import androidx.navigation.NavController
 import com.vickikbt.gistagram.R
 import com.vickikbt.gistagram.ui.navigation.NavigationItem
 import com.vickikbt.gistagram.utils.findActivity
+import com.vickikbt.shared.domain.utils.Configs
 import com.vickikbt.shared.domain.utils.Constants
-import com.vickikbt.shared.domain.utils.UiState
+import com.vickikbt.shared.presentation.UiState
 import org.koin.androidx.compose.getViewModel
 
 @Composable
@@ -112,14 +113,16 @@ fun AuthScreen(navController: NavController, viewModel: AuthViewModel = getViewM
 }
 
 private fun githubOAuth(context: Context) {
-    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(Constants.WEB_URL))
+    val webUrl =
+        "${Constants.OAUTH_BASE_URL}?client_id=${Configs.CLIENT_ID}&scope=repo,user,project,read:org&redirect_uri=${Configs.REDIRECT_URI}"
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(webUrl))
     context.startActivity(intent)
 }
 
 fun onResume(context: Context, viewModel: AuthViewModel) {
     val uri = context.findActivity()?.intent?.data
 
-    if (uri != null && uri.toString().contains(Constants.REDIRECT_URI)) {
+    if (uri != null && uri.toString().contains(Configs.REDIRECT_URI)) {
         val code = uri.getQueryParameter("code")
 
         if (code != null) {

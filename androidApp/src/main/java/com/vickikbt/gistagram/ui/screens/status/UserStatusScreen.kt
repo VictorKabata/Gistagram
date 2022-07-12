@@ -16,7 +16,7 @@ import com.vickikbt.gistagram.ui.components.BottomNavStatus
 import com.vickikbt.gistagram.ui.components.ItemLoadingScreen
 import com.vickikbt.gistagram.ui.components.StatusToolbar
 import com.vickikbt.gistagram.utils.MarkDownComposable
-import com.vickikbt.shared.domain.utils.UiState
+import com.vickikbt.shared.presentation.UiState
 import org.koin.androidx.compose.getViewModel
 
 @Composable
