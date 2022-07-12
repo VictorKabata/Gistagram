@@ -10,7 +10,7 @@ import org.koin.dsl.module
 
 val presentationModule = module {
 
-    viewModel { MainViewModel(authRepository = get()) }
+    viewModel { MainViewModel(authRepository = get(), settingsRepository = get()) }
     viewModel { AuthViewModel(authRepository = get()) }
     viewModel { ProfileViewModel(profileRepository = get()) }
     viewModel { SettingsViewModel(settingsRepository = get()) }

@@ -1,7 +1,6 @@
 package com.vickikbt.gistagram.ui.activity
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -10,10 +9,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
@@ -30,11 +26,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         installSplashScreen()
         setContent {
-            GistagramTheme {
-                Surface(color = MaterialTheme.colors.background) {
-                    MainScreen()
-                }
-            }
+            MainScreen()
         }
     }
 }
@@ -46,14 +38,20 @@ class MainActivity : ComponentActivity() {
 fun MainScreen(viewModel: MainViewModel = getViewModel()) {
     val navController = rememberAnimatedNavController()
 
+    val appTheme = viewModel.appTheme.collectAsState().value
+    val theme:Boolean = appTheme=="dark"
+
     val accessToken by remember { mutableStateOf(viewModel.accessToken.value) }
-    Log.e("TAG", "Access Token: ${accessToken}")
 
     Scaffold {
-        Navigation(
-            navController = navController,
-            isLoggedIn = !accessToken?.accessToken.isNullOrEmpty()
-        )
+        GistagramTheme(darkTheme = theme) {
+            Surface(color = MaterialTheme.colors.background) {
+                Navigation(
+                    navController = navController,
+                    isLoggedIn = !accessToken?.accessToken.isNullOrEmpty()
+                )
+            }
+        }
     }
 }
 

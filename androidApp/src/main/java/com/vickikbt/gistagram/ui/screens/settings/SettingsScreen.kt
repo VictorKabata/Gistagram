@@ -1,10 +1,8 @@
 package com.vickikbt.gistagram.ui.screens.settings
 
-import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
@@ -27,9 +25,7 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = 
 
     val appTheme = viewModel.appTheme.collectAsState().value
 
-    var numberCount by remember { mutableStateOf(0) }
-
-    Log.e("Android App", "App theme: $appTheme")
+    var themeValue by remember { mutableStateOf("") }
 
     Box(modifier = Modifier.fillMaxSize()) {
         Text(
@@ -44,8 +40,8 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = 
 
         Button(
             onClick = {
-                numberCount += 1
-                viewModel.setAppTheme(theme = numberCount.toString())
+                themeValue = if (themeValue == "dark") "light" else "dark"
+                viewModel.setAppTheme(theme = themeValue)
             },
             modifier = Modifier.align(Alignment.BottomCenter),
             contentPadding = PaddingValues(vertical = 8.dp),
