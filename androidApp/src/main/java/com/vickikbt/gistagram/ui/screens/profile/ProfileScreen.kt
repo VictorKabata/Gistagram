@@ -36,8 +36,10 @@ import com.vickikbt.gistagram.ui.components.profile.ItemBioText
 import com.vickikbt.gistagram.ui.components.profile.ProfileAppBar
 import com.vickikbt.gistagram.ui.components.profile.ProfileStats
 import com.vickikbt.gistagram.ui.components.profile.ProfileTabRow
+import com.vickikbt.gistagram.ui.navigation.NavigationItem
 import com.vickikbt.gistagram.ui.screens.profile.tabs.ItemPinnedRepo
 import com.vickikbt.gistagram.ui.screens.profile.tabs.RepositoriesTab
+import com.vickikbt.gistagram.ui.screens.settings.SettingsViewModel
 import com.vickikbt.shared.presentation.UiState
 import org.koin.androidx.compose.getViewModel
 
@@ -45,10 +47,14 @@ import org.koin.androidx.compose.getViewModel
 @Composable
 fun ProfileScreen(
     navController: NavController,
-    viewModel: ProfileViewModel = getViewModel()
+    viewModel: ProfileViewModel = getViewModel(),
+    settingsViewModel: SettingsViewModel = getViewModel()
 ) {
 
     val userProfileUiState = viewModel.userProfile.observeAsState().value
+    val appTheme = settingsViewModel.appTheme.collectAsState()
+
+    Log.e("Android App", "App theme: $appTheme")
 
     when (userProfileUiState) {
         is UiState.Error -> {
@@ -63,7 +69,7 @@ fun ProfileScreen(
                 ProfileAppBar(
                     title = viewer?.login ?: stringResource(id = R.string.title_profile),
                     onSettingsClicked = {
-                        // ToDo: Navigate to settings
+                        navController.navigate(NavigationItem.Settings.route)
                     }
                 )
 

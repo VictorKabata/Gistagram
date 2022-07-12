@@ -1,12 +1,13 @@
 package com.vickikbt.shared.data.cache.multiplatform_settings
 
-import com.russhwolf.settings.ObservableSettings
 import com.russhwolf.settings.coroutines.getStringOrNullFlow
 import com.russhwolf.settings.set
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import com.vickikbt.shared.domain.utils.MultiplatformSettingsWrapper
 
-@OptIn(ExperimentalCoroutinesApi::class)
-class PreferenceManager constructor(private val observableSettings: ObservableSettings) {
+
+class PreferenceManager constructor(private val multiplatformSettingsWrapper: MultiplatformSettingsWrapper) {
+
+    private val observableSettings = multiplatformSettingsWrapper.createSettings()
 
     fun setString(key: String, value: String) {
         observableSettings.set(key = key, value = value)
@@ -20,5 +21,8 @@ class PreferenceManager constructor(private val observableSettings: ObservableSe
 
     fun getInt(key: String) = observableSettings.getStringOrNullFlow(key = key)
 
+    companion object {
+        const val APP_THEME_KEY = "app_theme_key"
+    }
 
 }
