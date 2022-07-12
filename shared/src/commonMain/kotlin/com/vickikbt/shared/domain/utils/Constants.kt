@@ -11,4 +11,13 @@ object Constants {
     const val REDIRECT_URI = "vickikbt://callback"
     const val WEB_URL =
         "$OAUTH_BASE_URL?client_id=$CLIENT_ID&scope=repo,user,project,read:org&redirect_uri=$REDIRECT_URI"
+
+    const val KEY_THEME = "Theme"
+    const val KEY_LANGUAGE = "Language"
+    const val KEY_IMAGE_QUALITY = "Image Quality"
+
+    const val SOURCE_CODE_URL = "https://github.com/VictorKabata/Notflix"
+
+    const val BUG_REPORT_EMAIL = "victorbro14@gmail.com"
+    const val BUG_REPORT_SUBJECT = "Notflix-Bug report or feature request"
 }

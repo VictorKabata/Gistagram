@@ -4,6 +4,7 @@ import com.vickikbt.gistagram.ui.activity.MainViewModel
 import com.vickikbt.gistagram.ui.screens.auth.AuthViewModel
 import com.vickikbt.gistagram.ui.screens.profile.ProfileViewModel
 import com.vickikbt.gistagram.ui.screens.status.StatusViewModel
+import com.vickikbt.shared.presentation.SharedSettingsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
