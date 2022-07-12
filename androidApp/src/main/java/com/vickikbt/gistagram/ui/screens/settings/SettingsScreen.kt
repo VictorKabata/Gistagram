@@ -14,6 +14,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -36,21 +37,23 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = 
 
     val context = LocalContext.current
 
-    val currentTheme = 0
-
+    val currentTheme = viewModel.appTheme.collectAsState().value ?: 0
     val showThemeDialog = remember { mutableStateOf(false) }
-
     val themeLabel = stringArrayResource(id = R.array.theme_labels)[currentTheme]
+
     Scaffold(
         topBar = { AppBar(stringResource(id = R.string.title_settings)) }
     ) { paddingValues ->
-        Surface(modifier = Modifier.fillMaxSize().padding(paddingValues), color = MaterialTheme.colors.surface) {
-            Column {
+        Surface(
+            modifier = Modifier.fillMaxSize().padding(paddingValues),
+            color = MaterialTheme.colors.surface
+        ) {
+            Column(modifier = Modifier) {
                 Spacer(modifier = Modifier.height(8.dp))
 
                 PreferencesGroup(title = stringResource(id = R.string.title_personalisation)) {
                     TextPreference(
-                        icon = painterResource(id = R.drawable.ic_theme),
+                        painter = painterResource(id = R.drawable.ic_theme),
                         title = stringResource(id = R.string.change_theme),
                         subTitle = themeLabel,
                         onClick = { showThemeDialog.value = !showThemeDialog.value }
@@ -63,14 +66,16 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = 
                     )
                 }
 
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(
+                    modifier = Modifier.height(16.dp)
+                )
 
                 PreferencesGroup(
                     title = stringResource(id = R.string.title_extras),
                     isLast = true
                 ) {
                     TextPreference(
-                        icon = painterResource(id = R.drawable.ic_report_bug),
+                        painter = painterResource(id = R.drawable.ic_report_bug),
                         title = stringResource(id = R.string.report_bug),
                         subTitle = stringResource(id = R.string.report_bug_description),
                         onClick = { reportBug(context) }
@@ -78,7 +83,7 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = 
 
                     TextPreference(
                         modifier = Modifier.clickable { },
-                        icon = painterResource(id = R.drawable.ic_github),
+                        painter = painterResource(id = R.drawable.ic_github),
                         title = stringResource(id = R.string.source_code),
                         subTitle = stringResource(id = R.string.source_code_description),
                         onClick = { openSourceCode(context) }
@@ -102,7 +107,7 @@ private fun ChangeTheme(
         labels = stringArrayResource(id = R.array.theme_labels),
         onNegativeClick = { showDialog.value = false }
     ) { theme ->
-        viewModel.setAppTheme(theme = theme.toString())
+        viewModel.setAppTheme(theme = theme)
     }
 }
 

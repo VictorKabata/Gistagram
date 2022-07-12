@@ -26,18 +26,17 @@ fun PreferencesGroup(
             modifier = modifier
                 .fillMaxWidth()
                 .wrapContentHeight(),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             if (!title.isNullOrEmpty()) {
-                Spacer(modifier = Modifier.weight(2f))
+                Spacer(modifier = Modifier.weight(0.8f))
 
                 Text(
                     modifier = Modifier
-                        .weight(8f)
-                        .padding(horizontal = 12.dp),
+                       .weight(9.2f),
                     text = title,
-                    style = MaterialTheme.typography.h3,
-                    color = MaterialTheme.colors.primary,
+                    style = MaterialTheme.typography.h2,
+                    color = MaterialTheme.colors.onSurface,
                     fontSize = 16.sp,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
@@ -50,7 +49,7 @@ fun PreferencesGroup(
 
         Column(content = content, verticalArrangement = Arrangement.spacedBy(2.dp))
 
-        if (!isLast) Divider(color = Color.Gray.copy(alpha = 0.7f), thickness = 1.dp)
+        if (!isLast) Divider(color = Color.Gray.copy(alpha = 0.7f), thickness = 0.5.dp)
     }
 
 }

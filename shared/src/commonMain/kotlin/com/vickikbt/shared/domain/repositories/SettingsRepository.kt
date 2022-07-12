@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface SettingsRepository {
 
-    suspend fun saveAppTheme(theme: String)
+    suspend fun saveAppTheme(theme: Int)
 
-    suspend fun getAppTheme(): Flow<String?>
+    suspend fun getAppTheme(): Flow<Int?>
 }

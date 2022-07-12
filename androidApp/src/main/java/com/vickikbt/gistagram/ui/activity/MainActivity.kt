@@ -6,14 +6,17 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
@@ -47,13 +50,20 @@ fun MainScreen(viewModel: MainViewModel = getViewModel()) {
     val navController = rememberAnimatedNavController()
 
     val accessToken by remember { mutableStateOf(viewModel.accessToken.value) }
-    Log.e("TAG", "Access Token: ${accessToken}")
+    Log.e("TAG", "Access Token: $accessToken")
+    val appTheme = viewModel.appTheme.collectAsState().value
+    val theme: Boolean = appTheme == 0
 
     Scaffold {
-        Navigation(
-            navController = navController,
-            isLoggedIn = !accessToken?.accessToken.isNullOrEmpty()
-        )
+        GistagramTheme(darkTheme = theme) {
+            Surface(color = MaterialTheme.colors.background) {
+                Navigation(
+                    modifier = Modifier.padding(it),
+                    navController = navController,
+                    isLoggedIn = !accessToken?.accessToken.isNullOrEmpty()
+                )
+            }
+        }
     }
 }
 
