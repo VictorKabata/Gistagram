@@ -14,7 +14,6 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -24,33 +23,24 @@ import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.apollographql.apollo3.api.json.BufferedSinkJsonWriter.Companion.string
 import com.vickikbt.gistagram.R
 import com.vickikbt.gistagram.ui.components.DialogPreferenceSelection
 import com.vickikbt.gistagram.ui.components.PreferencesGroup
 import com.vickikbt.gistagram.ui.components.TextPreference
 import com.vickikbt.gistagram.ui.components.app_bars.AppBar
 import com.vickikbt.shared.domain.utils.Constants
-import com.vickikbt.shared.presentation.SharedSettingsViewModel
 import org.koin.androidx.compose.get
 
 @Composable
-fun SettingsScreen(navController: NavController, viewModel: SharedSettingsViewModel = get()) {
+fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = get()) {
 
     val context = LocalContext.current
 
-    val currentTheme = viewModel.selectedTheme.collectAsState().value ?: 0
-    val currentLanguage = viewModel.selectedLanguage.collectAsState().value ?: 0
-    val currentImageQuality = viewModel.selectedImageQuality.collectAsState().value ?: 0
+    val currentTheme = 0
 
     val showThemeDialog = remember { mutableStateOf(false) }
-    val showLanguageDialog = remember { mutableStateOf(false) }
-    val showImageQualityDialog = remember { mutableStateOf(false) }
 
     val themeLabel = stringArrayResource(id = R.array.theme_labels)[currentTheme]
-    val languageLabel = stringArrayResource(id = R.array.language_labels)[currentLanguage]
-    val imageQualityLabel =
-        stringArrayResource(id = R.array.image_quality_labels)[currentImageQuality]
     Scaffold(
         topBar = { AppBar(stringResource(id = R.string.title_settings)) }
     ) { paddingValues ->
@@ -70,32 +60,6 @@ fun SettingsScreen(navController: NavController, viewModel: SharedSettingsViewMo
                         viewModel = viewModel,
                         showDialog = showThemeDialog,
                         currentValue = themeLabel
-                    )
-
-                    TextPreference(
-                        icon = painterResource(id = R.drawable.ic_language),
-                        title = stringResource(id = R.string.change_language),
-                        subTitle = languageLabel,
-                        onClick = { showLanguageDialog.value = !showLanguageDialog.value }
-                    )
-
-                    if (showLanguageDialog.value) ChangeLanguage(
-                        viewModel = viewModel,
-                        showDialog = showLanguageDialog,
-                        currentValue = languageLabel
-                    )
-
-                    TextPreference(
-                        icon = painterResource(id = R.drawable.ic_image_quality),
-                        title = stringResource(id = R.string.change_image_quality),
-                        subTitle = imageQualityLabel,
-                        onClick = { showImageQualityDialog.value = !showImageQualityDialog.value }
-                    )
-
-                    if (showImageQualityDialog.value) ChangeImageQuality(
-                        viewModel = viewModel,
-                        showDialog = showImageQualityDialog,
-                        currentValue = imageQualityLabel
                     )
                 }
 
@@ -120,7 +84,6 @@ fun SettingsScreen(navController: NavController, viewModel: SharedSettingsViewMo
                         onClick = { openSourceCode(context) }
                     )
                 }
-
             }
         }
     }
@@ -128,7 +91,7 @@ fun SettingsScreen(navController: NavController, viewModel: SharedSettingsViewMo
 
 @Composable
 private fun ChangeTheme(
-    viewModel: SharedSettingsViewModel,
+    viewModel: SettingsViewModel,
     showDialog: MutableState<Boolean>,
     currentValue: String?
 ) {
@@ -139,44 +102,7 @@ private fun ChangeTheme(
         labels = stringArrayResource(id = R.array.theme_labels),
         onNegativeClick = { showDialog.value = false }
     ) { theme ->
-        viewModel.savePreferenceSelection(key = Constants.KEY_THEME, selection = theme)
-    }
-}
-
-@Composable
-private fun ChangeLanguage(
-    viewModel: SharedSettingsViewModel,
-    showDialog: MutableState<Boolean>,
-    currentValue: String?
-) {
-    DialogPreferenceSelection(
-        showDialog = showDialog.value,
-        title = stringResource(id = R.string.change_language),
-        currentValue = currentValue ?: stringResource(id = R.string.language_eg),
-        labels = stringArrayResource(id = R.array.language_labels),
-        onNegativeClick = { showDialog.value = false }
-    ) { language ->
-        viewModel.savePreferenceSelection(key = Constants.KEY_LANGUAGE, selection = language)
-    }
-}
-
-@Composable
-private fun ChangeImageQuality(
-    viewModel: SharedSettingsViewModel,
-    showDialog: MutableState<Boolean>,
-    currentValue: String?
-) {
-    DialogPreferenceSelection(
-        showDialog = showDialog.value,
-        title = stringResource(id = R.string.change_image_quality),
-        currentValue = currentValue ?: stringResource(id = R.string.def),
-        labels = stringArrayResource(id = R.array.image_quality_labels),
-        onNegativeClick = { showDialog.value = false }
-    ) { imageQuality ->
-        viewModel.savePreferenceSelection(
-            key = Constants.KEY_IMAGE_QUALITY,
-            selection = imageQuality
-        )
+        viewModel.setAppTheme(theme = theme.toString())
     }
 }
 
