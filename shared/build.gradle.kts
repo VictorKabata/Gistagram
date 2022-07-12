@@ -49,6 +49,9 @@ kotlin {
             api(MultiplatformDependencies.apolloRuntime)
             api(MultiplatformDependencies.apolloNormalizedCache)
 
+            implementation(MultiplatformDependencies.multiplatformSettings)
+            implementation(MultiplatformDependencies.multiplatformSettingsCoroutines)
+
             api(MultiplatformDependencies.multiplatformPaging)
 
             implementation(MultiplatformDependencies.multiplatformSettings)

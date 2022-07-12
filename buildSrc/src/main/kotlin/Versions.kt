@@ -18,7 +18,7 @@ object Versions {
     const val kotlinxCoroutines = "1.6.0-native-mt"
     const val napier = "2.4.0"
     const val sqlDelight = "1.5.3"
-    const val multiplatformSettings = "0.8.1"
+    const val multiplatformSettings = "0.9"
     const val kmpNativeCoroutines = "0.12.1-new-mm"
 
     const val mockk = "1.12.3"
