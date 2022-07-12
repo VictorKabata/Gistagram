@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vickikbt.shared.domain.models.AccessToken
 import com.vickikbt.shared.domain.repositories.AuthRepository
-import com.vickikbt.shared.domain.utils.UiState
+import com.vickikbt.shared.presentation.UiState
 import kotlinx.coroutines.launch
 
 class AuthViewModel constructor(private val authRepository: AuthRepository) : ViewModel() {

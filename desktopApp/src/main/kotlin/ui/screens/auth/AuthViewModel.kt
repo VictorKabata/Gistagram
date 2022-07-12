@@ -2,8 +2,9 @@ package ui.screens.auth
 
 import com.vickikbt.shared.domain.models.AccessToken
 import com.vickikbt.shared.domain.repositories.AuthRepository
+import com.vickikbt.shared.domain.utils.Configs
 import com.vickikbt.shared.domain.utils.Constants
-import com.vickikbt.shared.domain.utils.UiState
+import com.vickikbt.shared.presentation.UiState
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.routing.*
@@ -32,10 +33,9 @@ class AuthViewModel constructor(private val authRepository: AuthRepository = koi
     fun fetchOAuthCode() {
         val job = viewModelScope.launch {
             try {
-                val redirectUri = "http://localhost:5789/callback"
-                val encodedRedirectUri = URLEncoder.encode(redirectUri, Charsets.UTF_8)
+                val encodedRedirectUri = URLEncoder.encode(Configs.REDIRECT_URI, Charsets.UTF_8)
                 val webUrl =
-                    "${Constants.OAUTH_BASE_URL}?client_id=${Constants.CLIENT_ID}&scope=repo,user,project,read:org&redirect_uri=$encodedRedirectUri"
+                    "${Constants.OAUTH_BASE_URL}?client_id=${Configs.CLIENT_ID}&scope=repo,user,project,read:org&redirect_uri=$encodedRedirectUri"
 
                 println("Launching URL: $webUrl")
 

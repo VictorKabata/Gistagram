@@ -22,7 +22,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vickikbt.gistagram.LoggedInUserProfileQuery
-import com.vickikbt.shared.domain.utils.UiState
+import com.vickikbt.shared.presentation.UiState
 import koin
 import ui.components.ItemCircleImage
 import ui.components.ItemLoadingScreen
