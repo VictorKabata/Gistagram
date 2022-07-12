@@ -47,14 +47,10 @@ import org.koin.androidx.compose.getViewModel
 @Composable
 fun ProfileScreen(
     navController: NavController,
-    viewModel: ProfileViewModel = getViewModel(),
-    settingsViewModel: SettingsViewModel = getViewModel()
+    viewModel: ProfileViewModel = getViewModel()
 ) {
 
     val userProfileUiState = viewModel.userProfile.observeAsState().value
-    val appTheme = settingsViewModel.appTheme.collectAsState()
-
-    Log.e("Android App", "App theme: $appTheme")
 
     when (userProfileUiState) {
         is UiState.Error -> {
