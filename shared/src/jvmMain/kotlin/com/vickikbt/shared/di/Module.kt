@@ -9,6 +9,6 @@ actual fun platformModule(): Module = module {
     single { DatabaseDriverFactory() }
 
     single {
-        //val settings=AndroidSettings()
+        val settings=AndroidSettings()
     }
 }
