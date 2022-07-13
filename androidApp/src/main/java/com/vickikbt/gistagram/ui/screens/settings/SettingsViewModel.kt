@@ -12,14 +12,14 @@ import kotlinx.coroutines.launch
 class SettingsViewModel constructor(private val settingsRepository: SettingsRepository) :
     ViewModel() {
 
-    private val _appTheme = MutableStateFlow<String?>(null)
+    private val _appTheme = MutableStateFlow<Int?>(null)
     val appTheme = _appTheme.asStateFlow()
 
     init {
         getAppTheme()
     }
 
-    fun setAppTheme(theme: String) {
+    fun setAppTheme(theme: Int) {
         viewModelScope.launch {
             try {
                 settingsRepository.saveAppTheme(theme = theme)

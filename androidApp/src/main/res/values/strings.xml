@@ -30,6 +30,23 @@
     <string name="repository">Repository</string>
     <string name="language">Language</string>
     <string name="retry">Retry</string>
+    <string name="cancel">Cancel</string>
     <string name="title_error">Error</string>
     <string name="no_description">This repository does not have a description</string>
+
+    <!--Preference Titles-->
+    <string name="title_personalisation">Personalisation</string>
+    <string name="title_extras">Extras</string>
+
+    <!--Preference Headers-->
+    <string name="change_theme">Change theme</string>
+    <string name="change_language">Change language</string>
+    <string name="change_image_quality">Change image quality</string>
+    <string name="report_bug">Report Bug</string>
+    <string name="report_bug_description">Report bug or request feature</string>
+    <string name="source_code">Source Code</string>
+    <string name="source_code_description">View app source code</string>
+
+    <string name="def">Default</string>
+    <string name="language_eg" translatable="false">No Russian</string>
 </resources>

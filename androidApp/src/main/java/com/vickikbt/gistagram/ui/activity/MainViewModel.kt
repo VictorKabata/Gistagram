@@ -20,7 +20,7 @@ class MainViewModel constructor(
     private val _accessToken = MutableStateFlow<AccessToken?>(null)
     val accessToken = _accessToken.asStateFlow()
 
-    private val _appTheme = MutableStateFlow<String?>(null)
+    private val _appTheme = MutableStateFlow<Int?>(null)
     val appTheme = _appTheme.asStateFlow()
 
     private val _user = MutableStateFlow<User?>(null)
@@ -67,5 +67,4 @@ class MainViewModel constructor(
             }
         }
     }
-
 }
