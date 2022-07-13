@@ -6,7 +6,7 @@ import com.russhwolf.settings.set
 import com.vickikbt.shared.domain.utils.MultiplatformSettingsWrapper
 
 
-class PreferenceManager constructor(private val multiplatformSettingsWrapper: MultiplatformSettingsWrapper) {
+class PreferenceManager constructor(multiplatformSettingsWrapper: MultiplatformSettingsWrapper) {
 
     private val observableSettings = multiplatformSettingsWrapper.createSettings()
 
