@@ -4,7 +4,13 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class WatchEventEntity(
-    @SerialName("action")
-    val action: String? = null
+data class RepoDto(
+    @SerialName("id")
+    val id: Int?,
+
+    @SerialName("name")
+    val name: String?,
+
+    @SerialName("url")
+    val url: String?
 )

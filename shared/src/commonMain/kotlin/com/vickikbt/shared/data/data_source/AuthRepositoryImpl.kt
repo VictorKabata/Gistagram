@@ -49,7 +49,7 @@ class AuthRepositoryImpl constructor(
             saveUser(userEntity = it)
         }
 
-        return response?.toDomain()
+        return responseEntity?.toDomain()
     }
 
     suspend fun saveUser(userEntity: UserEntity) {

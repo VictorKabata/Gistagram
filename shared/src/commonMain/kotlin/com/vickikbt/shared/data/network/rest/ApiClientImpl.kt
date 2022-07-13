@@ -1,7 +1,7 @@
 package com.vickikbt.shared.data.network.rest
 
 import com.vickikbt.shared.data.network.rest.models.AccessTokenDto
-import com.vickikbt.shared.data.network.rest.models.ReceivedEventEntity
+import com.vickikbt.shared.data.network.rest.models.ReceivedEventDto
 import com.vickikbt.shared.data.network.rest.models.UserDto
 import com.vickikbt.shared.domain.utils.Constants
 import io.ktor.client.*
@@ -73,9 +73,9 @@ class ApiClientImpl constructor(private val httpClient: HttpClient) : ApiClient 
     override suspend fun fetchReceivedFeeds(
         userName: String,
         accessToken: String
-    ): ReceivedEventEntity? {
+    ): List<ReceivedEventDto?>? {
         return try {
-            httpClient.get<ReceivedEventEntity>(
+            httpClient.get<List<ReceivedEventDto?>>(
                 urlString = "${Constants.REST_BASE_URL}/users/${userName}/received_events/public"
             ) {
                 headers {

@@ -1,6 +1,7 @@
 package com.vickikbt.shared.data.network.rest
 
 import com.vickikbt.shared.data.network.rest.models.AccessTokenDto
+import com.vickikbt.shared.data.network.rest.models.ReceivedEventDto
 import com.vickikbt.shared.data.network.rest.models.UserDto
 import com.vickikbt.shared.domain.utils.Configs
 
@@ -14,5 +15,5 @@ interface ApiClient {
 
     suspend fun fetchUserProfile(accessToken: String): UserDto?
 
-    suspend fun fetchReceivedFeeds(userName: String, accessToken: String): Any?
+    suspend fun fetchReceivedFeeds(userName: String, accessToken: String): List<ReceivedEventDto?>?
 }

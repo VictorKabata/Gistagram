@@ -4,13 +4,13 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ForkEvent(
+data class ForkEventDto(
     @SerialName("forkee")
-    val forkee: ForkeeEntity?
+    val forkee: ForkeeDto?
 )
 
 @Serializable
-data class ForkeeEntity(
+data class ForkeeDto(
     @SerialName("id")
     val id: Int?,
 

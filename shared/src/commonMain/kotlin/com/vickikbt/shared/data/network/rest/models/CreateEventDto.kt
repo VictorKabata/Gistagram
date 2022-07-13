@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CreateEventEntity(
+data class CreateEventDto(
     @SerialName("ref")
     val ref: String?,
 

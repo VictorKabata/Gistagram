@@ -4,13 +4,19 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class RepoEntity(
+data class ActorDto(
     @SerialName("id")
     val id: Int?,
 
-    @SerialName("name")
-    val name: String?,
+    @SerialName("login")
+    val login: String?,
+
+    @SerialName("display_login")
+    val displayLogin: String?,
 
     @SerialName("url")
-    val url: String?
+    val url: String?,
+
+    @SerialName("avatar_url")
+    val avatarUrl: String?
 )

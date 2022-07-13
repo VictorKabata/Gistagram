@@ -8,12 +8,14 @@ import com.vickikbt.shared.data.cache.realm.models.PlanEntity
 import com.vickikbt.shared.data.cache.realm.models.UserEntity
 import com.vickikbt.shared.data.cache.sqldelight.dao.AccessTokenDao
 import com.vickikbt.shared.data.data_source.AuthRepositoryImpl
+import com.vickikbt.shared.data.data_source.FeedsRepositoryImpl
 import com.vickikbt.shared.data.data_source.ProfileRepositoryImpl
 import com.vickikbt.shared.data.data_source.SettingsRepositoryImpl
 import com.vickikbt.shared.data.network.graphql.AuthorizationInterceptor
 import com.vickikbt.shared.data.network.rest.ApiClient
 import com.vickikbt.shared.data.network.rest.ApiClientImpl
 import com.vickikbt.shared.domain.repositories.AuthRepository
+import com.vickikbt.shared.domain.repositories.FeedsRepository
 import com.vickikbt.shared.domain.repositories.ProfileRepository
 import com.vickikbt.shared.domain.repositories.SettingsRepository
 import com.vickikbt.shared.domain.utils.Constants
@@ -104,6 +106,13 @@ val commonModule = module {
         AuthRepositoryImpl(
             apiClient = get(),
             tokenDao = get(),
+            userDao = get()
+        )
+    }
+    single<FeedsRepository> {
+        FeedsRepositoryImpl(
+            apiClient = get(),
+            accessTokenDao = get(),
             userDao = get()
         )
     }
