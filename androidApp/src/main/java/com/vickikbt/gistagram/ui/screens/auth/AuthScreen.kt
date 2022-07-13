@@ -40,7 +40,9 @@ fun AuthScreen(navController: NavController, viewModel: AuthViewModel = getViewM
             isLoading = true
         }
         is UiState.Success -> {
-            navController.navigate(NavigationItem.Profile.route)
+            LaunchedEffect(key1 = authUiState.data) {
+                navController.navigate(NavigationItem.Profile.route)
+            }
         }
     }
 

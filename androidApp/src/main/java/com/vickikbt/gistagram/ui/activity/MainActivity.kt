@@ -18,6 +18,7 @@ import com.vickikbt.gistagram.ui.components.BottomNavBar
 import com.vickikbt.gistagram.ui.navigation.Navigation
 import com.vickikbt.gistagram.ui.navigation.NavigationItem
 import com.vickikbt.gistagram.ui.theme.GistagramTheme
+import io.github.aakira.napier.Napier
 import org.koin.androidx.compose.getViewModel
 
 @ExperimentalMaterialApi
@@ -39,22 +40,26 @@ class MainActivity : ComponentActivity() {
 @ExperimentalAnimationApi
 @Composable
 fun MainScreen(viewModel: MainViewModel = getViewModel()) {
+    val appTheme = viewModel.appTheme.collectAsState().value
+    val theme: Boolean = appTheme == "dark"
+
+    val user = viewModel.user.collectAsState().value
+
+    Napier.e("User cached in realm: $user")
+
     val navController = rememberAnimatedNavController()
 
     val topLevelDestinations = listOf(
         NavigationItem.Home,
         NavigationItem.Search,
         NavigationItem.Notifications,
-        NavigationItem.Profile
+        NavigationItem.Profile.apply { this.profilePicture = user?.avatarUrl }
     )
 
     val isTopLevelDestination =
         navController.currentBackStackEntryAsState().value?.destination?.route in topLevelDestinations.map { it.route }
 
     val backStackEntryState = navController.currentBackStackEntryAsState()
-
-    val appTheme = viewModel.appTheme.collectAsState().value
-    val theme: Boolean = appTheme == "dark"
 
     val accessToken by remember { mutableStateOf(viewModel.accessToken.value) }
 
