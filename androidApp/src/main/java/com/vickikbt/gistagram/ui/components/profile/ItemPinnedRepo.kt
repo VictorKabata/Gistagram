@@ -1,4 +1,4 @@
-package com.vickikbt.gistagram.ui.screens.profile.tabs
+package com.vickikbt.gistagram.ui.components.profile
 
 import android.graphics.Color.parseColor
 import androidx.annotation.DrawableRes
