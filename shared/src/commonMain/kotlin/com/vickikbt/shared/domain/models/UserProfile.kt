@@ -8,7 +8,7 @@ data class UserProfile(
     val company: String?,
     val created_at: String?,
     val disk_usage: Int?,
-    val email: Any?,
+    val email: String?,
     val events_url: String?,
     val followers: Int?,
     val followers_url: String?,
