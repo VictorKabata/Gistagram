@@ -19,6 +19,7 @@ object Plugins {
     const val kotlinXSerialization = "plugin.serialization"
     const val sqlDelight = "com.squareup.sqldelight"
     const val nativeCoroutines = "com.rickclephas.kmp.nativecoroutines"
+    const val realm="io.realm.kotlin"
 
     const val jvm = "jvm"
     const val compose = "org.jetbrains.compose"

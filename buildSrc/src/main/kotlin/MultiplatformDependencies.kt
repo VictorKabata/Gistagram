@@ -2,7 +2,8 @@ object MultiplatformDependencies {
 
     const val kotlinxCoroutines =
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinxCoroutines}"
-    const val kotlinxJvm ="org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:${Versions.kotlinxCoroutines}"
+    const val kotlinxJvm =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:${Versions.kotlinxCoroutines}"
 
     const val kotlinxSerialization =
         "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerialization}"
@@ -16,8 +17,8 @@ object MultiplatformDependencies {
     const val ktoriOS = "io.ktor:ktor-client-ios:${Versions.ktor}"
     const val ktorJvm = "io.ktor:ktor-client-java:${Versions.ktor}"
 
-    const val ktorServerCore="io.ktor:ktor-server-core:${Versions.ktor}"
-    const val ktorServerNetty="io.ktor:ktor-server-netty:${Versions.ktor}"
+    const val ktorServerCore = "io.ktor:ktor-server-core:${Versions.ktor}"
+    const val ktorServerNetty = "io.ktor:ktor-server-netty:${Versions.ktor}"
 
     const val apolloRuntime = "com.apollographql.apollo3:apollo-runtime:${Versions.apollo}"
     const val apolloCoroutines =
@@ -34,6 +35,8 @@ object MultiplatformDependencies {
     const val sqlDelightAndroid = "com.squareup.sqldelight:android-driver:${Versions.sqlDelight}"
     const val sqlDelightNative = "com.squareup.sqldelight:native-driver:${Versions.sqlDelight}"
     const val sqlDelightJVM = "com.squareup.sqldelight:sqlite-driver:${Versions.sqlDelight}"
+
+    const val realm = "io.realm.kotlin:library-base:${Versions.realm}"
 
     const val napier = "io.github.aakira:napier:${Versions.napier}"
 

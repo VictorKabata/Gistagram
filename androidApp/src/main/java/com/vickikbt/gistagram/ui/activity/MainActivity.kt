@@ -1,7 +1,6 @@
 package com.vickikbt.gistagram.ui.activity
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -17,6 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.runtime.*
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
@@ -33,11 +33,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         installSplashScreen()
         setContent {
-            GistagramTheme {
-                Surface(color = MaterialTheme.colors.background) {
-                    MainScreen()
-                }
-            }
+            MainScreen()
         }
     }
 }
@@ -49,10 +45,10 @@ class MainActivity : ComponentActivity() {
 fun MainScreen(viewModel: MainViewModel = getViewModel()) {
     val navController = rememberAnimatedNavController()
 
-    val accessToken by remember { mutableStateOf(viewModel.accessToken.value) }
-    Log.e("TAG", "Access Token: $accessToken")
     val appTheme = viewModel.appTheme.collectAsState().value
-    val theme: Boolean = appTheme == 1
+    val theme:Boolean = appTheme==1
+
+    val accessToken by remember { mutableStateOf(viewModel.accessToken.value) }
 
     Scaffold {
         GistagramTheme(darkTheme = theme) {

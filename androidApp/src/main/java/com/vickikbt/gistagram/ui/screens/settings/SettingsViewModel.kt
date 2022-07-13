@@ -29,7 +29,7 @@ class SettingsViewModel constructor(private val settingsRepository: SettingsRepo
         }
     }
 
-    fun getAppTheme() {
+    private fun getAppTheme() {
         viewModelScope.launch {
             try {
                 settingsRepository.getAppTheme().collectLatest { theme ->
