@@ -1,11 +1,12 @@
 package com.vickikbt.gistagram.ui.activity
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vickikbt.shared.domain.models.AccessToken
+import com.vickikbt.shared.domain.models.User
 import com.vickikbt.shared.domain.repositories.AuthRepository
 import com.vickikbt.shared.domain.repositories.SettingsRepository
+import io.github.aakira.napier.Napier
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -22,10 +23,15 @@ class MainViewModel constructor(
     private val _appTheme = MutableStateFlow<Int?>(null)
     val appTheme = _appTheme.asStateFlow()
 
+    private val _user = MutableStateFlow<User?>(null)
+    val user = _user.asStateFlow()
+
     init {
         getAccessToken()
 
         getAppTheme()
+
+        getUser()
     }
 
     private fun getAccessToken() {
@@ -44,7 +50,20 @@ class MainViewModel constructor(
                     _appTheme.value = theme
                 }
             } catch (e: Exception) {
-                Log.e("ANDROID", "ERROR saving theme: ${e.localizedMessage}")
+                Napier.e("ERROR saving theme: ${e.localizedMessage}")
+            }
+        }
+    }
+
+    private fun getUser() {
+        viewModelScope.launch {
+            try {
+                val response = authRepository.getUser()
+                response?.collect {
+                    _user.value = it
+                }
+            } catch (e: Exception) {
+                Napier.e("ERROR saving theme: ${e.localizedMessage}")
             }
         }
     }

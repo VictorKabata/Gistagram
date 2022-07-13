@@ -3,6 +3,9 @@ package com.vickikbt.shared.di
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.network.http.LoggingInterceptor
 import com.vickikbt.shared.data.cache.multiplatform_settings.PreferenceManager
+import com.vickikbt.shared.data.cache.realm.dao.UserDao
+import com.vickikbt.shared.data.cache.realm.models.PlanEntity
+import com.vickikbt.shared.data.cache.realm.models.UserEntity
 import com.vickikbt.shared.data.cache.sqldelight.dao.AccessTokenDao
 import com.vickikbt.shared.data.data_source.AuthRepositoryImpl
 import com.vickikbt.shared.data.data_source.ProfileRepositoryImpl
@@ -19,6 +22,8 @@ import io.ktor.client.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.features.logging.*
+import io.realm.kotlin.Realm
+import io.realm.kotlin.RealmConfiguration
 import kotlinx.coroutines.Dispatchers
 import org.koin.core.module.Module
 import org.koin.core.qualifier.named
@@ -58,9 +63,12 @@ val commonModule = module {
      * instantiate realm db instance that is
      * provided to DAOs through constructor injection
      */
-    // single { RealmConfiguration.with(schema = setOf(TokenEntity::class)) }
-    // single { Realm.open(configuration = get()) }
-    // single { TokenDao(appDatabase = get()) }
+    single {
+        val configs =
+            RealmConfiguration.Builder(schema = setOf(UserEntity::class, PlanEntity::class)).build()
+        Realm.open(configuration = configs)
+    }
+    single { UserDao(realmDatabase = get(), ioDispatcher = get(named("IODispatcher"))) }
 
     /**
      * Creates instance of AuthorizationInterceptor that is used to authenticate network
@@ -92,7 +100,13 @@ val commonModule = module {
     /**
      * Injecting to repositories
      */
-    single<AuthRepository> { AuthRepositoryImpl(apiClient = get(), tokenDao = get()) }
+    single<AuthRepository> {
+        AuthRepositoryImpl(
+            apiClient = get(),
+            tokenDao = get(),
+            userDao = get()
+        )
+    }
     single<ProfileRepository> { ProfileRepositoryImpl(apolloClient = get()) }
     single<SettingsRepository> { SettingsRepositoryImpl(preferenceManager = get()) }
 }

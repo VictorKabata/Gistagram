@@ -1,12 +1,12 @@
 package com.vickikbt.shared.domain.models
 
 data class User(
-    val avatar_url: String?,
+    val avatarUrl: String?,
     val bio: String?,
     val blog: String?,
     val collaborators:Int?,
     val company: String?,
-    val created_at: String?,
+    val createdAt: String?,
     val email: String?,
     val followers: Int?,
     val following: Int?,
@@ -15,8 +15,8 @@ data class User(
     val login: String?,
     val name: String?,
     val plan: Plan?,
-    val twitter_username: String?,
+    val twitterUsername: String?,
     val type: String?,
-    val updated_at: String?,
+    val updatedAt: String?,
     val url: String?
 )

@@ -1,5 +1,7 @@
 package com.vickikbt.shared.data.data_source
 
+import com.vickikbt.shared.data.cache.realm.dao.UserDao
+import com.vickikbt.shared.data.cache.realm.models.UserEntity
 import com.vickikbt.shared.data.cache.sqldelight.AccessTokenEntity
 import com.vickikbt.shared.data.cache.sqldelight.dao.AccessTokenDao
 import com.vickikbt.shared.data.mappers.toDomain
@@ -8,13 +10,15 @@ import com.vickikbt.shared.data.network.rest.ApiClient
 import com.vickikbt.shared.domain.models.AccessToken
 import com.vickikbt.shared.domain.models.User
 import com.vickikbt.shared.domain.repositories.AuthRepository
+import io.github.aakira.napier.Napier
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 class AuthRepositoryImpl constructor(
     private val apiClient: ApiClient,
-    private val tokenDao: AccessTokenDao
+    private val tokenDao: AccessTokenDao,
+    private val userDao: UserDao
 ) : AuthRepository {
 
     override suspend fun fetchAccessToken(code: String): AccessToken? {
@@ -39,14 +43,23 @@ class AuthRepositoryImpl constructor(
         val accessToken = tokenDao.getAccessToken.first()?.accessToken
 
         val response = apiClient.fetchUserProfile(accessToken = accessToken ?: "")
+        val responseEntity = response?.toEntity()
 
-        response?.let {
-            // ToDo: Cache data to Realm
+        responseEntity?.let {
+            saveUser(userEntity = it)
         }
 
-        println("Fetched user: $response")
-
         return response?.toDomain()
+    }
+
+    suspend fun saveUser(userEntity: UserEntity) {
+        Napier.e("Auth repository: Saving: $userEntity")
+
+        userDao.saveUser(userEntity = userEntity)
+    }
+
+    override suspend fun getUser(): Flow<User?>? {
+        return userDao.user?.map { it?.toDomain() }
     }
 
 }

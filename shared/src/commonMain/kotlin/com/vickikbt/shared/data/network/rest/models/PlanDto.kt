@@ -12,7 +12,7 @@ data class PlanDto(
     val name: String?,
 
     @SerialName("private_repos")
-    val private_repos: Int?,
+    val privateRepos: Int?,
 
     @SerialName("space")
     val space: Int?
