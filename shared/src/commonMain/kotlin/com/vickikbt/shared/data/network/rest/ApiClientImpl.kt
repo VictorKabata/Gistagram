@@ -1,6 +1,7 @@
 package com.vickikbt.shared.data.network.rest
 
 import com.vickikbt.shared.data.network.rest.models.AccessTokenDto
+import com.vickikbt.shared.data.network.rest.models.ReceivedEventEntity
 import com.vickikbt.shared.data.network.rest.models.UserDto
 import com.vickikbt.shared.domain.utils.Constants
 import io.ktor.client.*
@@ -53,6 +54,36 @@ class ApiClientImpl constructor(private val httpClient: HttpClient) : ApiClient 
                 headers {
                     append("Authorization", "Bearer $accessToken")
                 }
+            }
+        } catch (e: ServerResponseException) {
+            println("500 error: ${e.message}")
+            null
+        } catch (e: ClientRequestException) {
+            println("400 error: ${e.message}")
+            null
+        } catch (e: RedirectResponseException) {
+            println("300 error: ${e.message}")
+            null
+        } catch (e: Exception) {
+            println("Error: ${e.message}")
+            null
+        }
+    }
+
+    override suspend fun fetchReceivedFeeds(
+        userName: String,
+        accessToken: String
+    ): ReceivedEventEntity? {
+        return try {
+            httpClient.get<ReceivedEventEntity>(
+                urlString = "${Constants.REST_BASE_URL}/users/${userName}/received_events/public"
+            ) {
+                headers {
+                    append("Authorization", "Bearer $accessToken")
+                    append("Accept", "application/vnd.github+json")
+                }
+                parameter("page", 1)
+                parameter("per_page", 30)
             }
         } catch (e: ServerResponseException) {
             println("500 error: ${e.message}")

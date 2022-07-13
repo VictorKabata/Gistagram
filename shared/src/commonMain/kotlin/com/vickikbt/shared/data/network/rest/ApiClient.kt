@@ -13,4 +13,6 @@ interface ApiClient {
     ): AccessTokenDto?
 
     suspend fun fetchUserProfile(accessToken: String): UserDto?
+
+    suspend fun fetchReceivedFeeds(userName: String, accessToken: String): Any?
 }
