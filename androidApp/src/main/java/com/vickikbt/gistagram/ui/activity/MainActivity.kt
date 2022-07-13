@@ -52,7 +52,7 @@ fun MainScreen(viewModel: MainViewModel = getViewModel()) {
     val accessToken by remember { mutableStateOf(viewModel.accessToken.value) }
     Log.e("TAG", "Access Token: $accessToken")
     val appTheme = viewModel.appTheme.collectAsState().value
-    val theme: Boolean = appTheme == 0
+    val theme: Boolean = appTheme == 1
 
     Scaffold {
         GistagramTheme(darkTheme = theme) {

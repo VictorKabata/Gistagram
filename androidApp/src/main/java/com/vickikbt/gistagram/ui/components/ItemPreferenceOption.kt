@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.sp
 fun ItemPreferenceOption(
     modifier: Modifier = Modifier,
     optionText: String,
-    selectedOption: Boolean = false,
+    selectedOption: Boolean,
     onOptionSelected: () -> Unit
 ) {
 
