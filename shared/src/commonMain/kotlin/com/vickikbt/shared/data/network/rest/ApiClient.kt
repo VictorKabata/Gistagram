@@ -1,8 +1,8 @@
 package com.vickikbt.shared.data.network.rest
 
 import com.vickikbt.shared.data.network.rest.models.AccessTokenDto
+import com.vickikbt.shared.data.network.rest.models.UserDto
 import com.vickikbt.shared.domain.utils.Configs
-import com.vickikbt.shared.domain.utils.Constants
 
 interface ApiClient {
 
@@ -11,4 +11,6 @@ interface ApiClient {
         clientSecret: String = Configs.CLIENT_SECRET,
         code: String
     ): AccessTokenDto?
+
+    suspend fun fetchUserProfile(accessToken: String): UserDto?
 }

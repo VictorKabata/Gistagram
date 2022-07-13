@@ -7,7 +7,6 @@ import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -30,7 +29,7 @@ fun AuthScreen(navController: NavController, viewModel: AuthViewModel = getViewM
 
     val context = LocalContext.current
 
-    val authUiState = viewModel.accessToken.observeAsState().value
+    val authUiState = viewModel.accessToken.collectAsState().value
     var isLoading by remember { mutableStateOf(false) }
 
     when (authUiState) {

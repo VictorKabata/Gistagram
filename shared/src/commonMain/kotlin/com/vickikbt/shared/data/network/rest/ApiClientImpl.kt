@@ -1,6 +1,7 @@
 package com.vickikbt.shared.data.network.rest
 
 import com.vickikbt.shared.data.network.rest.models.AccessTokenDto
+import com.vickikbt.shared.data.network.rest.models.UserDto
 import com.vickikbt.shared.domain.utils.Constants
 import io.ktor.client.*
 import io.ktor.client.features.*
@@ -27,6 +28,30 @@ class ApiClientImpl constructor(private val httpClient: HttpClient) : ApiClient 
             ) {
                 headers {
                     append(HttpHeaders.Accept, "application/json")
+                }
+            }
+        } catch (e: ServerResponseException) {
+            println("500 error: ${e.message}")
+            null
+        } catch (e: ClientRequestException) {
+            println("400 error: ${e.message}")
+            null
+        } catch (e: RedirectResponseException) {
+            println("300 error: ${e.message}")
+            null
+        } catch (e: Exception) {
+            println("Error: ${e.message}")
+            null
+        }
+    }
+
+    override suspend fun fetchUserProfile(accessToken: String): UserDto? {
+        return try {
+            httpClient.get<UserDto>(
+                urlString = "${Constants.REST_BASE_URL}/user"
+            ) {
+                headers {
+                    append("Authorization", "Bearer $accessToken")
                 }
             }
         } catch (e: ServerResponseException) {

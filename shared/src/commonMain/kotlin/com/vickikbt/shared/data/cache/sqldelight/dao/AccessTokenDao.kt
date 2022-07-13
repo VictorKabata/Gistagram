@@ -14,7 +14,7 @@ class AccessTokenDao constructor(private val databaseDriverFactory: DatabaseDriv
     /**
      * Save access token returned from network call to SQLDelight database
      */
-    fun saveAccessToken(accessTokenEntity: AccessTokenEntity) {
+    suspend fun saveAccessToken(accessTokenEntity: AccessTokenEntity) {
         dbQuery.transaction {
             dbQuery.saveAccessToken(accessTokenEntity)
         }

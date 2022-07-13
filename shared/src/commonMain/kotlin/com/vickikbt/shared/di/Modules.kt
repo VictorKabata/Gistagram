@@ -14,6 +14,7 @@ import com.vickikbt.shared.domain.repositories.AuthRepository
 import com.vickikbt.shared.domain.repositories.ProfileRepository
 import com.vickikbt.shared.domain.repositories.SettingsRepository
 import com.vickikbt.shared.domain.utils.Constants
+import io.github.aakira.napier.Napier
 import io.ktor.client.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
@@ -32,10 +33,22 @@ val commonModule = module {
     single {
         HttpClient {
             install(Logging) {
-                logger = Logger.DEFAULT
-                level = LogLevel.ALL
+                level = LogLevel.HEADERS
+                logger = object : Logger {
+                    override fun log(message: String) {
+                        Napier.e(tag = "Http Client", message = message)
+                    }
+                }
             }
-            install(JsonFeature) { serializer = KotlinxSerializer() }
+
+            install(JsonFeature) {
+                serializer = KotlinxSerializer(
+                    kotlinx.serialization.json.Json {
+                        ignoreUnknownKeys = true
+                        isLenient = true
+                    }
+                )
+            }
         }
     }
     single<ApiClient> { ApiClientImpl(httpClient = get()) }
@@ -58,7 +71,7 @@ val commonModule = module {
 
     single {
         ApolloClient.Builder()
-            .serverUrl(Constants.BASE_URL)
+            .serverUrl(Constants.GRAPHQL_BASE_URL)
             .addHttpInterceptor(LoggingInterceptor())
             .addHttpInterceptor(
                 AuthorizationInterceptor(
