@@ -59,8 +59,9 @@ class MainViewModel constructor(
         viewModelScope.launch {
             try {
                 val response = authRepository.getUser()
-
-                _user.value = response
+                response?.collect {
+                    _user.value = it
+                }
             } catch (e: Exception) {
                 Napier.e("ERROR saving theme: ${e.localizedMessage}")
             }

@@ -58,8 +58,8 @@ class AuthRepositoryImpl constructor(
         userDao.saveUser(userEntity = userEntity)
     }
 
-    override suspend fun getUser(): User? {
-        return userDao.user?.toDomain()
+    override suspend fun getUser(): Flow<User?>? {
+        return userDao.user?.map { it?.toDomain() }
     }
 
 }

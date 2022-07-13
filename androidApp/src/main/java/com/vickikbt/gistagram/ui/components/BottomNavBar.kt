@@ -11,8 +11,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -32,9 +30,7 @@ fun BottomNavBar(
 ) {
 
     BottomAppBar(
-        modifier = modifier
-            .fillMaxWidth()
-            .alpha(0.95F),
+        modifier = modifier.fillMaxWidth(),
         backgroundColor = MaterialTheme.colors.surface,
         cutoutShape = RoundedCornerShape(70),
         elevation = 16.dp
@@ -42,7 +38,7 @@ fun BottomNavBar(
 
         BottomNavigation(
             modifier = Modifier.fillMaxWidth(),
-            backgroundColor = Color.Transparent,
+            backgroundColor = MaterialTheme.colors.surface,
             elevation = 0.dp,
             contentColor = MaterialTheme.colors.onSurface
         ) {

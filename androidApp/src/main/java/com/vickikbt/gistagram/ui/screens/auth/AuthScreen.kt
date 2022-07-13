@@ -34,15 +34,21 @@ fun AuthScreen(navController: NavController, viewModel: AuthViewModel = getViewM
 
     when (authUiState) {
         is UiState.Error -> {
-            //ToDo: Display error message in snackbar
+            /*Snackbar {
+                Text(
+                    text = authUiState.error ?: "An unknown error occurred",
+                    fontWeight = FontWeight.Normal
+                )
+            }*/
         }
         is UiState.Loading -> {
             isLoading = true
         }
         is UiState.Success -> {
             LaunchedEffect(key1 = authUiState.data) {
-                navController.navigate(NavigationItem.Profile.route)
+                navController.navigate(route = NavigationItem.Profile.route)
             }
+
         }
     }
 
