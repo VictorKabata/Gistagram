@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 data class UserDto(
 
     @SerialName("avatar_url")
-    val avatar_url: String?,
+    val avatarUrl: String?,
 
     @SerialName("bio")
     val bio: String?,
@@ -22,7 +22,7 @@ data class UserDto(
     val company: String?,
 
     @SerialName("created_at")
-    val created_at: String?,
+    val createdAt: String?,
 
     @SerialName("email")
     val email: String?,
@@ -31,7 +31,7 @@ data class UserDto(
     val followers: Int?,
 
     @SerialName("followers_url")
-    val followers_url: String?,
+    val followersUrl: String?,
 
     @SerialName("following")
     val following: Int?,
@@ -52,13 +52,13 @@ data class UserDto(
     val planDto: PlanDto?,
 
     @SerialName("twitter_username")
-    val twitter_username: String?,
+    val twitterUsername: String?,
 
     @SerialName("type")
     val type: String?,
 
     @SerialName("updated_at")
-    val updated_at: String?,
+    val updatedAt: String?,
 
     @SerialName("url")
     val url: String?
