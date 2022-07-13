@@ -63,8 +63,11 @@ val commonModule = module {
      * instantiate realm db instance that is
      * provided to DAOs through constructor injection
      */
-    single { RealmConfiguration.create(schema = setOf(UserEntity::class, PlanEntity::class)) }
-    single { Realm.open(configuration = get()) }
+    single {
+        val configs =
+            RealmConfiguration.Builder(schema = setOf(UserEntity::class, PlanEntity::class)).build()
+        Realm.open(configuration = configs)
+    }
     single { UserDao(realmDatabase = get(), ioDispatcher = get(named("IODispatcher"))) }
 
     /**
@@ -97,7 +100,13 @@ val commonModule = module {
     /**
      * Injecting to repositories
      */
-    single<AuthRepository> { AuthRepositoryImpl(apiClient = get(), tokenDao = get()) }
+    single<AuthRepository> {
+        AuthRepositoryImpl(
+            apiClient = get(),
+            tokenDao = get(),
+            userDao = get()
+        )
+    }
     single<ProfileRepository> { ProfileRepositoryImpl(apolloClient = get()) }
     single<SettingsRepository> { SettingsRepositoryImpl(preferenceManager = get()) }
 }
