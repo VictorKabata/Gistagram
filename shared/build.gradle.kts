@@ -7,6 +7,7 @@ plugins {
     id(Plugins.nativeCoroutines) version Versions.kmpNativeCoroutines
     id(Plugins.apollo).version(Versions.apollo)
     id(Plugins.sqlDelight) version Versions.sqlDelight
+    id(Plugins.realm) version Versions.realm
 }
 
 kotlin {
@@ -39,6 +40,8 @@ kotlin {
 
             api(MultiplatformDependencies.apolloRuntime)
             api(MultiplatformDependencies.apolloNormalizedCache)
+
+            api(MultiplatformDependencies.realm)
 
             implementation(MultiplatformDependencies.multiplatformSettings)
             implementation(MultiplatformDependencies.multiplatformSettingsCoroutines)
