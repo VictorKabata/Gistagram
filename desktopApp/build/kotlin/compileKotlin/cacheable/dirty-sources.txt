@@ -1,2 +1,0 @@
-D:\Projects\Kotlin\Gistagram\desktopApp\src\main\kotlin\ui\screens\profile\ProfileScreen.kt
-D:\Projects\Kotlin\Gistagram\desktopApp\src\main\kotlin\ui\components\profile\ProfileTabRow.kt

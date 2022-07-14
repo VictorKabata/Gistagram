@@ -23,13 +23,13 @@ fun ProfileTabRow(
 
     val tabItems = listOf(
         TabRowItem.Repos.apply {
-            icon = if (currentSystemTheme.ordinal == 0) "ic_repo" else "ic_repo_dark"
+            icon = if (currentSystemTheme.ordinal == 0) "ic_repo.png" else "ic_repo_dark.png"
         },
         TabRowItem.Forks.apply {
-            icon = if (currentSystemTheme.ordinal == 0) "ic_fork" else "ic_fork_dark"
+            icon = if (currentSystemTheme.ordinal == 0) "ic_fork.png" else "ic_fork_dark.png"
         },
         TabRowItem.Stars.apply {
-            icon = if (MaterialTheme.colors.isLight) "ic_star" else "ic_star_dark"
+            icon = if (MaterialTheme.colors.isLight) "ic_star.png" else "ic_star_dark.png"
         }
     )
 
@@ -65,7 +65,7 @@ fun ProfileTabRow(
                             tint = if (selectedTabIndex == index) MaterialTheme.colors.onBackground else Inactive
                         )
 
-                        Spacer(modifier = Modifier.width(2.dp))
+                        Spacer(modifier = Modifier.width(3.dp))
 
                         Text(
                             text = tabRowItem.title,
