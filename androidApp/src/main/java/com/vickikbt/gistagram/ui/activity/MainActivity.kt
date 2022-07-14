@@ -10,13 +10,8 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -37,7 +32,16 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         installSplashScreen()
         setContent {
-            MainScreen()
+
+            val mainViewModel: MainViewModel = getViewModel()
+            val theme = mainViewModel.appTheme.collectAsState()
+
+            GistagramTheme(darkTheme = theme.value == 1) {
+                Surface(color = MaterialTheme.colors.background) {
+                    MainScreen()
+                }
+            }
+
         }
     }
 }
@@ -47,8 +51,6 @@ class MainActivity : ComponentActivity() {
 @ExperimentalAnimationApi
 @Composable
 fun MainScreen(viewModel: MainViewModel = getViewModel()) {
-    val appTheme = viewModel.appTheme.collectAsState().value
-    val theme:Boolean = appTheme==1
 
     val user = viewModel.user.collectAsState().value
 
@@ -79,15 +81,11 @@ fun MainScreen(viewModel: MainViewModel = getViewModel()) {
             )
         }
     }) {
-        GistagramTheme(darkTheme = theme) {
-            Surface(color = MaterialTheme.colors.background) {
-                Navigation(
-                    modifier = Modifier.padding(it),
-                    navController = navController,
-                    isLoggedIn = !accessToken?.accessToken.isNullOrEmpty()
-                )
-            }
-        }
+        Navigation(
+            modifier = Modifier.padding(it),
+            navController = navController,
+            isLoggedIn = !accessToken?.accessToken.isNullOrEmpty()
+        )
     }
 }
 

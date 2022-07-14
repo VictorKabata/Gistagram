@@ -1,6 +1,5 @@
 package ui.screens.main
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
@@ -77,8 +76,8 @@ fun MainScreen(applicationScope: ApplicationScope, viewModel: MainViewModel = ko
 
         val currentDestination = navController.currentDestination.value
 
-        GistagramTheme {
-            Surface(modifier = Modifier.background(color = MaterialTheme.colors.surface)) {
+        GistagramTheme(darkTheme = true) {
+            Surface(modifier = Modifier, color = MaterialTheme.colors.surface) {
                 Scaffold(
                     topBar = {
                         if (currentDestination in topLevelDestinations.map { it.route }) {
