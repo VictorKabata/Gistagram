@@ -12,5 +12,5 @@ val presentationModule = module {
 
     single { AuthViewModel(authRepository = get()) }
     single { HomeViewModel(authRepository = get()) }
-    single { ProfileViewModel(profileRepository = get()) }
+    single { ProfileViewModel(profileRepository = get(), settingsRepository = get()) }
 }

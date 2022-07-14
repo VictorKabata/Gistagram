@@ -1,7 +1,6 @@
 package ui.screens.profile
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -24,6 +23,7 @@ import androidx.compose.ui.unit.sp
 import com.vickikbt.gistagram.LoggedInUserProfileQuery
 import com.vickikbt.shared.presentation.UiState
 import koin
+import org.jetbrains.skiko.currentSystemTheme
 import ui.components.ItemCircleImage
 import ui.components.ItemLoadingScreen
 import ui.components.profile.ItemBioText
@@ -58,7 +58,11 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel = ko
                         verticalArrangement = Arrangement.spacedBy(6.dp)
                     ) {
                         item {
-                            StatSection(user = viewer, navController = navController)
+                            StatSection(
+                                user = viewer,
+                                navController = navController,
+                                viewModel = viewModel
+                            )
                         }
 
                         item {
@@ -91,7 +95,11 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel = ko
 }
 
 @Composable
-private fun StatSection(navController: NavController, user: LoggedInUserProfileQuery.Viewer?) {
+private fun StatSection(
+    navController: NavController,
+    user: LoggedInUserProfileQuery.Viewer?,
+    viewModel: ProfileViewModel
+) {
 
     val userProfilePainter by remember {
         mutableStateOf(loadImageBitmap(url = user?.avatarUrl?.toString() ?: ""))
@@ -106,14 +114,31 @@ private fun StatSection(navController: NavController, user: LoggedInUserProfileQ
             // user?.login?.let { navController.navigate("status/$it", null) } ToDo: Navigate to user profile status
         }
 
-        BioSection(modifier = Modifier.wrapContentWidth().align(Alignment.TopCenter), user = user)
+        BioSection(
+            modifier = Modifier.wrapContentWidth().align(Alignment.TopCenter),
+            user = user,
+            viewModel = viewModel
+        )
     }
 }
 
 @Composable
-fun BioSection(modifier: Modifier, user: LoggedInUserProfileQuery.Viewer?) {
+fun BioSection(
+    modifier: Modifier,
+    user: LoggedInUserProfileQuery.Viewer?,
+    viewModel: ProfileViewModel
+) {
     val letterSpacing = 0.5.sp
     val lineHeight = 20.sp
+
+    val currentTheme = viewModel.appTheme.collectAsState().value
+
+    val themeIcon =
+        if (currentTheme == 0) painterResource("ic_light.png") else painterResource("ic_dark.png")
+
+    println("Current system theme name: ${currentSystemTheme.name}")
+    println("Current system theme ordinal: ${currentSystemTheme.ordinal}")
+    println("Multiplatform theme: $currentTheme")
 
     Column(modifier = modifier) {
 
@@ -148,8 +173,8 @@ fun BioSection(modifier: Modifier, user: LoggedInUserProfileQuery.Viewer?) {
                 )
             }
 
-            IconButton(
-                modifier = Modifier.size(40.dp).background(MaterialTheme.colors.surface),
+            /*IconButton(
+                modifier = Modifier.size(24.dp).background(MaterialTheme.colors.surface),
                 onClick = {
                     // ToDo:Navigate to settings
                 }
@@ -160,7 +185,20 @@ fun BioSection(modifier: Modifier, user: LoggedInUserProfileQuery.Viewer?) {
                     contentDescription = "Settings",
                     tint = MaterialTheme.colors.onSurface
                 )
+            }*/
+
+            FloatingActionButton(
+                modifier = Modifier.size(36.dp),
+                onClick = {
+                    val theme = if (currentTheme == 0) 1 else 0
+                    viewModel.setAppTheme(theme = theme)
+                },
+                backgroundColor = MaterialTheme.colors.onSurface,
+                contentColor = MaterialTheme.colors.surface
+            ) {
+                Icon(painter = themeIcon, contentDescription = "Theme")
             }
+
         }
         //endregion
 
@@ -278,7 +316,9 @@ fun RepositoriesSection(
 
     var selectedTabIndex by remember { mutableStateOf(0) }
 
-    ProfileTabRow(modifier = modifier, onTabSelected = { selectedTabIndex = it })
+    ProfileTabRow(
+        modifier = modifier,
+        onTabSelected = { selectedTabIndex = it })
 
     when (selectedTabIndex) {
         0 -> RepositoriesTab(repos = repos?.asReversed())

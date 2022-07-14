@@ -1,16 +1,16 @@
 package ui.components.profile
 
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Tab
-import androidx.compose.material.TabRow
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import org.jetbrains.skiko.currentSystemTheme
 import ui.theme.Inactive
 
 @Composable
@@ -21,41 +21,71 @@ fun ProfileTabRow(
 
     var selectedTabIndex by remember { mutableStateOf(0) }
 
-    val tabItems = listOf(TabRowItem.Repos, TabRowItem.Forks, TabRowItem.Gists)
+    val tabItems = listOf(
+        TabRowItem.Repos.apply {
+            icon = if (currentSystemTheme.ordinal == 0) "ic_repo" else "ic_repo_dark"
+        },
+        TabRowItem.Forks.apply {
+            icon = if (currentSystemTheme.ordinal == 0) "ic_fork" else "ic_fork_dark"
+        },
+        TabRowItem.Stars.apply {
+            icon = if (MaterialTheme.colors.isLight) "ic_star" else "ic_star_dark"
+        }
+    )
 
-    TabRow(
-        modifier = modifier,
-        selectedTabIndex = selectedTabIndex,
-        contentColor = MaterialTheme.colors.background,
-        backgroundColor = Color.Transparent
-    ) {
+    Row(modifier = modifier) {
+        Spacer(modifier = Modifier.weight(2f))
 
-        tabItems.forEachIndexed { index, tabRowItem ->
-            Tab(
-                selected = selectedTabIndex == index,
-                selectedContentColor = MaterialTheme.colors.onBackground,
-                unselectedContentColor = Inactive,
-                onClick = {
-                    selectedTabIndex = index
-                    onTabSelected(index)
-                },
-            ) {
+        TabRow(
+            modifier = Modifier.weight(4f),
+            selectedTabIndex = selectedTabIndex,
+            contentColor = MaterialTheme.colors.onSurface,
+            backgroundColor = MaterialTheme.colors.surface,
+        ) {
 
-                Icon(
-                    modifier = Modifier
-                        .padding(10.dp)
-                        .size(20.dp),
-                    painter = painterResource(tabRowItem.icon),
-                    contentDescription = "Title",
-                    tint = if (selectedTabIndex == index) MaterialTheme.colors.onBackground else Inactive
-                )
+            tabItems.forEachIndexed { index, tabRowItem ->
+                Tab(
+                    selected = selectedTabIndex == index,
+                    selectedContentColor = MaterialTheme.colors.onBackground,
+                    unselectedContentColor = Inactive,
+                    onClick = {
+                        selectedTabIndex = index
+                        onTabSelected(index)
+                    },
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxSize().padding(vertical = 16.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        Icon(
+                            modifier = Modifier.size(20.dp),
+                            painter = painterResource(tabRowItem.icon),
+                            contentDescription = "Title",
+                            tint = if (selectedTabIndex == index) MaterialTheme.colors.onBackground else Inactive
+                        )
+
+                        Spacer(modifier = Modifier.width(2.dp))
+
+                        Text(
+                            text = tabRowItem.title,
+                            color = MaterialTheme.colors.onSurface,
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Bold,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                        )
+                    }
+                }
             }
         }
+
+        Spacer(modifier = Modifier.weight(2f))
     }
 }
 
-sealed class TabRowItem(val icon: String, val title: String) {
-    object Repos : TabRowItem("ic_logo_dark.png", "Repositories")
-    object Forks : TabRowItem("ic_logo_dark.png", "Forks")
-    object Gists : TabRowItem("ic_logo_dark.png", "Gists")
+sealed class TabRowItem(var icon: String, val title: String) {
+    object Repos : TabRowItem("ic_logo_dark.png", "REPOS")
+    object Forks : TabRowItem("ic_logo_dark.png", "FORKS")
+    object Stars : TabRowItem("ic_logo_dark.png", "STARS")
 }

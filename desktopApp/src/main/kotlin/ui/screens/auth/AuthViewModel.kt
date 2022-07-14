@@ -103,7 +103,6 @@ class AuthViewModel constructor(private val authRepository: AuthRepository = koi
         viewModelScope.launch {
             try {
                 val response = authRepository.fetchUserProfile()
-                println("User fetched: $response")
                 _userUiState.value = UiState.Success(data = response)
             } catch (e: Exception) {
                 _userUiState.value = UiState.Error(error = e.localizedMessage)
