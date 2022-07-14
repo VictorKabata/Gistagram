@@ -44,7 +44,7 @@ fun ItemProfileRepo(
     ) {
         Column(modifier = Modifier, verticalArrangement = Arrangement.spacedBy(14.dp)) {
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
@@ -85,8 +85,8 @@ fun ItemProfileRepo(
             }
 
             Text(
-                modifier = Modifier.padding(horizontal = 16.dp),
-                text = repo?.description ?: "This Repo does not have a description",
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
+                text = repo?.description ?: "This repo does not have a description",
                 fontWeight = FontWeight.Medium,
                 maxLines = 4,
                 fontSize = 16.sp,
@@ -94,7 +94,7 @@ fun ItemProfileRepo(
                 color = MaterialTheme.colors.onBackground
             )
 
-            Row(modifier = Modifier.fillMaxWidth()) {
+            Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp)) {
                 Icon(
                     modifier = Modifier,
                     painter = if (MaterialTheme.colors.isLight) painterResource("ic_star.png")
