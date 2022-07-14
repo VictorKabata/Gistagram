@@ -50,7 +50,7 @@ fun MainAppBar(
                 )
 
                 TextField(
-                    modifier = Modifier.wrapContentHeight(),
+                    modifier = Modifier,
                     value = searchQuery,
                     singleLine = true,
                     onValueChange = { searchQuery = it },
@@ -66,7 +66,7 @@ fun MainAppBar(
                         Text(
                             text = "Search",
                             fontWeight = FontWeight.Normal,
-                            fontSize = 16.sp,
+                            fontSize = 14.sp,
                             overflow = TextOverflow.Ellipsis,
                             textAlign = TextAlign.Start,
                             maxLines = 1,

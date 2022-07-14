@@ -40,7 +40,7 @@ fun ItemProfileRepo(
         modifier = modifier,
         onClick = { onItemClicked(repo?.id!!) },
         shape = RoundedCornerShape(4.dp),
-        elevation = 16.dp
+        elevation = 4.dp
     ) {
         Column(modifier = Modifier, verticalArrangement = Arrangement.spacedBy(14.dp)) {
             Row(
