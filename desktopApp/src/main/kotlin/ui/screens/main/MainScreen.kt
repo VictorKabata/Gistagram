@@ -28,11 +28,11 @@ import ui.theme.GistagramTheme
 @Composable
 fun MainScreen(applicationScope: ApplicationScope, viewModel: MainViewModel = koin.get()) {
 
-    val accessToken = viewModel.accessToken.collectAsState()
-    println("Access Token: ${accessToken.value}")
+    val accessToken = viewModel.accessToken.collectAsState().value
+    val theme = viewModel.appTheme.collectAsState().value
 
     val navController by rememberNavController(
-        startDestination = if (accessToken.value != null) NavigationItem.Profile.route else NavigationItem.Auth.route
+        startDestination = if (accessToken != null) NavigationItem.Profile.route else NavigationItem.Auth.route
     )
 
     Window(
@@ -45,7 +45,7 @@ fun MainScreen(applicationScope: ApplicationScope, viewModel: MainViewModel = ko
         )
     ) {
 
-        val isLight = MaterialTheme.colors.isLight
+        val isLight = theme != 0
 
         val topLevelDestinations = listOf(
             NavigationItem.Home.apply {
@@ -76,7 +76,7 @@ fun MainScreen(applicationScope: ApplicationScope, viewModel: MainViewModel = ko
 
         val currentDestination = navController.currentDestination.value
 
-        GistagramTheme(darkTheme = true) {
+        GistagramTheme(darkTheme = !isLight) {
             Surface(modifier = Modifier, color = MaterialTheme.colors.surface) {
                 Scaffold(
                     topBar = {
@@ -95,7 +95,10 @@ fun MainScreen(applicationScope: ApplicationScope, viewModel: MainViewModel = ko
                         }
                     }
                 ) {
-                    Navigation(navController = navController)
+                    Navigation(
+                        navController = navController,
+                        isLoggedIn = !accessToken?.accessToken.isNullOrEmpty()
+                    )
                 }
             }
         }

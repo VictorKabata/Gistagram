@@ -23,7 +23,6 @@ import androidx.compose.ui.unit.sp
 import com.vickikbt.gistagram.LoggedInUserProfileQuery
 import com.vickikbt.shared.presentation.UiState
 import koin
-import org.jetbrains.skiko.currentSystemTheme
 import ui.components.ItemCircleImage
 import ui.components.ItemLoadingScreen
 import ui.components.profile.ItemBioText
@@ -132,11 +131,9 @@ fun BioSection(
     val lineHeight = 20.sp
 
     val currentTheme = viewModel.appTheme.collectAsState().value
+    var isDark by remember { mutableStateOf(currentTheme == 0) }
 
-    val themeIcon =
-        if (currentTheme == 0) painterResource("ic_light.png") else painterResource("ic_dark.png")
-
-    println("Multiplatform theme: $currentTheme")
+    val themeIcon = if (isDark) painterResource("ic_dark.png") else painterResource("ic_light.png")
 
     Column(modifier = modifier) {
 
@@ -188,14 +185,15 @@ fun BioSection(
             FloatingActionButton(
                 modifier = Modifier.size(36.dp),
                 onClick = {
-                    val theme = if (currentTheme == 0) 1 else 0
-                    viewModel.setAppTheme(theme = theme)
+                    isDark = !isDark
+                    viewModel.setAppTheme(theme = if (isDark) 0 else 1)
                 },
                 backgroundColor = MaterialTheme.colors.onSurface,
                 contentColor = MaterialTheme.colors.surface
             ) {
                 Icon(painter = themeIcon, contentDescription = "Theme")
             }
+
 
         }
         //endregion

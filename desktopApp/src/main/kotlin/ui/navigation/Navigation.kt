@@ -8,7 +8,7 @@ import ui.screens.profile.ProfileScreen
 
 @ExperimentalMaterialApi
 @Composable
-fun Navigation(navController: NavController) {
+fun Navigation(navController: NavController, isLoggedIn: Boolean) {
 
     NavHost(navController = navController) {
         composable(route = NavigationItem.Auth.route) {

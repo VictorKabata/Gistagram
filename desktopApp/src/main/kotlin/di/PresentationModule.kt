@@ -8,7 +8,7 @@ import ui.screens.profile.ProfileViewModel
 
 val presentationModule = module {
 
-    single { MainViewModel(authRepository = get()) }
+    single { MainViewModel(authRepository = get(), settingsRepository = get()) }
 
     single { AuthViewModel(authRepository = get()) }
     single { HomeViewModel(authRepository = get()) }
