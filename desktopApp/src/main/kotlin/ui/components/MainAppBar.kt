@@ -14,6 +14,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import ui.theme.logoFontFamily
 
 @Composable
 fun MainAppBar(
@@ -40,8 +41,7 @@ fun MainAppBar(
                 Text(
                     modifier = Modifier,
                     text = title,
-                    fontWeight = FontWeight.ExtraBold,
-                    // fontFamily = "Boomarang", ToDo
+                    fontFamily = logoFontFamily,
                     fontSize = 22.sp,
                     overflow = TextOverflow.Ellipsis,
                     textAlign = TextAlign.Start,
