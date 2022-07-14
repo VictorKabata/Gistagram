@@ -11,6 +11,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.ApplicationScope
 import androidx.compose.ui.window.Window
@@ -45,12 +46,35 @@ fun MainScreen(applicationScope: ApplicationScope, viewModel: MainViewModel = ko
         )
     ) {
 
+        val isLight = MaterialTheme.colors.isLight
+
         val topLevelDestinations = listOf(
-            NavigationItem.Home,
-            NavigationItem.Notifications,
-            NavigationItem.Explore,
-            NavigationItem.Profile
+            NavigationItem.Home.apply {
+                icon =
+                    if (isLight) painterResource("ic_home.png") else painterResource("ic_home_dark.png")
+            },
+            NavigationItem.Notifications.apply {
+                icon =
+                    if (isLight) painterResource("ic_notifications.png") else painterResource("ic_notifications_dark.png")
+            },
+            NavigationItem.Create.apply {
+                icon =
+                    if (isLight) painterResource("ic_create.png") else painterResource("ic_create_dark.png")
+            },
+            NavigationItem.Explore.apply {
+                icon =
+                    if (isLight) painterResource("ic_explore.png") else painterResource("ic_explore_dark.png")
+            },
+            NavigationItem.Mentions.apply {
+                icon =
+                    if (isLight) painterResource("ic_heart.png") else painterResource("ic_heart_dark.png")
+            },
+            NavigationItem.Profile.apply {
+                icon =
+                    if (isLight) painterResource("ic_profile.png") else painterResource("ic_profile_dark.png")
+            }
         )
+
         val currentDestination = navController.currentDestination.value
 
         GistagramTheme {
