@@ -4,10 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -15,6 +12,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -31,7 +30,9 @@ fun ItemProfileRepo(
 
     val painter by remember {
         mutableStateOf(
-            loadImageBitmap(url = repo?.owner?.onUser?.avatarUrl?.toString() ?: "")
+            loadImageBitmap(
+                url = repo?.owner?.onUser?.avatarUrl?.toString() ?: ""
+            )
         )
     }
 
@@ -41,63 +42,101 @@ fun ItemProfileRepo(
         shape = RoundedCornerShape(4.dp),
         elevation = 16.dp
     ) {
-        Column {
+        Column(modifier = Modifier, verticalArrangement = Arrangement.spacedBy(14.dp)) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
                     modifier = Modifier
-                        .size(32.dp)
+                        .size(48.dp)
                         .clip(CircleShape)
-                        .aspectRatio(1f, matchHeightConstraintsFirst = true)
-                        .weight(.2f),
+                        .aspectRatio(1f, matchHeightConstraintsFirst = true),
                     bitmap = painter,
                     contentDescription = "Profile Picture"
                 )
 
+                Spacer(modifier = Modifier.width(6.dp))
+
                 Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(.8f),
+                    modifier = Modifier.fillMaxWidth(),
                     horizontalAlignment = Alignment.Start,
                     verticalArrangement = Arrangement.SpaceAround
                 ) {
                     Text(
                         text = repo?.name ?: "Repository",
-                        style = MaterialTheme.typography.h4,
+                        fontWeight = FontWeight.Bold,
+                        maxLines = 1,
+                        fontSize = 18.sp,
+                        overflow = TextOverflow.Ellipsis,
+                        color = MaterialTheme.colors.onBackground
+                    )
+
+                    Text(
+                        text = repo?.languages?.nodes?.map { it?.name }?.joinToString(", ")
+                            ?: "Repository",
+                        fontWeight = FontWeight.Normal,
                         maxLines = 1,
                         fontSize = 14.sp,
                         overflow = TextOverflow.Ellipsis,
                         color = MaterialTheme.colors.onBackground
                     )
-
-                    Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                        repo?.languages?.nodes?.forEach {
-                            Text(
-                                text = it?.name ?: "Repository",
-                                style = MaterialTheme.typography.body1,
-                                maxLines = 1,
-                                fontSize = 12.sp,
-                                overflow = TextOverflow.Ellipsis,
-                                color = MaterialTheme.colors.onBackground
-                            )
-                        }
-                    }
                 }
             }
 
-            Spacer(modifier = Modifier.height(4.dp))
-
             Text(
-                modifier = Modifier.padding(horizontal = 13.dp),
-                text = repo?.description ?: "No description",
-                style = MaterialTheme.typography.body1,
+                modifier = Modifier.padding(horizontal = 16.dp),
+                text = repo?.description ?: "This Repo does not have a description",
+                fontWeight = FontWeight.Medium,
                 maxLines = 4,
-                fontSize = 14.sp,
+                fontSize = 16.sp,
                 overflow = TextOverflow.Ellipsis,
                 color = MaterialTheme.colors.onBackground
             )
+
+            Row(modifier = Modifier.fillMaxWidth()) {
+                Icon(
+                    modifier = Modifier,
+                    painter = if (MaterialTheme.colors.isLight) painterResource("ic_star.png")
+                    else painterResource("ic_star_dark.png"),
+                    contentDescription = "",
+                    tint = MaterialTheme.colors.onSurface
+                )
+
+                Spacer(modifier = Modifier.width(4.dp))
+
+                Text(
+                    modifier = Modifier,
+                    text = repo?.stargazerCount?.toString() ?: "0",
+                    fontWeight = FontWeight.Medium,
+                    maxLines = 1,
+                    fontSize = 15.sp,
+                    overflow = TextOverflow.Ellipsis,
+                    color = MaterialTheme.colors.onBackground,
+                )
+
+                Spacer(modifier = Modifier.width(12.dp))
+
+                Icon(
+                    modifier = Modifier,
+                    painter = if (MaterialTheme.colors.isLight) painterResource("ic_fork.png")
+                    else painterResource("ic_fork_dark.png"),
+                    contentDescription = "",
+                    tint = MaterialTheme.colors.onSurface
+                )
+
+                Spacer(modifier = Modifier.width(4.dp))
+
+                Text(
+                    modifier = Modifier,
+                    text = repo?.forkCount?.toString() ?: "0",
+                    fontWeight = FontWeight.Medium,
+                    maxLines = 1,
+                    fontSize = 15.sp,
+                    overflow = TextOverflow.Ellipsis,
+                    color = MaterialTheme.colors.onBackground
+                )
+            }
         }
     }
 }

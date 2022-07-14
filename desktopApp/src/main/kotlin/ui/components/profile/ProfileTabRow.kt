@@ -65,7 +65,7 @@ fun ProfileTabRow(
                             tint = if (selectedTabIndex == index) MaterialTheme.colors.onBackground else Inactive
                         )
 
-                        Spacer(modifier = Modifier.width(3.dp))
+                        Spacer(modifier = Modifier.width(4.dp))
 
                         Text(
                             text = tabRowItem.title,

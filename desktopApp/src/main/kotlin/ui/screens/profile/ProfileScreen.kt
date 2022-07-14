@@ -136,8 +136,6 @@ fun BioSection(
     val themeIcon =
         if (currentTheme == 0) painterResource("ic_light.png") else painterResource("ic_dark.png")
 
-    println("Current system theme name: ${currentSystemTheme.name}")
-    println("Current system theme ordinal: ${currentSystemTheme.ordinal}")
     println("Multiplatform theme: $currentTheme")
 
     Column(modifier = modifier) {
