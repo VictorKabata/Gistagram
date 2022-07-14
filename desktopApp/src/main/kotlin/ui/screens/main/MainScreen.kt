@@ -1,7 +1,7 @@
 package ui.screens.main
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -83,12 +83,9 @@ fun MainScreen(applicationScope: ApplicationScope, viewModel: MainViewModel = ko
                     topBar = {
                         if (currentDestination in topLevelDestinations.map { it.route }) {
                             MainAppBar(
-                                modifier = Modifier.height(52.dp),
+                                modifier = Modifier.padding(vertical = 8.dp),
                                 onSearch = {
                                     //ToDo: Search item-Drop down UI
-                                },
-                                onSettingsClicked = {
-                                    //ToDo: Navigate to settings
                                 }
                             ) {
                                 NavigationBar(

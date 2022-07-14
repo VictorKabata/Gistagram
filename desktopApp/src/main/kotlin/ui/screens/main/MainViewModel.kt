@@ -32,7 +32,7 @@ class MainViewModel constructor(private val authRepository: AuthRepository) : Ko
 
         callbackJob.value = job
         job.invokeOnCompletion {
-            callbackJob.value?.cancel() //ToDo: Might cause bug
+            callbackJob.value?.cancel()
             callbackJob.value = null
         }
     }

@@ -11,12 +11,12 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Info
 import androidx.compose.material.icons.rounded.LocationOn
-import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.ThumbUp
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -155,7 +155,8 @@ fun BioSection(modifier: Modifier, user: LoggedInUserProfileQuery.Viewer?) {
                 }
             ) {
                 Icon(
-                    imageVector = Icons.Rounded.Settings,
+                    painter = if (MaterialTheme.colors.isLight) painterResource("ic_settings.png")
+                    else painterResource("ic_settings_dark.png"),
                     contentDescription = "Settings",
                     tint = MaterialTheme.colors.onSurface
                 )
