@@ -19,17 +19,14 @@ class HomeViewModel constructor(private val authRepository: AuthRepository) : Ko
     private val supervisorJob = MutableStateFlow<Job?>(null)
     private val viewModelScope = CoroutineScope(Dispatchers.IO)
 
-    init {
-        getUser()
-    }
-
-    private fun getUser() {
+    fun getUser() {
         val job = viewModelScope.launch {
             try {
                 val response = authRepository.getUser()
                 response?.collect {
                     _user.value = it
                 }
+                println("Getting user:${user.value}")
             } catch (e: Exception) {
                 Napier.e("ERROR saving theme: ${e.localizedMessage}")
             }

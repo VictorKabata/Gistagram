@@ -1,6 +1,6 @@
 package ui.screens.auth
 
-import com.vickikbt.shared.domain.models.AccessToken
+import com.vickikbt.shared.domain.models.User
 import com.vickikbt.shared.domain.repositories.AuthRepository
 import com.vickikbt.shared.domain.utils.Configs
 import com.vickikbt.shared.domain.utils.Constants
@@ -24,8 +24,8 @@ import kotlin.coroutines.resume
 class AuthViewModel constructor(private val authRepository: AuthRepository = koin.get()) :
     KoinComponent {
 
-    private val _accessToken = MutableStateFlow<UiState<AccessToken?>?>(null)
-    val accessToken = _accessToken.asStateFlow()
+    private val _userUiState = MutableStateFlow<UiState<User?>?>(null)
+    val userUiState = _userUiState.asStateFlow()
 
     private val viewModelScope = CoroutineScope(Dispatchers.IO)
     private val callbackJob = MutableStateFlow<Job?>(null)
@@ -85,13 +85,29 @@ class AuthViewModel constructor(private val authRepository: AuthRepository = koi
     }
 
     private suspend fun fetchAccessToken(code: String) {
-        _accessToken.value = UiState.Loading()
+        _userUiState.value = UiState.Loading()
 
         try {
             val response = authRepository.fetchAccessToken(code = code)
-            _accessToken.value = UiState.Success(data = response)
+
+            fetchUserProfile()
+
         } catch (e: Exception) {
-            _accessToken.value = UiState.Error(error = e.message)
+            _userUiState.value = UiState.Error(error = e.message)
+        }
+    }
+
+    private fun fetchUserProfile() {
+        _userUiState.value = UiState.Loading()
+
+        viewModelScope.launch {
+            try {
+                val response = authRepository.fetchUserProfile()
+                println("User fetched: $response")
+                _userUiState.value = UiState.Success(data = response)
+            } catch (e: Exception) {
+                _userUiState.value = UiState.Error(error = e.localizedMessage)
+            }
         }
     }
 

@@ -1,10 +1,15 @@
 package ui.screens.home
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -21,15 +26,35 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel = koin.get
 
     println("User cached in realm: $user")
 
-    Text(
-        modifier = Modifier.padding(horizontal = 16.dp),
-        text = user.toString(),
-        fontWeight = FontWeight.Medium,
-        fontSize = 24.sp,
-        overflow = TextOverflow.Ellipsis,
-        textAlign = TextAlign.Start,
-        color = MaterialTheme.colors.onSurface
-    )
+    Box(modifier = Modifier.fillMaxSize()) {
+        Text(
+            modifier = Modifier.align(Alignment.Center).padding(horizontal = 16.dp),
+            text = user.toString(),
+            fontWeight = FontWeight.Medium,
+            fontSize = 24.sp,
+            overflow = TextOverflow.Ellipsis,
+            textAlign = TextAlign.Start,
+            color = MaterialTheme.colors.onSurface
+        )
+
+        Button(
+            modifier = Modifier.align(Alignment.BottomCenter), onClick = { viewModel.getUser() },
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = MaterialTheme.colors.onSurface,
+                contentColor = MaterialTheme.colors.surface
+            )
+        ) {
+            Text(
+                modifier = Modifier,
+                text = "Fetch User",
+                fontWeight = FontWeight.Medium,
+                fontSize = 24.sp,
+                overflow = TextOverflow.Ellipsis,
+                textAlign = TextAlign.Start,
+                color = MaterialTheme.colors.onSurface
+            )
+        }
+    }
 
 
 }

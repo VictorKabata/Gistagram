@@ -53,7 +53,7 @@ class AuthRepositoryImpl constructor(
     }
 
     suspend fun saveUser(userEntity: UserEntity) {
-        Napier.e("Auth repository: Saving: $userEntity")
+        println("Auth repository: Saving: $userEntity")
 
         userDao.saveUser(userEntity = userEntity)
     }
