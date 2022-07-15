@@ -44,7 +44,7 @@ fun MainScreen(viewModel: MainViewModel = getViewModel()) {
     val accessToken by remember { mutableStateOf(viewModel.accessToken.value) }
 
     Scaffold {
-        GistagramTheme(darkTheme = theme) {
+        GistagramTheme(darkTheme = !theme) {
             Surface(color = MaterialTheme.colors.background) {
                 Navigation(
                     navController = navController,
