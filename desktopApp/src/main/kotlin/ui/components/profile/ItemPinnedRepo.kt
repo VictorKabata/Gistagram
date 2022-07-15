@@ -32,7 +32,7 @@ fun ItemPinnedRepo(
     ) {
         ItemCircleRepo(
             modifier = Modifier
-                .size(80.dp)
+                .size(40.dp)
                 .clickable {
                     pinnedRepo?.id?.let { onItemClicked(it) }
                 },

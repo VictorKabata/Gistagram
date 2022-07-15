@@ -4,10 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.BottomAppBar
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
@@ -31,7 +28,6 @@ fun BottomNavBar(
 
     BottomAppBar(
         modifier = modifier.fillMaxWidth(),
-        backgroundColor = MaterialTheme.colors.surface,
         cutoutShape = RoundedCornerShape(70),
         elevation = 16.dp
     ) {
@@ -61,15 +57,20 @@ fun BottomNavBar(
                 BottomNavigationItem(
                     modifier = Modifier,
                     icon = {
-                        Image(
-                            modifier = Modifier.size(24.dp),
-                            painter = bottomNavPainter,
-                            contentDescription = stringResource(id = item.title)
-                        )
+                        if (item.icon == null) {
+                            Image(
+                                modifier = Modifier.size(24.dp),
+                                painter = bottomNavPainter,
+                                contentDescription = stringResource(id = item.title)
+                            )
+                        } else {
+                            Icon(
+                                painter = bottomNavPainter,
+                                contentDescription = stringResource(id = item.title)
+                            )
+                        }
                     },
-                    label = { /*Text(text = stringResource(id = item.title))*/ },
                     selectedContentColor = MaterialTheme.colors.onSurface,
-                    unselectedContentColor = MaterialTheme.colors.onSurface.copy(alpha = .6f),
                     alwaysShowLabel = false,
                     selected = isSelected,
                     onClick = {

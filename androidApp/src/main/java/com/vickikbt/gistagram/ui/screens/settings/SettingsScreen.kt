@@ -4,19 +4,11 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -45,7 +37,9 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = 
         topBar = { AppBar(stringResource(id = R.string.title_settings)) }
     ) { paddingValues ->
         Surface(
-            modifier = Modifier.fillMaxSize().padding(paddingValues),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues),
             color = MaterialTheme.colors.surface
         ) {
             Column(modifier = Modifier) {
@@ -83,7 +77,7 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = 
 
                     TextPreference(
                         modifier = Modifier.clickable { },
-                        painter = painterResource(id = R.drawable.ic_github),
+                        painter = painterResource(id = R.drawable.ic_logo),
                         title = stringResource(id = R.string.source_code),
                         subTitle = stringResource(id = R.string.source_code_description),
                         onClick = { openSourceCode(context) }
