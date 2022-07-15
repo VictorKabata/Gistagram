@@ -7,12 +7,12 @@ import com.vickikbt.shared.domain.models.User
 
 internal fun UserDto.toDomain(): User {
     return User(
-        avatar_url = this.avatar_url,
+        avatarUrl = this.avatarUrl,
         bio = this.bio,
         blog = this.blog,
         collaborators = this.collaborators,
         company = this.company,
-        created_at = this.created_at,
+        createdAt = this.createdAt,
         email = this.email,
         followers = this.followers,
         following = this.following,
@@ -21,9 +21,9 @@ internal fun UserDto.toDomain(): User {
         login = this.login,
         name = this.name,
         plan = this.planDto?.toDomain(),
-        twitter_username = this.twitter_username,
+        twitterUsername = this.twitterUsername,
         type = this.type,
-        updated_at = this.updated_at,
+        updatedAt = this.updatedAt,
         url = this.url
     )
 }
@@ -32,7 +32,7 @@ internal fun PlanDto.toDomain(): Plan {
     return Plan(
         collaborators = this.collaborators,
         name = this.name,
-        private_repos = this.private_repos,
+        privateRepos = this.privateRepos,
         space = this.space
     )
 }

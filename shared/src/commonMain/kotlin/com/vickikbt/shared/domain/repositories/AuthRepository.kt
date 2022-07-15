@@ -19,6 +19,8 @@ interface AuthRepository {
     suspend fun getAccessToken(): Flow<AccessToken?>
 
 
-    suspend fun fetchUserProfile(accessToken: String): User?
+    suspend fun fetchUserProfile(): User?
+
+    suspend fun getUser(): Flow<User?>?
 
 }

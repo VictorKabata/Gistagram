@@ -36,7 +36,7 @@ object MultiplatformDependencies {
     const val sqlDelightNative = "com.squareup.sqldelight:native-driver:${Versions.sqlDelight}"
     const val sqlDelightJVM = "com.squareup.sqldelight:sqlite-driver:${Versions.sqlDelight}"
 
-    const val realm = "io.realm.kotlin:library-base:${Versions.sqlDelight}"
+    const val realm = "io.realm.kotlin:library-base:${Versions.realm}"
 
     const val napier = "io.github.aakira:napier:${Versions.napier}"
 

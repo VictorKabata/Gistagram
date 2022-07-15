@@ -1,7 +1,6 @@
 package ui.screens.main
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -11,6 +10,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.ApplicationScope
 import androidx.compose.ui.window.Window
@@ -28,11 +28,11 @@ import ui.theme.GistagramTheme
 @Composable
 fun MainScreen(applicationScope: ApplicationScope, viewModel: MainViewModel = koin.get()) {
 
-    val accessToken = viewModel.accessToken.collectAsState()
-    println("Access Token: ${accessToken.value}")
+    val accessToken = viewModel.accessToken.collectAsState().value
+    val theme = viewModel.appTheme.collectAsState().value
 
     val navController by rememberNavController(
-        startDestination = if (accessToken.value != null) NavigationItem.Profile.route else NavigationItem.Auth.route
+        startDestination = if (accessToken != null) NavigationItem.Profile.route else NavigationItem.Auth.route
     )
 
     Window(
@@ -45,26 +45,46 @@ fun MainScreen(applicationScope: ApplicationScope, viewModel: MainViewModel = ko
         )
     ) {
 
+        val isLight = theme != 0
+
         val topLevelDestinations = listOf(
-            NavigationItem.Home,
-            NavigationItem.Notifications,
-            NavigationItem.Explore,
-            NavigationItem.Profile
+            NavigationItem.Home.apply {
+                icon =
+                    if (isLight) painterResource("ic_home.png") else painterResource("ic_home_dark.png")
+            },
+            NavigationItem.Notifications.apply {
+                icon =
+                    if (isLight) painterResource("ic_notifications.png") else painterResource("ic_notifications_dark.png")
+            },
+            NavigationItem.Create.apply {
+                icon =
+                    if (isLight) painterResource("ic_create.png") else painterResource("ic_create_dark.png")
+            },
+            NavigationItem.Explore.apply {
+                icon =
+                    if (isLight) painterResource("ic_explore.png") else painterResource("ic_explore_dark.png")
+            },
+            NavigationItem.Mentions.apply {
+                icon =
+                    if (isLight) painterResource("ic_heart.png") else painterResource("ic_heart_dark.png")
+            },
+            NavigationItem.Profile.apply {
+                icon =
+                    if (isLight) painterResource("ic_profile.png") else painterResource("ic_profile_dark.png")
+            }
         )
+
         val currentDestination = navController.currentDestination.value
 
-        GistagramTheme {
-            Surface(modifier = Modifier.background(color = MaterialTheme.colors.surface)) {
+        GistagramTheme(darkTheme = !isLight) {
+            Surface(modifier = Modifier, color = MaterialTheme.colors.surface) {
                 Scaffold(
                     topBar = {
                         if (currentDestination in topLevelDestinations.map { it.route }) {
                             MainAppBar(
-                                modifier = Modifier.height(52.dp),
+                                modifier = Modifier.padding(vertical = 8.dp),
                                 onSearch = {
                                     //ToDo: Search item-Drop down UI
-                                },
-                                onSettingsClicked = {
-                                    //ToDo: Navigate to settings
                                 }
                             ) {
                                 NavigationBar(
@@ -75,7 +95,10 @@ fun MainScreen(applicationScope: ApplicationScope, viewModel: MainViewModel = ko
                         }
                     }
                 ) {
-                    Navigation(navController = navController)
+                    Navigation(
+                        navController = navController,
+                        isLoggedIn = !accessToken?.accessToken.isNullOrEmpty()
+                    )
                 }
             }
         }

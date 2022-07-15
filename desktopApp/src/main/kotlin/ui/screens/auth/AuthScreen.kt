@@ -18,10 +18,10 @@ import ui.navigation.NavigationItem
 @Composable
 fun AuthScreen(navController: NavController, viewModel: AuthViewModel = koin.get()) {
 
-    val authUiState = viewModel.accessToken.collectAsState()
+    val authUiState = viewModel.userUiState.collectAsState().value
     var isLoading by remember { mutableStateOf(false) }
 
-    when (authUiState.value) {
+    when (authUiState) {
         is UiState.Error -> {
             println("Error!!!")
             //ToDo: Display error message in snack bar
@@ -30,7 +30,9 @@ fun AuthScreen(navController: NavController, viewModel: AuthViewModel = koin.get
             isLoading = true
         }
         is UiState.Success -> {
-            navController.navigate(NavigationItem.Profile.route)
+            LaunchedEffect(key1 = authUiState.data) {
+                navController.navigate(NavigationItem.Profile.route)
+            }
         }
     }
 

@@ -6,7 +6,7 @@ import java.util.prefs.Preferences
 
 actual class MultiplatformSettingsWrapper {
     actual fun createSettings(): ObservableSettings {
-        val preferences: Preferences = Preferences.systemRoot()
+        val preferences: Preferences = Preferences.userRoot()
         return JvmPreferencesSettings(delegate = preferences)
     }
 }

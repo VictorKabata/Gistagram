@@ -1,63 +1,123 @@
 package com.vickikbt.gistagram.ui.screens.settings
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.vickikbt.gistagram.R
-import org.koin.androidx.compose.getViewModel
+import com.vickikbt.gistagram.ui.components.DialogPreferenceSelection
+import com.vickikbt.gistagram.ui.components.PreferencesGroup
+import com.vickikbt.gistagram.ui.components.TextPreference
+import com.vickikbt.gistagram.ui.components.app_bars.AppBar
+import com.vickikbt.shared.domain.utils.Constants
+import org.koin.androidx.compose.get
 
 @Composable
-fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = getViewModel()) {
+fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = get()) {
 
-    val appTheme = viewModel.appTheme.collectAsState().value
+    val context = LocalContext.current
 
-    var themeValue by remember { mutableStateOf("") }
+    val currentTheme = viewModel.appTheme.collectAsState().value ?: 0
+    val showThemeDialog = remember { mutableStateOf(false) }
+    val themeLabel = stringArrayResource(id = R.array.theme_labels)[currentTheme]
 
-    Box(modifier = Modifier.fillMaxSize()) {
-        Text(
-            modifier = Modifier.align(Alignment.Center),
-            text = appTheme ?: "No value set",
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colors.onSurface,
-            fontSize = 20.sp,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-        )
-
-        Button(
-            onClick = {
-                themeValue = if (themeValue == "dark") "light" else "dark"
-                viewModel.setAppTheme(theme = themeValue)
-            },
-            modifier = Modifier.align(Alignment.BottomCenter),
-            contentPadding = PaddingValues(vertical = 8.dp),
-            shape = RoundedCornerShape(4.dp),
-            colors = ButtonDefaults.buttonColors(
-                backgroundColor = MaterialTheme.colors.onSurface,
-                contentColor = MaterialTheme.colors.surface
-            )
+    Scaffold(
+        topBar = { AppBar(stringResource(id = R.string.title_settings)) }
+    ) { paddingValues ->
+        Surface(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues),
+            color = MaterialTheme.colors.surface
         ) {
-            Text(
-                modifier = Modifier,
-                text = stringResource(R.string.edit_profile),
-                fontSize = 12.sp,
-                style = MaterialTheme.typography.h4
-            )
+            Column(modifier = Modifier) {
+                Spacer(modifier = Modifier.height(8.dp))
+
+                PreferencesGroup(title = stringResource(id = R.string.title_personalisation)) {
+                    TextPreference(
+                        painter = painterResource(id = R.drawable.ic_theme),
+                        title = stringResource(id = R.string.change_theme),
+                        subTitle = themeLabel,
+                        onClick = { showThemeDialog.value = !showThemeDialog.value }
+                    )
+
+                    if (showThemeDialog.value) ChangeTheme(
+                        viewModel = viewModel,
+                        showDialog = showThemeDialog,
+                        currentValue = themeLabel
+                    )
+                }
+
+                Spacer(
+                    modifier = Modifier.height(16.dp)
+                )
+
+                PreferencesGroup(
+                    title = stringResource(id = R.string.title_extras),
+                    isLast = true
+                ) {
+                    TextPreference(
+                        painter = painterResource(id = R.drawable.ic_report_bug),
+                        title = stringResource(id = R.string.report_bug),
+                        subTitle = stringResource(id = R.string.report_bug_description),
+                        onClick = { reportBug(context) }
+                    )
+
+                    TextPreference(
+                        modifier = Modifier.clickable { },
+                        painter = painterResource(id = R.drawable.ic_logo),
+                        title = stringResource(id = R.string.source_code),
+                        subTitle = stringResource(id = R.string.source_code_description),
+                        onClick = { openSourceCode(context) }
+                    )
+                }
+            }
         }
     }
+}
 
+@Composable
+private fun ChangeTheme(
+    viewModel: SettingsViewModel,
+    showDialog: MutableState<Boolean>,
+    currentValue: String?
+) {
+    DialogPreferenceSelection(
+        showDialog = showDialog.value,
+        title = stringResource(id = R.string.change_theme),
+        currentValue = currentValue ?: stringResource(id = R.string.def),
+        labels = stringArrayResource(id = R.array.theme_labels),
+        onNegativeClick = { showDialog.value = false }
+    ) { theme ->
+        viewModel.setAppTheme(theme = theme)
+    }
+}
+
+private fun reportBug(context: Context) {
+    val emailIntent = Intent(Intent.ACTION_SENDTO).apply {
+        type = "text/plain"
+        data = Uri.parse("mailto:")
+        putExtra(Intent.EXTRA_EMAIL, arrayOf(Constants.BUG_REPORT_EMAIL))
+        putExtra(Intent.EXTRA_SUBJECT, Constants.BUG_REPORT_SUBJECT)
+    }
+
+    context.startActivity(emailIntent)
+}
+
+private fun openSourceCode(context: Context) {
+    val intent = Intent(Intent.ACTION_VIEW)
+    intent.data = Uri.parse(Constants.SOURCE_CODE_URL)
+    context.startActivity(intent)
 }

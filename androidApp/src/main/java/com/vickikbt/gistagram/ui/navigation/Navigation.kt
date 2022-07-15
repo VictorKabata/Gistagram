@@ -4,6 +4,7 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -22,7 +23,7 @@ import com.vickikbt.gistagram.ui.screens.status.UserStatusScreen
 @ExperimentalAnimationApi
 @ExperimentalMaterialApi
 @Composable
-fun Navigation(navController: NavHostController, isLoggedIn: Boolean) {
+fun Navigation(navController: NavHostController, isLoggedIn: Boolean, modifier: Modifier = Modifier) {
 
     // val defaultEnterAnimationDuration = 600
     // val defaultExitAnimationDuration = 1100

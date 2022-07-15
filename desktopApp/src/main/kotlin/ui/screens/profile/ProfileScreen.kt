@@ -1,7 +1,6 @@
 package ui.screens.profile
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -11,12 +10,12 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Info
 import androidx.compose.material.icons.rounded.LocationOn
-import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.ThumbUp
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -58,7 +57,11 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel = ko
                         verticalArrangement = Arrangement.spacedBy(6.dp)
                     ) {
                         item {
-                            StatSection(user = viewer, navController = navController)
+                            StatSection(
+                                user = viewer,
+                                navController = navController,
+                                viewModel = viewModel
+                            )
                         }
 
                         item {
@@ -91,7 +94,11 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel = ko
 }
 
 @Composable
-private fun StatSection(navController: NavController, user: LoggedInUserProfileQuery.Viewer?) {
+private fun StatSection(
+    navController: NavController,
+    user: LoggedInUserProfileQuery.Viewer?,
+    viewModel: ProfileViewModel
+) {
 
     val userProfilePainter by remember {
         mutableStateOf(loadImageBitmap(url = user?.avatarUrl?.toString() ?: ""))
@@ -106,14 +113,27 @@ private fun StatSection(navController: NavController, user: LoggedInUserProfileQ
             // user?.login?.let { navController.navigate("status/$it", null) } ToDo: Navigate to user profile status
         }
 
-        BioSection(modifier = Modifier.wrapContentWidth().align(Alignment.TopCenter), user = user)
+        BioSection(
+            modifier = Modifier.wrapContentWidth().align(Alignment.TopCenter),
+            user = user,
+            viewModel = viewModel
+        )
     }
 }
 
 @Composable
-fun BioSection(modifier: Modifier, user: LoggedInUserProfileQuery.Viewer?) {
+fun BioSection(
+    modifier: Modifier,
+    user: LoggedInUserProfileQuery.Viewer?,
+    viewModel: ProfileViewModel
+) {
     val letterSpacing = 0.5.sp
     val lineHeight = 20.sp
+
+    val currentTheme = viewModel.appTheme.collectAsState().value
+    var isDark by remember { mutableStateOf(currentTheme == 0) }
+
+    val themeIcon = if (isDark) painterResource("ic_dark.png") else painterResource("ic_light.png")
 
     Column(modifier = modifier) {
 
@@ -148,18 +168,33 @@ fun BioSection(modifier: Modifier, user: LoggedInUserProfileQuery.Viewer?) {
                 )
             }
 
-            IconButton(
-                modifier = Modifier.size(40.dp).background(MaterialTheme.colors.surface),
+            /*IconButton(
+                modifier = Modifier.size(24.dp).background(MaterialTheme.colors.surface),
                 onClick = {
                     // ToDo:Navigate to settings
                 }
             ) {
                 Icon(
-                    imageVector = Icons.Rounded.Settings,
+                    painter = if (MaterialTheme.colors.isLight) painterResource("ic_settings.png")
+                    else painterResource("ic_settings_dark.png"),
                     contentDescription = "Settings",
                     tint = MaterialTheme.colors.onSurface
                 )
+            }*/
+
+            FloatingActionButton(
+                modifier = Modifier.size(36.dp),
+                onClick = {
+                    isDark = !isDark
+                    viewModel.setAppTheme(theme = if (isDark) 0 else 1)
+                },
+                backgroundColor = MaterialTheme.colors.onSurface,
+                contentColor = MaterialTheme.colors.surface
+            ) {
+                Icon(painter = themeIcon, contentDescription = "Theme")
             }
+
+
         }
         //endregion
 
@@ -277,7 +312,9 @@ fun RepositoriesSection(
 
     var selectedTabIndex by remember { mutableStateOf(0) }
 
-    ProfileTabRow(modifier = modifier, onTabSelected = { selectedTabIndex = it })
+    ProfileTabRow(
+        modifier = modifier,
+        onTabSelected = { selectedTabIndex = it })
 
     when (selectedTabIndex) {
         0 -> RepositoriesTab(repos = repos?.asReversed())

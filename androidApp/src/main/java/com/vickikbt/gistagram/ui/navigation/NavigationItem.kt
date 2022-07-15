@@ -8,7 +8,7 @@ sealed class NavigationItem(
     val route: String,
     @StringRes val title: Int,
     @DrawableRes val icon: Int?,
-    val profilePicture: String? = null
+    var profilePicture: String? = null
 ) {
     object Auth : NavigationItem("login", R.string.title_login, null)
 
@@ -21,7 +21,7 @@ sealed class NavigationItem(
         "profile",
         R.string.title_profile,
         null,
-        "https://avatars.githubusercontent.com/u/39780120?u=bb50900c4214570b711aca1da85a84209b79fed0&v=4"
+        null
     )
 
     object Settings : NavigationItem("settings", R.string.title_settings, R.drawable.ic_settings)

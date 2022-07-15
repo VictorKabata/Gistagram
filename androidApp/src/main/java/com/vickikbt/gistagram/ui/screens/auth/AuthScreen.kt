@@ -29,18 +29,26 @@ fun AuthScreen(navController: NavController, viewModel: AuthViewModel = getViewM
 
     val context = LocalContext.current
 
-    val authUiState = viewModel.accessToken.collectAsState().value
+    val authUiState = viewModel.userUiState.collectAsState().value
     var isLoading by remember { mutableStateOf(false) }
 
     when (authUiState) {
         is UiState.Error -> {
-            //ToDo: Display error message in snackbar
+            /*Snackbar {
+                Text(
+                    text = authUiState.error ?: "An unknown error occurred",
+                    fontWeight = FontWeight.Normal
+                )
+            }*/
         }
         is UiState.Loading -> {
             isLoading = true
         }
         is UiState.Success -> {
-            navController.navigate(NavigationItem.Profile.route)
+            LaunchedEffect(key1 = authUiState.data) {
+                navController.navigate(route = NavigationItem.Profile.route)
+            }
+
         }
     }
 
