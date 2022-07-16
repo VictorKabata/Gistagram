@@ -1,0 +1,12 @@
+query UserStatus($userLogin: String!) {
+    viewer {
+        id
+        login
+        avatarUrl
+        repository(name: $userLogin) {
+            id
+            isEmpty
+            url
+        }
+    }
+}

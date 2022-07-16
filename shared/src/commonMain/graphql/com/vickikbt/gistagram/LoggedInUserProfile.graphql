@@ -1,0 +1,97 @@
+query LoggedInUserProfile($organizationsCount: Int, $pinnedReposCount: Int, $languagesCount: Int, $reposCount: Int, $isFork: Boolean) {
+    viewer {
+        id
+        email
+        name
+        login
+        avatarUrl
+        bio
+        websiteUrl
+        company
+        location
+        twitterUsername
+        followers {
+            totalCount
+        }
+        following {
+            totalCount
+        }
+        isFollowingViewer
+        isViewer
+        isCampusExpert
+        createdAt
+        organizations(first: $organizationsCount) {
+            nodes {
+                id
+                name
+                avatarUrl
+            }
+        }
+        pinnedItems(first: $pinnedReposCount) {
+            totalCount
+            nodes {
+                ... on Repository {
+                    id
+                    name
+                    createdAt
+                    description
+                    stargazerCount
+                    isPrivate
+                    isFork
+                    forkCount
+                    url
+                    viewerHasStarred
+                    resourcePath
+                    owner {
+                        ... on User {
+                            id
+                            avatarUrl
+                            login
+                            name
+                        }
+                    }
+                    languages(first: $languagesCount) {
+                        totalCount
+                        nodes {
+                            id
+                            name
+                            color
+                        }
+                    }
+                }
+            }
+        }
+        repositories(first: $reposCount, isFork: $isFork) {
+            totalCount
+            nodes {
+                id
+                name
+                createdAt
+                description
+                stargazerCount
+                isPrivate
+                isFork
+                forkCount
+                url
+                viewerHasStarred
+                resourcePath
+                owner {
+                    ... on User {
+                        id
+                        avatarUrl
+                        login
+                        name
+                    }
+                }
+                languages(first: $languagesCount) {
+                    totalCount
+                    nodes {
+                        id
+                        name
+                        color
+                    }
+                }
+            }
+        }
+    }
+}
