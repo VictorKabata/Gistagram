@@ -36,12 +36,12 @@ fun ItemProfileRepo(
     Card(
         modifier = modifier,
         onClick = { onItemClicked(repo?.id!!) },
-        shape = RoundedCornerShape(4.dp),
-        elevation = 16.dp
+        shape = RoundedCornerShape(10.dp),
+        elevation = 4.dp
     ) {
-        Column {
+        Column(Modifier.padding(vertical = 10.dp)) {
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(0.9f),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
@@ -63,7 +63,7 @@ fun ItemProfileRepo(
                 ) {
                     Text(
                         text = repo?.name ?: stringResource(R.string.repository),
-                        style = MaterialTheme.typography.h4,
+                        style = MaterialTheme.typography.h5.copy(fontSize = 18.sp),
                         maxLines = 1,
                         fontSize = 14.sp,
                         overflow = TextOverflow.Ellipsis,
