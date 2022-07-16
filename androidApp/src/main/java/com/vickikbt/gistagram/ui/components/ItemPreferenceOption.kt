@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.RadioButton
+import androidx.compose.material.RadioButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -28,7 +29,11 @@ fun ItemPreferenceOption(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(6.dp)
     ) {
-        RadioButton(selected = selectedOption, onClick = { onOptionSelected() })
+        RadioButton(
+            selected = selectedOption,
+            onClick = { onOptionSelected() },
+            colors = RadioButtonDefaults.colors(MaterialTheme.colors.onSurface)
+        )
 
         Text(
             modifier = Modifier.fillMaxWidth(),
