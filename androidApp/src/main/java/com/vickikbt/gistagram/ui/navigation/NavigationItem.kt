@@ -20,7 +20,7 @@ sealed class NavigationItem(
     object Profile : NavigationItem(
         "profile",
         R.string.title_profile,
-        null,
+        R.drawable.ic_profile,
         null
     )
 

@@ -38,11 +38,9 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel = koin.get
         )
 
         Button(
-            modifier = Modifier.align(Alignment.BottomCenter), onClick = { viewModel.getUser() },
-            colors = ButtonDefaults.buttonColors(
-                backgroundColor = MaterialTheme.colors.onSurface,
-                contentColor = MaterialTheme.colors.surface
-            )
+            modifier = Modifier.align(Alignment.BottomCenter),
+            onClick = { viewModel.getUser() },
+            colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.onSurface)
         ) {
             Text(
                 modifier = Modifier,
@@ -51,7 +49,7 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel = koin.get
                 fontSize = 24.sp,
                 overflow = TextOverflow.Ellipsis,
                 textAlign = TextAlign.Start,
-                color = MaterialTheme.colors.onSurface
+                color = MaterialTheme.colors.surface
             )
         }
     }
