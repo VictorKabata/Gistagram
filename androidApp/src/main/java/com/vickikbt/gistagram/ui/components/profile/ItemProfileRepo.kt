@@ -65,22 +65,21 @@ fun ItemProfileRepo(
                         text = repo?.name ?: stringResource(R.string.repository),
                         style = MaterialTheme.typography.h5.copy(fontSize = 18.sp),
                         maxLines = 1,
-                        fontSize = 14.sp,
+                        fontSize = 15.sp,
                         overflow = TextOverflow.Ellipsis,
                         color = MaterialTheme.colors.onBackground
                     )
 
                     Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                        repo?.languages?.nodes?.forEach {
-                            Text(
-                                text = it?.name ?: stringResource(R.string.language),
-                                style = MaterialTheme.typography.body1,
-                                maxLines = 1,
-                                fontSize = 12.sp,
-                                overflow = TextOverflow.Ellipsis,
-                                color = MaterialTheme.colors.onBackground
-                            )
-                        }
+                        Text(
+                            text = repo?.languages?.nodes?.joinToString(separator = ", ") { it?.name.toString() }
+                                ?: stringResource(R.string.language),
+                            style = MaterialTheme.typography.body1,
+                            maxLines = 1,
+                            fontSize = 13.sp,
+                            overflow = TextOverflow.Ellipsis,
+                            color = MaterialTheme.colors.onBackground
+                        )
                     }
                 }
             }
@@ -92,7 +91,7 @@ fun ItemProfileRepo(
                 text = repo?.description ?: stringResource(R.string.no_description),
                 style = MaterialTheme.typography.body1,
                 maxLines = 4,
-                fontSize = 14.sp,
+                fontSize = 16.sp,
                 overflow = TextOverflow.Ellipsis,
                 color = MaterialTheme.colors.onBackground
             )
