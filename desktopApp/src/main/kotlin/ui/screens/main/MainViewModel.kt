@@ -62,5 +62,4 @@ class MainViewModel constructor(
             supervisorJob.value = null
         }
     }
-
 }

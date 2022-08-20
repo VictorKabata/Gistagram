@@ -40,5 +40,4 @@ class SettingsViewModel constructor(private val settingsRepository: SettingsRepo
             }
         }
     }
-
 }

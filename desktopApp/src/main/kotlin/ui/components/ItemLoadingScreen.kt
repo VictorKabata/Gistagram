@@ -17,5 +17,4 @@ fun ItemLoadingScreen(modifier: Modifier = Modifier) {
             modifier = Modifier.align(Alignment.Center)
         )
     }
-
 }

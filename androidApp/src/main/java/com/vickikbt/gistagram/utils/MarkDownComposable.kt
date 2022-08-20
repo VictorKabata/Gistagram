@@ -8,7 +8,6 @@ import androidx.compose.material.LocalTextStyle
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
@@ -16,7 +15,6 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.viewinterop.AndroidView
 import br.tiagohm.markdownview.MarkdownView
 import br.tiagohm.markdownview.css.styles.Bootstrap
-import io.github.aakira.napier.Napier
 import okhttp3.internal.toHexString
 
 @Composable
@@ -50,7 +48,6 @@ fun MarkDownComposable(
             markDownView.loadMarkdownFromUrl(url)
         }
     )
-
 }
 
 class GistagramMarkDownStyle(textColor: String, backgroundColor: String) : Bootstrap() {
@@ -114,10 +111,9 @@ class GistagramMarkDownStyle(textColor: String, backgroundColor: String) : Boots
         addRule(".yt-player", "box-shadow: 0px 0px 12px rgba(0,0,0,0.2)")
         addRule(".scrollup", "background-color: #$textColor")
 
-        //Highlight.js
+        // Highlight.js
 
-
-        //Highlight.js
+        // Highlight.js
         addRule(".hljs-comment", "color: #8e908c")
         addRule(".hljs-quote", "color: #8e908c")
 

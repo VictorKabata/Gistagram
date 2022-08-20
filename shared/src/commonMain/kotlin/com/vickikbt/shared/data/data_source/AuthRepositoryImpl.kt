@@ -10,7 +10,6 @@ import com.vickikbt.shared.data.network.rest.ApiClient
 import com.vickikbt.shared.domain.models.AccessToken
 import com.vickikbt.shared.domain.models.User
 import com.vickikbt.shared.domain.repositories.AuthRepository
-import io.github.aakira.napier.Napier
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
@@ -61,5 +60,4 @@ class AuthRepositoryImpl constructor(
     override suspend fun getUser(): Flow<User?>? {
         return userDao.user?.map { it?.toDomain() }
     }
-
 }

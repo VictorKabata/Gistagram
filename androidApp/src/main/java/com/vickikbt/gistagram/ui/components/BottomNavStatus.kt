@@ -33,7 +33,7 @@ fun BottomNavStatus(
         horizontalArrangement = Arrangement.End,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        IconButton(onClick = {/*ToDo: Share action*/ }) {
+        IconButton(onClick = { /*ToDo: Share action*/ }) {
             Column(
                 modifier = Modifier.wrapContentSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -60,8 +60,7 @@ fun BottomNavStatus(
 
         Spacer(modifier = Modifier.width(10.dp))
 
-
-        IconButton(onClick = {/*ToDo: More bottom sheet action*/ }) {
+        IconButton(onClick = { /*ToDo: More bottom sheet action*/ }) {
             Column(
                 modifier = Modifier.wrapContentSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,

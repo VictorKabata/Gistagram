@@ -78,7 +78,8 @@ fun Navigation(navController: NavHostController, isLoggedIn: Boolean, modifier: 
                 navArgument("repoName") {
                     type = NavType.StringType
                 }
-            )) {
+            )
+        ) {
             val userLogin = it.arguments?.getString("userLogin")
             val repoName = it.arguments?.getString("repoName")
 

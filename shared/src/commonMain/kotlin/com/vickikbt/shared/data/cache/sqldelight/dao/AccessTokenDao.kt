@@ -30,5 +30,4 @@ class AccessTokenDao constructor(private val databaseDriverFactory: DatabaseDriv
      * Deletes all data in access token entity table in SQLDelight database
      */
     fun deleteAccessToken() = dbQuery.deleteAccessToken()
-
 }
