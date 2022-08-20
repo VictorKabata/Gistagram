@@ -36,7 +36,7 @@ fun ItemProfileRepo(
     Card(
         modifier = modifier,
         onClick = { onItemClicked(repo?.id!!) },
-        shape = RoundedCornerShape(10.dp),
+        shape = RoundedCornerShape(4.dp),
         elevation = 4.dp
     ) {
         Column(Modifier.padding(vertical = 10.dp)) {
