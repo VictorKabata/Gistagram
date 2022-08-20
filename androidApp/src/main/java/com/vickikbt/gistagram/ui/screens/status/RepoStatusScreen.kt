@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.vickikbt.gistagram.ui.components.BottomNavStatus
 import com.vickikbt.gistagram.ui.components.ItemLoadingScreen
 import com.vickikbt.gistagram.ui.components.StatusToolbar
+import com.vickikbt.gistagram.utils.MarkDownComposable
 import com.vickikbt.shared.presentation.UiState
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
@@ -72,19 +73,9 @@ private fun RepoStatus(
         backgroundColor = MaterialTheme.colors.surface,
         elevation = 0.dp
     ) {
-        /*MarkDownComposable(
+        MarkDownComposable(
             url = "https://raw.githubusercontent.com/${userLogin}/$repoName/master/README.md",
             modifier = Modifier.fillMaxSize()
-        )*/
-
-        val markDownScope = rememberCoroutineScope()
-
-        val url = "https://raw.githubusercontent.com/${userLogin}/$repoName/master/README.md"
-
-        LaunchedEffect(key1 = url) {
-            markDownScope.launch {
-                //ComposeMarkdown().loadFromUrl(url = url)
-            }
-        }
+        )
     }
 }
