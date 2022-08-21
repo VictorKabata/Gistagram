@@ -314,6 +314,6 @@ fun RepositoriesSection(
     )
 
     when (selectedTabIndex) {
-        0 -> RepositoriesTab(repos = repos?.asReversed())
+        0 -> RepositoriesTab(repos = repos)
     }
 }
