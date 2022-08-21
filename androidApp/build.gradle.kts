@@ -84,6 +84,7 @@ dependencies {
 
     // Accompanist Libs
     implementation(AndroidDependencies.accompanistNavigationAnimation)
+    implementation(AndroidDependencies.accompanistFlowLayout)
 
     // Splash Screen API
     implementation(AndroidDependencies.splashScreen)

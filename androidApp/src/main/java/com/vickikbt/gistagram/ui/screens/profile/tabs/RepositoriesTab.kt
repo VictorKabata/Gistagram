@@ -19,12 +19,12 @@ fun RepositoriesTab(
     modifier: Modifier = Modifier,
     repos: List<LoggedInUserProfileQuery.Node3?>
 ) {
-    /*LazyColumn(
+    Column(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        items(items = repos) { repo ->
+        repos.forEach { repo ->
             ItemProfileRepo(
                 repo = repo,
                 modifier = Modifier.fillMaxWidth(0.95f)
@@ -32,5 +32,5 @@ fun RepositoriesTab(
                 // ToDo: On Item Clicked
             }
         }
-    }*/
+    }
 }
