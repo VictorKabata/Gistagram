@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">Gistagram</string>
+
+    <string name="title_login">Login</string>
+    <string name="title_home">Home</string>
+    <string name="title_search">Search</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_user_status">User Status</string>
+    <string name="title_repo_status">Repo Status</string>
+    <string name="title_issues">Issues</string>
+    <string name="title_mentions">Mentions</string>
+    <string name="profile_picture">Profile picture</string>
+    <string name="repos">Repos</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="username">Username</string>
+    <string name="bio">Bio</string>
+    <string name="location">Location</string>
+    <string name="company">Company</string>
+    <string name="email">Email</string>
+    <string name="website">Website</string>
+    <string name="twitter_username">Twitter Username</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="add_user">Add user</string>
+    <string name="pinned_repo">Pinned repo</string>
+    <string name="forks">Forks</string>
+    <string name="gists">Gists</string>
+    <string name="repository">Repository</string>
+    <string name="language">Language</string>
+    <string name="retry">Retry</string>
+    <string name="cancel">Cancel</string>
+    <string name="title_error">Error</string>
+    <string name="no_description">This repository does not have a description</string>
+
+    <!--Preference Titles-->
+    <string name="title_personalisation">Personalisation</string>
+    <string name="title_extras">Extras</string>
+
+    <!--Preference Headers-->
+    <string name="change_theme">Change theme</string>
+    <string name="change_language">Change language</string>
+    <string name="change_image_quality">Change image quality</string>
+    <string name="report_bug">Report Bug</string>
+    <string name="report_bug_description">Report bug or request feature</string>
+    <string name="source_code">Source Code</string>
+    <string name="source_code_description">View app source code</string>
+
+    <string name="def">Default</string>
+    <string name="language_eg" translatable="false">No Russian</string>
+</resources>
