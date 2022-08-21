@@ -1,21 +1,28 @@
 package com.vickikbt.gistagram.utils
 
+import android.view.ViewGroup.LayoutParams.MATCH_PARENT
+import android.widget.LinearLayout
 import androidx.annotation.FontRes
 import androidx.annotation.IdRes
 import androidx.compose.material.LocalTextStyle
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.viewinterop.AndroidView
+import br.tiagohm.markdownview.MarkdownView
 import br.tiagohm.markdownview.css.styles.Bootstrap
+import okhttp3.internal.toHexString
 
 @Composable
 fun MarkDownComposable(
     url: String,
     modifier: Modifier = Modifier,
-    color: Color = Color.Unspecified,
+    textColor: String = MaterialTheme.colors.onSurface.toArgb().toHexString(),
+    backgroundColor: String = MaterialTheme.colors.surface.toArgb().toHexString(),
     fontSize: TextUnit = TextUnit.Unspecified,
     textAlign: TextAlign? = null,
     maxLines: Int = Int.MAX_VALUE,
@@ -23,33 +30,35 @@ fun MarkDownComposable(
     style: TextStyle = LocalTextStyle.current,
     @IdRes viewId: Int? = null
 ) {
-
-
-    /*AndroidView(
+    AndroidView(
         factory = { context ->
             MarkdownView(context).apply {
                 viewId?.let { id = it }
                 layoutParams = LinearLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT)
                 setEscapeHtml(false)
-                addStyleSheet(GistagramMarkDownStyle())
+                addStyleSheet(
+                    GistagramMarkDownStyle(
+                        textColor = textColor.substringAfter("ff"),
+                        backgroundColor = backgroundColor.substringAfter("ff")
+                    )
+                )
             }
         },
         update = { markDownView ->
             markDownView.loadMarkdownFromUrl(url)
         }
-    )*/
-
+    )
 }
 
-class GistagramMarkDownStyle : Bootstrap() {
+class GistagramMarkDownStyle(textColor: String, backgroundColor: String) : Bootstrap() {
     init {
         addRule(
             "body",
             "line-height: 1.8",
             "padding: 8px",
             "text-align:left",
-            "color: #fff",
-            "background-color: #000"
+            "color: #$textColor",
+            "background-color: #$backgroundColor"
         )
         addRule("h1", "font-size: 28px")
         addRule("h2", "font-size: 24px")
@@ -100,12 +109,11 @@ class GistagramMarkDownStyle : Bootstrap() {
         addRule("pre:not([language])", "padding: 6px 10px")
         addRule(".footnotes li p:last-of-type", "display: inline")
         addRule(".yt-player", "box-shadow: 0px 0px 12px rgba(0,0,0,0.2)")
-        addRule(".scrollup", "background-color: #00BF4C")
+        addRule(".scrollup", "background-color: #$textColor")
 
-        //Highlight.js
+        // Highlight.js
 
-
-        //Highlight.js
+        // Highlight.js
         addRule(".hljs-comment", "color: #8e908c")
         addRule(".hljs-quote", "color: #8e908c")
 
@@ -141,3 +149,5 @@ class GistagramMarkDownStyle : Bootstrap() {
         addRule(".hljs-selector-tag", "color: #8959a8")
     }
 }
+
+fun Int.hexToString() = String.format("#%04X", 0xFFFFFF and this)

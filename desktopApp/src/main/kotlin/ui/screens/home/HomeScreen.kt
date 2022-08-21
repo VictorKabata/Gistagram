@@ -53,6 +53,4 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel = koin.get
             )
         }
     }
-
-
 }

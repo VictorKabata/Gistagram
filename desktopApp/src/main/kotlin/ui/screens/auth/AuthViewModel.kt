@@ -46,7 +46,6 @@ class AuthViewModel constructor(private val authRepository: AuthRepository = koi
                 val code = waitForCallback()
 
                 fetchAccessToken(code = code)
-
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -68,7 +67,9 @@ class AuthViewModel constructor(private val authRepository: AuthRepository = koi
                     get("/callback") {
                         val code = call.parameters["code"]
                             ?: throw RuntimeException("Received a response with no code")
+
                         println("Code: $code")
+
                         call.respondText("OK")
 
                         continuation.resume(code)
@@ -91,7 +92,6 @@ class AuthViewModel constructor(private val authRepository: AuthRepository = koi
             val response = authRepository.fetchAccessToken(code = code)
 
             fetchUserProfile()
-
         } catch (e: Exception) {
             _userUiState.value = UiState.Error(error = e.message)
         }
@@ -114,5 +114,4 @@ class AuthViewModel constructor(private val authRepository: AuthRepository = koi
         callbackJob.value?.cancel()
         callbackJob.value = null
     }
-
 }

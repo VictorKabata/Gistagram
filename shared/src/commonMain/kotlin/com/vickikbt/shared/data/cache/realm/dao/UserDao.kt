@@ -50,5 +50,4 @@ class UserDao constructor(
             delete(user)
         }
     }
-
 }

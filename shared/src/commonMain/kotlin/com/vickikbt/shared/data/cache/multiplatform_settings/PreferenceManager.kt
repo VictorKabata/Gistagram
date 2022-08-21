@@ -5,7 +5,6 @@ import com.russhwolf.settings.coroutines.getStringOrNullFlow
 import com.russhwolf.settings.set
 import com.vickikbt.shared.domain.utils.MultiplatformSettingsWrapper
 
-
 class PreferenceManager constructor(multiplatformSettingsWrapper: MultiplatformSettingsWrapper) {
 
     private val observableSettings = multiplatformSettingsWrapper.createSettings()
@@ -25,5 +24,4 @@ class PreferenceManager constructor(multiplatformSettingsWrapper: MultiplatformS
     companion object {
         const val APP_THEME_KEY = "app_theme_key"
     }
-
 }

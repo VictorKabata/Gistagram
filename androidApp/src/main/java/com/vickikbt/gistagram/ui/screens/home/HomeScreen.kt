@@ -59,5 +59,4 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel = getViewM
             )
         }
     }
-
 }

@@ -19,13 +19,6 @@ dependencies {
     // HTTP Server
     implementation(MultiplatformDependencies.ktorServerCore)
     implementation(MultiplatformDependencies.ktorServerNetty)
-    implementation("androidx.compose.ui:ui-text:1.1.1")
-}
-
-compose.desktop {
-    application {
-        mainClass = "DesktopApplicationKt"
-    }
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {

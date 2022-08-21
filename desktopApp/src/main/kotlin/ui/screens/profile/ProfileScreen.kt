@@ -90,7 +90,6 @@ fun ProfileScreen(navController: NavController, viewModel: ProfileViewModel = ko
             ItemLoadingScreen()
         }
     }
-
 }
 
 @Composable
@@ -193,8 +192,6 @@ fun BioSection(
             ) {
                 Icon(painter = themeIcon, contentDescription = "Theme")
             }
-
-
         }
         //endregion
 
@@ -272,7 +269,6 @@ fun BioSection(
         //endregion
 
         Spacer(modifier = Modifier.height(4.dp))
-
     }
 }
 
@@ -293,7 +289,7 @@ fun PinnedRepoSection(
                 onItemClicked = {
                     user?.login?.let { login ->
                         repo?.name?.let { repo ->
-                            //navController.navigate() ToDo: Navigate to repo status
+                            // navController.navigate() ToDo: Navigate to repo status
                         }
                     }
                 },
@@ -314,7 +310,8 @@ fun RepositoriesSection(
 
     ProfileTabRow(
         modifier = modifier,
-        onTabSelected = { selectedTabIndex = it })
+        onTabSelected = { selectedTabIndex = it }
+    )
 
     when (selectedTabIndex) {
         0 -> RepositoriesTab(repos = repos?.asReversed())

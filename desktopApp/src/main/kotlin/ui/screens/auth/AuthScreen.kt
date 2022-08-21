@@ -24,7 +24,7 @@ fun AuthScreen(navController: NavController, viewModel: AuthViewModel = koin.get
     when (authUiState) {
         is UiState.Error -> {
             println("Error!!!")
-            //ToDo: Display error message in snack bar
+            // ToDo: Display error message in snack bar
         }
         is UiState.Loading -> {
             isLoading = true
@@ -92,5 +92,4 @@ fun AuthScreen(navController: NavController, viewModel: AuthViewModel = koin.get
             Spacer(modifier = Modifier.height(16.dp))
         }
     }
-
 }

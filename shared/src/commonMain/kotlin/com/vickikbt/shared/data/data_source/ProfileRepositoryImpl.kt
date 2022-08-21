@@ -16,11 +16,11 @@ class ProfileRepositoryImpl constructor(private val apolloClient: ApolloClient) 
 
         val loggedInUserQuery = apolloClient.query(
             LoggedInUserProfileQuery(
-                organizationsCount = 10,
+                organizationsCount = 2,
                 pinnedReposCount = 6,
                 languagesCount = 4,
                 reposCount = 10,
-                isFork = null
+                isFork = false
             )
         )
 

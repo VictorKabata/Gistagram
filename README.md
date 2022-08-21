@@ -1,5 +1,6 @@
-# Gistagram
- GitHub/Instagram clone Android application built using Jetpack Compose
+# Gistagram - 
+## Work in Progress🔨 - [Develop Branch](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+ GitHub/Instagram clone android and desktop application built using Kotlin.
 
 ## Prerequisite
 
@@ -38,6 +39,16 @@
 - [Gradle Versions Plugin](https://github.com/ben-manes/gradle-versions-plugin) - This plugin
   provides a task to determine which dependencies have updates.
 
+# Screenshots
+
+## Android
+
+<img src="assets/img1.png" width="250"> <img src="assets/img2.png" width="250"> <img src="assets/img3.png" width="250"> <img src="assets/img4.png" width="250"> <img src="assets/img5.png" width="250">
+
+## Desktop
+
+<img src="assets/img6.png" width="800"> <img src="assets/img7.png" width="800"> <img src="assets/img8.png" width="800">
+
 ## Sample Projects
 
 1. [Notflix](https://github.com/VictorKabata/Notflix) - An android and desktop app built using Kotlin Multiplatforom that consumes TMDB API to display current trending, upcoming and popular movies🍿 and tvshows🎬.
@@ -61,9 +72,3 @@
 14. [Kotlin Multiplatform Mobile: what is it and when should you use it?](https://www.kinandcarta.com/en/insights/2022/01/what-is-kotlin-multiplatform-mobile-and-when-should-i-use-it/)
     blog post.
 15. [Introduction to Kotlin Multiplatform Mobile - Getting Started](https://betterprogramming.pub/introduction-to-kotlin-multiplatform-mobile-part-i-333af55741af) article.
-
-## Work In Progress
-
-- [x] Update README
-- [ ] Create sample projects - Work In Progress
-

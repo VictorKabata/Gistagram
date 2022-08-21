@@ -25,7 +25,6 @@ class AuthViewModel constructor(private val authRepository: AuthRepository) : Vi
                 Napier.e("Code: $code")
 
                 fetchUserProfile()
-
             } catch (e: Exception) {
                 _userUiState.value = UiState.Error(error = e.localizedMessage)
             }
@@ -45,5 +44,4 @@ class AuthViewModel constructor(private val authRepository: AuthRepository) : Vi
             }
         }
     }
-
 }

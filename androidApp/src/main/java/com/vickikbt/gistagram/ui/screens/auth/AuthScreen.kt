@@ -48,7 +48,6 @@ fun AuthScreen(navController: NavController, viewModel: AuthViewModel = getViewM
             LaunchedEffect(key1 = authUiState.data) {
                 navController.navigate(route = NavigationItem.Profile.route)
             }
-
         }
     }
 
@@ -116,7 +115,6 @@ fun AuthScreen(navController: NavController, viewModel: AuthViewModel = getViewM
         onResume(context = context, viewModel = viewModel)
         onDispose { /*ToDo*/ }
     }
-
 }
 
 private fun githubOAuth(context: Context) {
@@ -141,4 +139,3 @@ fun onResume(context: Context, viewModel: AuthViewModel) {
         Log.e("TAG", "Nothing was returned")
     }
 }
-

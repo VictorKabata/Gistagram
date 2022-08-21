@@ -18,27 +18,21 @@ kotlin {
 
     sourceSets {
         sourceSets["commonMain"].dependencies {
-
         }
 
         sourceSets["commonTest"].dependencies {
-
         }
 
         sourceSets["androidMain"].dependencies {
-
         }
 
         sourceSets["androidTest"].dependencies {
-
         }
 
         sourceSets["jvmMain"].dependencies {
-
         }
 
         sourceSets["jvmTest"].dependencies {
-
         }
     }
 }
