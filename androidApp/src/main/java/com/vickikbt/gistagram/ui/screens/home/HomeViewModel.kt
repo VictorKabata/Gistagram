@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class HomeViewModel constructor(private val authRepository: AuthRepository):ViewModel() {
+class HomeViewModel constructor(private val authRepository: AuthRepository) : ViewModel() {
 
     private val _user = MutableStateFlow<User?>(null)
     val user = _user.asStateFlow()
@@ -26,5 +26,4 @@ class HomeViewModel constructor(private val authRepository: AuthRepository):View
             }
         }
     }
-
 }

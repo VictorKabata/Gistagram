@@ -10,7 +10,7 @@ val Surface = Color(0xFF000000)
 
 val LinkColor = Color(0xFF0645AD)
 
-val searchBackGround=Color(0xFFE7E7E7)
+val searchBackGround = Color(0xFFE7E7E7)
 //endregion
 
 //region Dark Theme Colors
@@ -21,7 +21,7 @@ val SurfaceDark = Color(0xFFFFFFFF)
 
 val LinkColorDark = Color(0xFF0645AD)
 
-val searchBackGroundDark=Color(0xFF5F6368)
+val searchBackGroundDark = Color(0xFF5F6368)
 //endregion
 
 val Black = Color(0xFF000000)

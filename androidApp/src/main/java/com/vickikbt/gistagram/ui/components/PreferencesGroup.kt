@@ -33,7 +33,7 @@ fun PreferencesGroup(
 
                 Text(
                     modifier = Modifier
-                       .weight(9.2f),
+                        .weight(9.2f),
                     text = title,
                     style = MaterialTheme.typography.h2,
                     color = MaterialTheme.colors.onSurface,
@@ -51,5 +51,4 @@ fun PreferencesGroup(
 
         if (!isLast) Divider(color = Color.Gray.copy(alpha = 0.7f), thickness = 0.5.dp)
     }
-
 }

@@ -84,7 +84,7 @@ fun MainScreen(applicationScope: ApplicationScope, viewModel: MainViewModel = ko
                             MainAppBar(
                                 modifier = Modifier.padding(vertical = 8.dp),
                                 onSearch = {
-                                    //ToDo: Search item-Drop down UI
+                                    // ToDo: Search item-Drop down UI
                                 }
                             ) {
                                 NavigationBar(

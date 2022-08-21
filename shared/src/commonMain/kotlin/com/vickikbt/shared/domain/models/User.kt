@@ -4,7 +4,7 @@ data class User(
     val avatarUrl: String?,
     val bio: String?,
     val blog: String?,
-    val collaborators:Int?,
+    val collaborators: Int?,
     val company: String?,
     val createdAt: String?,
     val email: String?,

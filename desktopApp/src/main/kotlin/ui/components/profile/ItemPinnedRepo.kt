@@ -38,7 +38,7 @@ fun ItemPinnedRepo(
                 },
             image = image,
             contentDescription = "Pinned repositories"
-            //borderColor = Color(pinnedRepo?.languages?.nodes?.get(0)?.color)
+            // borderColor = Color(pinnedRepo?.languages?.nodes?.get(0)?.color)
         )
 
         Spacer(modifier = Modifier.height(3.dp))

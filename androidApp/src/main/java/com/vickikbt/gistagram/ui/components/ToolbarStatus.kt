@@ -67,7 +67,6 @@ fun StatusToolbar(
         }
     )
 
-
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -98,7 +97,6 @@ fun StatusToolbar(
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically
         ) {
-
 
             Box {
                 ItemCircleImage(

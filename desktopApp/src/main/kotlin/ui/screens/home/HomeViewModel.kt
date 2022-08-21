@@ -37,5 +37,4 @@ class HomeViewModel constructor(private val authRepository: AuthRepository) : Ko
             supervisorJob.value = null
         }
     }
-
 }

@@ -61,7 +61,7 @@ query LoggedInUserProfile($organizationsCount: Int, $pinnedReposCount: Int, $lan
                 }
             }
         }
-        repositories(first: $reposCount, isFork: $isFork) {
+        repositories(first: $reposCount, isFork: $isFork, orderBy: {field: CREATED_AT, direction: DESC}) {
             totalCount
             nodes {
                 id

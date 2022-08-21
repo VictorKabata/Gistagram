@@ -91,5 +91,4 @@ class ProfileViewModel constructor(
             supervisorJob.value = null
         }
     }
-
 }

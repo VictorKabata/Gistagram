@@ -42,7 +42,6 @@ fun UserStatusScreen(
             ItemLoadingScreen()
         }
     }
-
 }
 
 @Composable
@@ -63,7 +62,7 @@ private fun UserStatus(
         elevation = 0.dp
     ) {
         MarkDownComposable(
-            url = "https://raw.githubusercontent.com/${userLogin}/$userLogin/master/README.md",
+            url = "https://raw.githubusercontent.com/$userLogin/$userLogin/master/README.md",
             modifier = Modifier.fillMaxSize()
         )
     }

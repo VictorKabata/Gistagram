@@ -7,5 +7,4 @@ actual object Configs {
     actual val CLIENT_SECRET: String = "b0cd43046b1ba2c5e16a5c909b8babc980fdb789"
 
     actual val REDIRECT_URI: String = "vickikbt://callback"
-
 }
