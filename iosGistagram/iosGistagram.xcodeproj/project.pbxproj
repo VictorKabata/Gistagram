@@ -7,18 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6648369A28BD61A500E39A17 /* Koin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6648369928BD61A500E39A17 /* Koin.swift */; };
 		667FF91D28BD489700E81C9F /* iosGistagramApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667FF91C28BD489700E81C9F /* iosGistagramApp.swift */; };
 		667FF91F28BD489700E81C9F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667FF91E28BD489700E81C9F /* ContentView.swift */; };
 		667FF92128BD489900E81C9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 667FF92028BD489900E81C9F /* Assets.xcassets */; };
 		667FF92428BD489900E81C9F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 667FF92328BD489900E81C9F /* Preview Assets.xcassets */; };
+		C0A2879B68E834496FD0EDB6 /* Pods_iosGistagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40E0A9A70B4099BC4605532 /* Pods_iosGistagram.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D72CD209B2AF138B3FEF31A /* Pods-iosGistagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosGistagram.release.xcconfig"; path = "Target Support Files/Pods-iosGistagram/Pods-iosGistagram.release.xcconfig"; sourceTree = "<group>"; };
+		6648369928BD61A500E39A17 /* Koin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Koin.swift; sourceTree = "<group>"; };
 		667FF91928BD489700E81C9F /* iosGistagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosGistagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		667FF91C28BD489700E81C9F /* iosGistagramApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosGistagramApp.swift; sourceTree = "<group>"; };
 		667FF91E28BD489700E81C9F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		667FF92028BD489900E81C9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		667FF92328BD489900E81C9F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D40E0A9A70B4099BC4605532 /* Pods_iosGistagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosGistagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7319CE4BDBFB038D1A979C1 /* Pods-iosGistagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosGistagram.debug.xcconfig"; path = "Target Support Files/Pods-iosGistagram/Pods-iosGistagram.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,17 +32,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0A2879B68E834496FD0EDB6 /* Pods_iosGistagram.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		119DCC033CC20E2258B54131 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D40E0A9A70B4099BC4605532 /* Pods_iosGistagram.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6648369828BD613500E39A17 /* main */ = {
+			isa = PBXGroup;
+			children = (
+				667FF91C28BD489700E81C9F /* iosGistagramApp.swift */,
+				6648369928BD61A500E39A17 /* Koin.swift */,
+			);
+			path = main;
+			sourceTree = "<group>";
+		};
 		667FF91028BD489700E81C9F = {
 			isa = PBXGroup;
 			children = (
 				667FF91B28BD489700E81C9F /* iosGistagram */,
 				667FF91A28BD489700E81C9F /* Products */,
+				C995A1E99F286B0066A2E779 /* Pods */,
+				119DCC033CC20E2258B54131 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -51,7 +77,7 @@
 		667FF91B28BD489700E81C9F /* iosGistagram */ = {
 			isa = PBXGroup;
 			children = (
-				667FF91C28BD489700E81C9F /* iosGistagramApp.swift */,
+				6648369828BD613500E39A17 /* main */,
 				667FF91E28BD489700E81C9F /* ContentView.swift */,
 				667FF92028BD489900E81C9F /* Assets.xcassets */,
 				667FF92228BD489900E81C9F /* Preview Content */,
@@ -67,6 +93,15 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		C995A1E99F286B0066A2E779 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D7319CE4BDBFB038D1A979C1 /* Pods-iosGistagram.debug.xcconfig */,
+				3D72CD209B2AF138B3FEF31A /* Pods-iosGistagram.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +109,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 667FF92728BD489900E81C9F /* Build configuration list for PBXNativeTarget "iosGistagram" */;
 			buildPhases = (
+				FEE3ECC138520961D8908A1E /* [CP] Check Pods Manifest.lock */,
 				667FF91528BD489700E81C9F /* Sources */,
 				667FF91628BD489700E81C9F /* Frameworks */,
 				667FF91728BD489700E81C9F /* Resources */,
+				629B4F2EC2A957A09A301147 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,11 +169,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		629B4F2EC2A957A09A301147 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iosGistagram/Pods-iosGistagram-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iosGistagram/Pods-iosGistagram-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iosGistagram/Pods-iosGistagram-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FEE3ECC138520961D8908A1E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iosGistagram-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		667FF91528BD489700E81C9F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6648369A28BD61A500E39A17 /* Koin.swift in Sources */,
 				667FF91F28BD489700E81C9F /* ContentView.swift in Sources */,
 				667FF91D28BD489700E81C9F /* iosGistagramApp.swift in Sources */,
 			);
@@ -261,12 +341,14 @@
 		};
 		667FF92828BD489900E81C9F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7319CE4BDBFB038D1A979C1 /* Pods-iosGistagram.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iosGistagram/Preview Content\"";
+				DEVELOPMENT_TEAM = 874AZT649B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -289,12 +371,14 @@
 		};
 		667FF92928BD489900E81C9F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D72CD209B2AF138B3FEF31A /* Pods-iosGistagram.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iosGistagram/Preview Content\"";
+				DEVELOPMENT_TEAM = 874AZT649B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

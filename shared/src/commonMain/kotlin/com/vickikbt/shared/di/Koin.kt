@@ -1,5 +1,10 @@
 package com.vickikbt.shared.di
 
+import com.vickikbt.shared.domain.repositories.AuthRepository
+import com.vickikbt.shared.domain.repositories.ProfileRepository
+import com.vickikbt.shared.domain.repositories.SettingsRepository
+import org.koin.core.Koin
+import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
 
@@ -13,4 +18,13 @@ fun initKoin(isDebug: Boolean = false, appDeclaration: KoinAppDeclaration = {}) 
 /**
  * Called by iOS etc
  */
-fun initKoin() = initKoin {}
+fun KoinApplication.Companion.start(): KoinApplication = initKoin {}
+
+val Koin.iosSettingsRepository: SettingsRepository
+    get() = get()
+
+val Koin.iosAuthRepository: AuthRepository
+    get() = get()
+
+val Koin.iosProfileRepository: ProfileRepository
+    get() = get()

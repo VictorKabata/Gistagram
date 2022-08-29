@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import shared
 
 struct ContentView: View {
+    
+    let greetings = Platform().platform
     var body: some View {
-        Text("Hello, world!")
+        Text("Hello, world! from \(greetings)")
             .padding()
     }
 }

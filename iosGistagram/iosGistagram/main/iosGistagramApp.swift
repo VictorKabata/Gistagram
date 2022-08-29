@@ -6,9 +6,14 @@
 //
 
 import SwiftUI
+import shared
 
 @main
 struct iosGistagramApp: App {
+    
+    init(){
+        KoinApplication.start()
+    }
     var body: some Scene {
         WindowGroup {
             ContentView()
