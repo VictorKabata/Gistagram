@@ -20,7 +20,7 @@ object Versions {
     const val sqlDelight = "1.5.3"
     const val multiplatformSettings = "0.9"
     const val kmpNativeCoroutines = "0.12.1-new-mm"
-    const val realm="1.0.1"
+    const val realm = "1.0.1"
 
     const val mockk = "1.12.3"
 
@@ -37,7 +37,7 @@ object Versions {
     const val composeConstraint = "1.0.0-rc01"
     const val lifecycle = "2.4.0"
     const val accompanist = "0.20.0"
-    const val koin = "3.1.2"
+    const val koin = "3.1.5"
     const val navigation = "2.4.0-alpha02"
     const val coil = "1.4.0"
     const val coroutines = "1.5.2"
