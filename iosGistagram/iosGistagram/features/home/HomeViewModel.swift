@@ -24,16 +24,15 @@ class HomeViewModel:ObservableObject{
     
     func observeUser(){
         
-    
-        
-        let handle =    Task{
+        print("about to fetch user")
+      let handle =    Task{
             do{
                 
                 
                 let nativeFlow = try await asyncFunction(for: authRepository.getUserNative())
 
                 let stream  = asyncStream(for:nativeFlow)
-                print("the stream is \(stream)")
+            
                for try await userStream in stream{
                    print("the stream user is \(userStream)")
                    userDetails = userStream

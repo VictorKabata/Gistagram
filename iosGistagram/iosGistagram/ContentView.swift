@@ -32,6 +32,8 @@ struct ContentView: View {
     
     var colorScheme:ColorScheme{
         
+        withAnimation{
+        
         switch mainViewModel.appTheme{
         case .Dark:
             return .dark
@@ -42,7 +44,7 @@ struct ContentView: View {
             return systemColorScheme
             
         }
-       
+        }
     }
 }
 

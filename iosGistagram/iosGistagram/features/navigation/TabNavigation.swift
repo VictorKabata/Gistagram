@@ -15,22 +15,22 @@ struct TabNavigation: View {
                 .tabItem{
                     Image(systemName: "house")
                 }
-
+            
             SearchScreen()
                 .tabItem{
                     Image(systemName: "magnifyingglass")
                 }
             FavoritesScreen()
                 .tabItem{
-                    Image(systemName: "suit.heart.fill")
+                    Image(systemName: "heart")
                 }
             ProfileScreen()
                 .tabItem{
                     Image(systemName: "person.circle")
                 }
             
+        }
     }
-}
 }
 
 struct TabNavigation_Previews: PreviewProvider {

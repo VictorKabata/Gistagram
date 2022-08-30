@@ -14,9 +14,12 @@ class LoginViewModel :  ObservableObject{
     @LazyKoin
     var repo  : AuthRepository
     
+    @Published var isLoading : Bool = false
+    
     @Published var errorMessage : String? = nil
     
     func fetchAccessToken(code:String){
+        isLoading = true
         Task{
             do{
                 errorMessage = nil
@@ -39,6 +42,7 @@ class LoginViewModel :  ObservableObject{
     
     
     func fetchUserProfile(){
+        isLoading = true
         
         
         let _ = Task{
@@ -46,6 +50,7 @@ class LoginViewModel :  ObservableObject{
             do{
                 errorMessage = nil
                 _ = try await asyncFunction(for: repo.fetchUserProfileNative())
+                isLoading = false
             } catch{
                 errorMessage = error.localizedDescription
                 debugPrint("the error obtained while fetching the profile is \(error)")

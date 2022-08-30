@@ -27,24 +27,34 @@ struct LoginScreen : View {
         VStack{
             Spacer()
             Image("gitlogo")
+                .renderingMode(.template)
                 .resizable()
+                .foregroundColor(.primary)
+              
                 .frame(width: 150, height: 150, alignment: .center)
             Spacer()
             Button(action: {
                fetchUserToken()
             }, label: {
-                Text("LOGIN")
-                    .font(.title2)
-                    .bold()
-                    .foregroundColor(cardBackGround)
-                    .padding(.horizontal,100)
-                    .padding(.vertical,6).background(buttonBackground)
+                if loginViewModel.isLoading{
+                    ProgressView()
+                    
+                } else {
+                    Text("LOGIN")
+                        .font(.title2)
+                        .bold()
+                        .foregroundColor(Color(UIColor.systemBackground))
+                      
+                        .padding(.horizontal,100)
+                        .padding(.vertical,6).background(Color(UIColor.label))
+                }
                                     
                                    
                                    
                    
             })
                 .cornerRadius(4)
+                .disabled(loginViewModel.isLoading)
            
             Text("Powered by")
                 .padding(.top, 16)
