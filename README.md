@@ -25,6 +25,13 @@
 - [Napier](https://github.com/AAkira/Napier) -  Logging library for Kotlin Multiplatform.
 - [Mockk](https://github.com/mockk/mockk) - Library for creating mocks for tests.
 
+
+### iOS
+- [SwiftUI](https://developer.apple.com/xcode/swiftui/) - SwiftUI is Apple's brand new declarative UI Toolkit for building user interfaces for iOS, tvOS, macOS, and watchOS.
+- [SDWeb Image](https://github.com/SDWebImage/SDWebImageSwiftUI) - SwiftUI Image loading framework.
+- [KMP Async](https://github.com/rickclephas/KMP-NativeCoroutines) - A library to use kotlin coroutines in Swift.
+- [Cocoa Pods](https://cocoapods.org/) - CocoaPods is a dependency manager for Swift and Objective-C Cocoa projects.
+
 ### Android
 
 - [Jetpack Compose](https://developer.android.com/jetpack/compose?gclid=Cj0KCQiA95aRBhCsARIsAC2xvfwC4pw6JG3r8U_4zVVSzwfCSIMMM8MKPMGAOTRoMjpkfpimPVz1FwoaAqlUEALw_wcB&gclsrc=aw.ds) - Modern toolkit for building native UI.
