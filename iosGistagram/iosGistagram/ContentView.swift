@@ -9,11 +9,23 @@ import SwiftUI
 import shared
 
 struct ContentView: View {
+    @StateObject var mainViewModel : MainViewModel = MainViewModel()
     
-    let greetings = Platform().platform
+    
     var body: some View {
-        Text("Hello, world! from \(greetings)")
-            .padding()
+        
+        ZStack{
+        if mainViewModel.accessToken == nil {
+            LoginScreen()
+        }
+        else{
+            TabNavigation()
+        }
+        }.onAppear{
+            mainViewModel.observeTheme()
+            mainViewModel.observeToken()
+            
+        }
     }
 }
 

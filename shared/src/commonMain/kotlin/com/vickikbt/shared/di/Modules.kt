@@ -36,7 +36,7 @@ val commonModule = module {
      * API client via constructor injection
      */
     single {
-        HttpClient {
+        HttpClient(engine = get()) {
             install(Logging) {
                 level = LogLevel.HEADERS
                 logger = object : Logger {

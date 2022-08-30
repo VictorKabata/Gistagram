@@ -15,7 +15,7 @@ object Versions {
     const val kotlinxSerialization = "1.2.2"
     const val apollo = "3.1.0"
     const val multiplatformPaging = "0.4.7"
-    const val kotlinxCoroutines = "1.6.0-native-mt"
+    const val kotlinxCoroutines = "1.6.3-native-mt"
     const val napier = "2.4.0"
     const val sqlDelight = "1.5.3"
     const val multiplatformSettings = "0.9"

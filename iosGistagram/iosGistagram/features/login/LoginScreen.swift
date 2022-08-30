@@ -36,9 +36,9 @@ struct LoginScreen : View {
                 Text("LOGIN")
                     .font(.title2)
                     .bold()
-                    .foregroundColor(.primary)
+                    .foregroundColor(cardBackGround)
                     .padding(.horizontal,100)
-                        .padding(.vertical,4).background(Color.black)
+                    .padding(.vertical,6).background(buttonBackground)
                                     
                                    
                                    

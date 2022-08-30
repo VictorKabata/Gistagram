@@ -9,7 +9,7 @@ import Foundation
 import shared
 import KMPNativeCoroutinesAsync
 
-
+@MainActor
 class LoginViewModel :  ObservableObject{
     @LazyKoin
     var repo  : AuthRepository
