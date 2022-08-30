@@ -1,11 +1,4 @@
 # Gistagram
-<img  src="https://img.shields.io/badge/-KOTLIN-000000?logo=kotlin&logoColor=white&style=for-the-badge">
-<img  src="https://img.shields.io/badge/-ANDROID-000000?logo=android&logoColor=white&style=for-the-badge">
-<img  src="https://img.shields.io/badge/-IOS-000000?logo=ios&logoColor=white&style=for-the-badge">
-<img  src="https://img.shields.io/badge/-WINDOWS-000000?logo=windows&logoColor=white&style=for-the-badge">
-<img  src="https://img.shields.io/badge/-LINUX-000000?logo=linux&logoColor=white&style=for-the-badge">
-<img  src="https://img.shields.io/badge/-MACOS-000000?logo=apple&logoColor=white&style=for-the-badge">
-
 ## Work in Progress🔨 - [Develop Branch](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
  GitHub/Instagram clone android and desktop application built using Kotlin.
