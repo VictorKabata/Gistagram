@@ -13,7 +13,7 @@ object Versions {
     const val ktor = "1.6.7"
     const val kotlinSerialization = "1.6.10"
     const val kotlinxSerialization = "1.2.2"
-    const val apollo = "3.1.0"
+    const val apollo = "3.5.0"
     const val multiplatformPaging = "0.4.7"
     const val kotlinxCoroutines = "1.6.3-native-mt"
     const val napier = "2.4.0"

@@ -9,8 +9,28 @@ import SwiftUI
 
 struct TabNavigation: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        TabView{
+            
+            HomeScreen()
+                .tabItem{
+                    Image(systemName: "house")
+                }
+
+            SearchScreen()
+                .tabItem{
+                    Image(systemName: "magnifyingglass")
+                }
+            FavoritesScreen()
+                .tabItem{
+                    Image(systemName: "suit.heart.fill")
+                }
+            ProfileScreen()
+                .tabItem{
+                    Image(systemName: "person.circle")
+                }
+            
     }
+}
 }
 
 struct TabNavigation_Previews: PreviewProvider {

@@ -8,8 +8,31 @@
 import SwiftUI
 
 struct HomeScreen: View {
+    @StateObject
+    var homeViewModel:HomeViewModel = HomeViewModel()
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        VStack{
+            
+            
+            
+            if let theUser = homeViewModel.userDetails{
+            Text("\(theUser)")
+                
+             
+            }else {
+                Text("Could Not Load Details")
+            }
+            
+        
+       
+            Spacer()
+        }.onAppear{
+          homeViewModel.observeUser()
+            homeViewModel.observeToken()
+        }.padding(2)
+        
+       
     }
 }
 

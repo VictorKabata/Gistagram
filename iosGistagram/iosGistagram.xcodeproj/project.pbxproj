@@ -17,6 +17,20 @@
 		664836AC28BDFE7200E39A17 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664836AB28BDFE7200E39A17 /* HomeViewModel.swift */; };
 		664836B128BDFEB800E39A17 /* TabNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664836B028BDFEB800E39A17 /* TabNavigation.swift */; };
 		664836B328BE008900E39A17 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664836B228BE008900E39A17 /* Colors.swift */; };
+		664836B928BE2BFC00E39A17 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664836B828BE2BFC00E39A17 /* ProfileViewModel.swift */; };
+		664836BB28BE2C0A00E39A17 /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664836BA28BE2C0A00E39A17 /* ProfileScreen.swift */; };
+		664836BD28BE2C1700E39A17 /* FavoritesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664836BC28BE2C1700E39A17 /* FavoritesScreen.swift */; };
+		664836BF28BE2C2900E39A17 /* SearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664836BE28BE2C2900E39A17 /* SearchScreen.swift */; };
+		664836C228BE2C4800E39A17 /* PreferencesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664836C128BE2C4800E39A17 /* PreferencesScreen.swift */; };
+		664836C428BE2C6100E39A17 /* PreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664836C328BE2C6100E39A17 /* PreferencesViewModel.swift */; };
+		664836CE28BE2E9800E39A17 /* BioScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664836C828BE2E9800E39A17 /* BioScreen.swift */; };
+		664836CF28BE2E9800E39A17 /* RepositoriesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664836C928BE2E9800E39A17 /* RepositoriesSection.swift */; };
+		664836D028BE2E9800E39A17 /* ProfileHeaderScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664836CA28BE2E9800E39A17 /* ProfileHeaderScreen.swift */; };
+		664836D128BE2E9800E39A17 /* RepositoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664836CB28BE2E9800E39A17 /* RepositoryItem.swift */; };
+		664836D228BE2E9800E39A17 /* PinnedRepos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664836CC28BE2E9800E39A17 /* PinnedRepos.swift */; };
+		664836D328BE2E9800E39A17 /* navigationbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664836CD28BE2E9800E39A17 /* navigationbar.swift */; };
+		664836D628BE343A00E39A17 /* SupportEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664836D428BE343A00E39A17 /* SupportEmail.swift */; };
+		664836D728BE343A00E39A17 /* ParseHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664836D528BE343A00E39A17 /* ParseHex.swift */; };
 		667FF91D28BD489700E81C9F /* iosGistagramApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667FF91C28BD489700E81C9F /* iosGistagramApp.swift */; };
 		667FF91F28BD489700E81C9F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667FF91E28BD489700E81C9F /* ContentView.swift */; };
 		667FF92128BD489900E81C9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 667FF92028BD489900E81C9F /* Assets.xcassets */; };
@@ -36,6 +50,20 @@
 		664836AB28BDFE7200E39A17 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		664836B028BDFEB800E39A17 /* TabNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigation.swift; sourceTree = "<group>"; };
 		664836B228BE008900E39A17 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		664836B828BE2BFC00E39A17 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		664836BA28BE2C0A00E39A17 /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
+		664836BC28BE2C1700E39A17 /* FavoritesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesScreen.swift; sourceTree = "<group>"; };
+		664836BE28BE2C2900E39A17 /* SearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreen.swift; sourceTree = "<group>"; };
+		664836C128BE2C4800E39A17 /* PreferencesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesScreen.swift; sourceTree = "<group>"; };
+		664836C328BE2C6100E39A17 /* PreferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewModel.swift; sourceTree = "<group>"; };
+		664836C828BE2E9800E39A17 /* BioScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BioScreen.swift; path = iosGistagram/features/Profile/components/BioScreen.swift; sourceTree = SOURCE_ROOT; };
+		664836C928BE2E9800E39A17 /* RepositoriesSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepositoriesSection.swift; path = iosGistagram/features/Profile/components/RepositoriesSection.swift; sourceTree = SOURCE_ROOT; };
+		664836CA28BE2E9800E39A17 /* ProfileHeaderScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileHeaderScreen.swift; path = iosGistagram/features/Profile/components/ProfileHeaderScreen.swift; sourceTree = SOURCE_ROOT; };
+		664836CB28BE2E9800E39A17 /* RepositoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RepositoryItem.swift; path = iosGistagram/features/Profile/components/RepositoryItem.swift; sourceTree = SOURCE_ROOT; };
+		664836CC28BE2E9800E39A17 /* PinnedRepos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinnedRepos.swift; path = iosGistagram/features/Profile/components/PinnedRepos.swift; sourceTree = SOURCE_ROOT; };
+		664836CD28BE2E9800E39A17 /* navigationbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = navigationbar.swift; path = iosGistagram/features/Profile/components/navigationbar.swift; sourceTree = SOURCE_ROOT; };
+		664836D428BE343A00E39A17 /* SupportEmail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportEmail.swift; sourceTree = "<group>"; };
+		664836D528BE343A00E39A17 /* ParseHex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHex.swift; sourceTree = "<group>"; };
 		667FF91928BD489700E81C9F /* iosGistagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosGistagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		667FF91C28BD489700E81C9F /* iosGistagramApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosGistagramApp.swift; sourceTree = "<group>"; };
 		667FF91E28BD489700E81C9F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -79,6 +107,10 @@
 		6648369D28BDE18F00E39A17 /* features */ = {
 			isa = PBXGroup;
 			children = (
+				664836C028BE2C3300E39A17 /* Preferences */,
+				664836B728BE2BE100E39A17 /* search */,
+				664836B628BE2BD600E39A17 /* favorites */,
+				664836B528BE2BC800E39A17 /* profile */,
 				664836AD28BDFE8600E39A17 /* navigation */,
 				664836A828BDFE4600E39A17 /* home */,
 				664836A328BDE44900E39A17 /* login */,
@@ -91,6 +123,8 @@
 			children = (
 				664836A128BDE21500E39A17 /* PresentationUtilities.swift */,
 				664836B228BE008900E39A17 /* Colors.swift */,
+				664836D528BE343A00E39A17 /* ParseHex.swift */,
+				664836D428BE343A00E39A17 /* SupportEmail.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -121,6 +155,54 @@
 			path = navigation;
 			sourceTree = "<group>";
 		};
+		664836B528BE2BC800E39A17 /* profile */ = {
+			isa = PBXGroup;
+			children = (
+				664836C728BE2E6000E39A17 /* components */,
+				664836B828BE2BFC00E39A17 /* ProfileViewModel.swift */,
+				664836BA28BE2C0A00E39A17 /* ProfileScreen.swift */,
+			);
+			path = profile;
+			sourceTree = "<group>";
+		};
+		664836B628BE2BD600E39A17 /* favorites */ = {
+			isa = PBXGroup;
+			children = (
+				664836BC28BE2C1700E39A17 /* FavoritesScreen.swift */,
+			);
+			path = favorites;
+			sourceTree = "<group>";
+		};
+		664836B728BE2BE100E39A17 /* search */ = {
+			isa = PBXGroup;
+			children = (
+				664836BE28BE2C2900E39A17 /* SearchScreen.swift */,
+			);
+			path = search;
+			sourceTree = "<group>";
+		};
+		664836C028BE2C3300E39A17 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				664836C128BE2C4800E39A17 /* PreferencesScreen.swift */,
+				664836C328BE2C6100E39A17 /* PreferencesViewModel.swift */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
+		664836C728BE2E6000E39A17 /* components */ = {
+			isa = PBXGroup;
+			children = (
+				664836C828BE2E9800E39A17 /* BioScreen.swift */,
+				664836CD28BE2E9800E39A17 /* navigationbar.swift */,
+				664836CC28BE2E9800E39A17 /* PinnedRepos.swift */,
+				664836CA28BE2E9800E39A17 /* ProfileHeaderScreen.swift */,
+				664836C928BE2E9800E39A17 /* RepositoriesSection.swift */,
+				664836CB28BE2E9800E39A17 /* RepositoryItem.swift */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
 		667FF91028BD489700E81C9F = {
 			isa = PBXGroup;
 			children = (
@@ -142,8 +224,8 @@
 		667FF91B28BD489700E81C9F /* iosGistagram */ = {
 			isa = PBXGroup;
 			children = (
-				664836A028BDE1FC00E39A17 /* utils */,
 				6648369D28BDE18F00E39A17 /* features */,
+				664836A028BDE1FC00E39A17 /* utils */,
 				6648369828BD613500E39A17 /* main */,
 				667FF91E28BD489700E81C9F /* ContentView.swift */,
 				667FF92028BD489900E81C9F /* Assets.xcassets */,
@@ -283,16 +365,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				664836CE28BE2E9800E39A17 /* BioScreen.swift in Sources */,
 				6648369F28BDE1C600E39A17 /* MainViewModel.swift in Sources */,
+				664836BB28BE2C0A00E39A17 /* ProfileScreen.swift in Sources */,
+				664836D328BE2E9800E39A17 /* navigationbar.swift in Sources */,
 				664836B328BE008900E39A17 /* Colors.swift in Sources */,
+				664836BF28BE2C2900E39A17 /* SearchScreen.swift in Sources */,
 				6648369A28BD61A500E39A17 /* Koin.swift in Sources */,
+				664836D228BE2E9800E39A17 /* PinnedRepos.swift in Sources */,
 				667FF91F28BD489700E81C9F /* ContentView.swift in Sources */,
 				664836AC28BDFE7200E39A17 /* HomeViewModel.swift in Sources */,
 				664836B128BDFEB800E39A17 /* TabNavigation.swift in Sources */,
+				664836C228BE2C4800E39A17 /* PreferencesScreen.swift in Sources */,
+				664836BD28BE2C1700E39A17 /* FavoritesScreen.swift in Sources */,
+				664836D028BE2E9800E39A17 /* ProfileHeaderScreen.swift in Sources */,
 				667FF91D28BD489700E81C9F /* iosGistagramApp.swift in Sources */,
+				664836D728BE343A00E39A17 /* ParseHex.swift in Sources */,
 				664836A728BDE48700E39A17 /* LoginViewModel.swift in Sources */,
+				664836D128BE2E9800E39A17 /* RepositoryItem.swift in Sources */,
+				664836CF28BE2E9800E39A17 /* RepositoriesSection.swift in Sources */,
 				664836AA28BDFE6200E39A17 /* HomeScreen.swift in Sources */,
+				664836C428BE2C6100E39A17 /* PreferencesViewModel.swift in Sources */,
 				664836A528BDE46100E39A17 /* LoginScreen.swift in Sources */,
+				664836D628BE343A00E39A17 /* SupportEmail.swift in Sources */,
+				664836B928BE2BFC00E39A17 /* ProfileViewModel.swift in Sources */,
 				664836A228BDE21500E39A17 /* PresentationUtilities.swift in Sources */,
 				6648369C28BDE0D800E39A17 /* ShimViewController.swift in Sources */,
 			);
