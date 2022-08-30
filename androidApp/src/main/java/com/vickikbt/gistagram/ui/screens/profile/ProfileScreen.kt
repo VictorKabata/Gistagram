@@ -58,17 +58,18 @@ fun ProfileScreen(
         is UiState.Success -> {
             val viewer = userProfileUiState.data?.data?.viewer
 
-            Log.e("TAG", "Viewer: $viewer")
-
-            Column(modifier = Modifier.fillMaxSize()) {
-                ProfileAppBar(
-                    title = viewer?.login ?: stringResource(id = R.string.title_profile),
-                    onSettingsClicked = {
-                        navController.navigate(NavigationItem.Settings.route)
-                    }
-                )
-
-                Spacer(modifier = Modifier.height(4.dp))
+            Scaffold(
+                modifier = Modifier.fillMaxSize(),
+                topBar = {
+                    ProfileAppBar(
+                        title = viewer?.login ?: stringResource(id = R.string.title_profile),
+                        onSettingsClicked = {
+                            navController.navigate(NavigationItem.Settings.route)
+                        }
+                    )
+                }
+            ) { contentPadding ->
+                // Spacer(modifier = Modifier.height(4.dp))
 
                 LazyColumn(
                     modifier = Modifier.fillMaxSize(),
@@ -85,11 +86,11 @@ fun ProfileScreen(
                     item {
                         Spacer(modifier = Modifier.height(18.dp))
 
-                        viewer.let {
+                        viewer?.pinnedItems?.nodes.let {
                             PinnedRepoSection(
                                 navController = navController,
-                                user = it,
-                                pinnedRepo = it?.pinnedItems?.nodes ?: listOf()
+                                user = viewer,
+                                pinnedRepo = it ?: listOf()
                             )
                         }
                     }
@@ -259,19 +260,14 @@ fun PinnedRepoSection(
     user: LoggedInUserProfileQuery.Viewer?,
     pinnedRepo: List<LoggedInUserProfileQuery.Node1?>
 ) {
-   /* val pinnedRepoList = mutableListOf<LoggedInUserProfileQuery.OnRepository?>()
-    pinnedRepo.forEach { pinnedRepoList.add(it?.onRepository) }*/
-
-    val pinnedRepoList = pinnedRepo.mapNotNull { it?.onRepository }
-
     LazyRow(modifier = Modifier) {
 
-        items(items = pinnedRepoList) { repo ->
+        items(items = pinnedRepo) { repo ->
             ItemPinnedRepo(
                 modifier = Modifier.padding(horizontal = 6.dp),
                 onItemClicked = {
                     user?.login?.let { login ->
-                        repo.name.let { repo ->
+                        repo?.onRepository?.name?.let { repo ->
                             navController.navigate(
                                 "status/$login/$repo",
                                 navOptions = null
@@ -279,7 +275,7 @@ fun PinnedRepoSection(
                         }
                     }
                 },
-                pinnedRepo = repo
+                pinnedRepo = repo?.onRepository
             )
         }
     }
@@ -297,7 +293,7 @@ fun RepositoriesSection(
     ProfileTabRow(modifier = modifier, onTabSelected = { selectedTabIndex = it })
 
     when (selectedTabIndex) {
-        0 -> RepositoriesTab(repos = repos)
+        0 -> RepositoriesTab(repos = repos ?: emptyList())
     }
 }
 

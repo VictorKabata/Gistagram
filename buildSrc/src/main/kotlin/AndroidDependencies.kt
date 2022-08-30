@@ -31,11 +31,15 @@ object AndroidDependencies {
     // const val composeConstraint = "1.0.0-rc01"
 
     const val lifeCycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
-    const val accompanistNavigationAnimation =
-        "com.google.accompanist:accompanist-navigation-animation:${Versions.accompanist}"
+
+    const val accompanistNavigationAnimation = "com.google.accompanist:accompanist-navigation-animation:${Versions.accompanist}"
+    const val accompanistFlowLayout="com.google.accompanist:accompanist-flowlayout:${Versions.accompanist}"
+
     const val koinAndroid = "io.insert-koin:koin-android:${Versions.koin}"
     const val koinCompose = "io.insert-koin:koin-androidx-compose:${Versions.koin}"
+
     const val navigation = "androidx.navigation:navigation-compose:${Versions.navigation}"
+
     const val coil = "io.coil-kt:coil-compose:${Versions.coil}"
     const val coroutines = "1.5.2"
     const val firebaseBOM = "29.0.3"
