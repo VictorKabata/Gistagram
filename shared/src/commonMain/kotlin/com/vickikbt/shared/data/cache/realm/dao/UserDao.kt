@@ -15,16 +15,11 @@ class UserDao constructor(
     private val realmDatabase: Realm
 ) {
 
-  //  val user = realmDatabase.query(UserEntity::class).first().find()?.asFlow()?.map { it.obj }
+    //  val user = realmDatabase.query(UserEntity::class).first().find()?.asFlow()?.map { it.obj }
 
     val user = MutableStateFlow<UserEntity?>(null)
 
-
-
-
-
     init {
-
 
         CoroutineScope(ioDispatcher).launch {
             realmDatabase.query(UserEntity::class).first().asFlow().map {
@@ -36,8 +31,6 @@ class UserDao constructor(
             }
         }
     }
-
-
 
     suspend fun saveUser(userEntity: UserEntity) {
         val user = UserEntity().apply {
