@@ -55,8 +55,7 @@
 
 ## iOS
 
-<img src="assets/img13.png" width="250">
-<img src="assets/img9.png" width="250"> <img src="assets/img10.png" width="250"> <img src="assets/img11.png" width="250"> <img src="assets/img12.png" width="250">
+<img src="assets/img13.png" width="250"> <img src="assets/img9.png" width="250"> <img src="assets/img11.png" width="250"> <img src="assets/img10.png" width="250"> <img src="assets/img12.png" width="250">
 
 ## Desktop
 
