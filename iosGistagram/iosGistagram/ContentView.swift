@@ -11,6 +11,8 @@ import shared
 struct ContentView: View {
     @StateObject var mainViewModel : MainViewModel = MainViewModel()
     
+    @Environment(\.colorScheme) var systemColorScheme: ColorScheme
+    
     
     var body: some View {
         
@@ -25,7 +27,22 @@ struct ContentView: View {
             mainViewModel.observeTheme()
             mainViewModel.observeToken()
             
+        }.preferredColorScheme(colorScheme)
+    }
+    
+    var colorScheme:ColorScheme{
+        
+        switch mainViewModel.appTheme{
+        case .Dark:
+            return .dark
+            
+        case .Light:
+            return.light
+        case .System:
+            return systemColorScheme
+            
         }
+       
     }
 }
 
