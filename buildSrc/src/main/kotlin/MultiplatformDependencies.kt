@@ -16,6 +16,7 @@ object MultiplatformDependencies {
     const val ktorAndroid = "io.ktor:ktor-client-android:${Versions.ktor}"
     const val ktoriOS = "io.ktor:ktor-client-ios:${Versions.ktor}"
     const val ktorJvm = "io.ktor:ktor-client-java:${Versions.ktor}"
+    const val ktorDarwin = "io.ktor:ktor-client-darwin:${Versions.ktor}"
 
     const val ktorServerCore = "io.ktor:ktor-server-core:${Versions.ktor}"
     const val ktorServerNetty = "io.ktor:ktor-server-netty:${Versions.ktor}"

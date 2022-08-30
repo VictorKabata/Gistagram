@@ -8,6 +8,7 @@ import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,6 +22,10 @@ import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun HomeScreen(navController: NavController, viewModel: HomeViewModel = getViewModel()) {
+
+    LaunchedEffect(key1 = true, block = {
+        viewModel.getUser()
+    })
 
     val user = viewModel.user.collectAsState().value
 
@@ -43,7 +48,7 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel = getViewM
             color = MaterialTheme.colors.onSurface
         )
 
-        Button(
+     /*   Button(
             modifier = Modifier.align(Alignment.BottomCenter),
             onClick = { viewModel.getUser() },
             colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.onSurface)
@@ -57,6 +62,6 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel = getViewM
                 textAlign = TextAlign.Start,
                 color = MaterialTheme.colors.surface
             )
-        }
+        }*/
     }
 }

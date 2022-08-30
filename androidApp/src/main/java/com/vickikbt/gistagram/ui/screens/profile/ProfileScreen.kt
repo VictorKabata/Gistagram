@@ -106,11 +106,6 @@ fun ProfileScreen(
 }
 
 @Composable
-fun Profile() {
-
-}
-
-@Composable
 private fun StatSection(navController: NavController, user: LoggedInUserProfileQuery.Viewer?) {
     val userProfilePainter = rememberImagePainter(data = user?.avatarUrl) {
         placeholder(R.drawable.ic_logo)

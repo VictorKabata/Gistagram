@@ -24,4 +24,6 @@ object Plugins {
     const val jvm = "jvm"
     const val compose = "org.jetbrains.compose"
 
+    const val nativeCocoaPods = "native.cocoapods"
+
 }
