@@ -10,10 +10,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
@@ -58,17 +55,18 @@ fun ProfileScreen(
         is UiState.Success -> {
             val viewer = userProfileUiState.data?.data?.viewer
 
-            Log.e("TAG", "Viewer: $viewer")
-
-            Column(modifier = Modifier.fillMaxSize()) {
-                ProfileAppBar(
-                    title = viewer?.login ?: stringResource(id = R.string.title_profile),
-                    onSettingsClicked = {
-                        navController.navigate(NavigationItem.Settings.route)
-                    }
-                )
-
-                Spacer(modifier = Modifier.height(4.dp))
+            Scaffold(
+                modifier = Modifier.fillMaxSize(),
+                topBar = {
+                    ProfileAppBar(
+                        title = viewer?.login ?: stringResource(id = R.string.title_profile),
+                        onSettingsClicked = {
+                            navController.navigate(NavigationItem.Settings.route)
+                        }
+                    )
+                }
+            ) { contentPadding ->
+                // Spacer(modifier = Modifier.height(4.dp))
 
                 LazyColumn(
                     modifier = Modifier.fillMaxSize(),
@@ -85,11 +83,11 @@ fun ProfileScreen(
                     item {
                         Spacer(modifier = Modifier.height(18.dp))
 
-                        viewer.let {
+                        viewer?.pinnedItems?.nodes.let {
                             PinnedRepoSection(
                                 navController = navController,
-                                user = it,
-                                pinnedRepo = it?.pinnedItems?.nodes ?: listOf()
+                                user = viewer,
+                                pinnedRepo = it ?: listOf()
                             )
                         }
                     }
@@ -259,17 +257,14 @@ fun PinnedRepoSection(
     user: LoggedInUserProfileQuery.Viewer?,
     pinnedRepo: List<LoggedInUserProfileQuery.Node1?>
 ) {
-    val pinnedRepoList = mutableListOf<LoggedInUserProfileQuery.OnRepository?>()
-    pinnedRepo.forEach { pinnedRepoList.add(it?.onRepository) }
-
     LazyRow(modifier = Modifier) {
 
-        items(items = pinnedRepoList) { repo ->
+        items(items = pinnedRepo) { repo ->
             ItemPinnedRepo(
                 modifier = Modifier.padding(horizontal = 6.dp),
                 onItemClicked = {
                     user?.login?.let { login ->
-                        repo?.name?.let { repo ->
+                        repo?.onRepository?.name?.let { repo ->
                             navController.navigate(
                                 "status/$login/$repo",
                                 navOptions = null
@@ -277,7 +272,7 @@ fun PinnedRepoSection(
                         }
                     }
                 },
-                pinnedRepo = repo
+                pinnedRepo = repo?.onRepository
             )
         }
     }
@@ -295,7 +290,7 @@ fun RepositoriesSection(
     ProfileTabRow(modifier = modifier, onTabSelected = { selectedTabIndex = it })
 
     when (selectedTabIndex) {
-        0 -> RepositoriesTab(repos = repos)
+        0 -> RepositoriesTab(repos = repos ?: emptyList())
     }
 }
 

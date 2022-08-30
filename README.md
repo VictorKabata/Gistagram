@@ -1,5 +1,14 @@
-# Gistagram - 
+# Gistagram
+<img  src="https://img.shields.io/badge/-KOTLIN-000000?logo=kotlin&logoColor=white&style=for-the-badge">
+<img  src="https://img.shields.io/badge/-ANDROID-000000?logo=android&logoColor=white&style=for-the-badge">
+<img  src="https://img.shields.io/badge/-IOS-000000?logo=ios&logoColor=white&style=for-the-badge">
+<img  src="https://img.shields.io/badge/-WINDOWS-000000?logo=windows&logoColor=white&style=for-the-badge">
+<img  src="https://img.shields.io/badge/-LINUX-000000?logo=linux&logoColor=white&style=for-the-badge">
+<img  src="https://img.shields.io/badge/-MACOS-000000?logo=apple&logoColor=white&style=for-the-badge">
+</p> 
+
 ## Work in Progress🔨 - [Develop Branch](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+
  GitHub/Instagram clone android and desktop application built using Kotlin.
 
 ## Prerequisite
@@ -25,6 +34,13 @@
 - [Napier](https://github.com/AAkira/Napier) -  Logging library for Kotlin Multiplatform.
 - [Mockk](https://github.com/mockk/mockk) - Library for creating mocks for tests.
 
+
+### iOS
+- [SwiftUI](https://developer.apple.com/xcode/swiftui/) - SwiftUI is Apple's brand new declarative UI Toolkit for building user interfaces for iOS, tvOS, macOS, and watchOS.
+- [SDWeb Image](https://github.com/SDWebImage/SDWebImageSwiftUI) - SwiftUI Image loading framework.
+- [KMP Async](https://github.com/rickclephas/KMP-NativeCoroutines) - A library to use kotlin coroutines in Swift.
+- [Cocoa Pods](https://cocoapods.org/) - CocoaPods is a dependency manager for Swift and Objective-C Cocoa projects.
+
 ### Android
 
 - [Jetpack Compose](https://developer.android.com/jetpack/compose?gclid=Cj0KCQiA95aRBhCsARIsAC2xvfwC4pw6JG3r8U_4zVVSzwfCSIMMM8MKPMGAOTRoMjpkfpimPVz1FwoaAqlUEALw_wcB&gclsrc=aw.ds) - Modern toolkit for building native UI.
@@ -44,6 +60,11 @@
 ## Android
 
 <img src="assets/img1.png" width="250"> <img src="assets/img2.png" width="250"> <img src="assets/img3.png" width="250"> <img src="assets/img4.png" width="250"> <img src="assets/img5.png" width="250">
+
+## iOS
+
+<img src="assets/img13.png" width="250">
+<img src="assets/img9.png" width="250"> <img src="assets/img10.png" width="250"> <img src="assets/img11.png" width="250"> <img src="assets/img12.png" width="250">
 
 ## Desktop
 

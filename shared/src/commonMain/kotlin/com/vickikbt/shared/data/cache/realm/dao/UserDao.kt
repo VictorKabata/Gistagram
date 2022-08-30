@@ -6,14 +6,31 @@ import io.realm.kotlin.ext.asFlow
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 
 class UserDao constructor(
     private val ioDispatcher: CoroutineDispatcher,
     private val realmDatabase: Realm
 ) {
 
-    val user = realmDatabase.query(UserEntity::class).first().find()?.asFlow()?.map { it.obj }
+    //  val user = realmDatabase.query(UserEntity::class).first().find()?.asFlow()?.map { it.obj }
+
+    val user = MutableStateFlow<UserEntity?>(null)
+
+    init {
+
+        CoroutineScope(ioDispatcher).launch {
+            realmDatabase.query(UserEntity::class).first().asFlow().map {
+                it.obj
+            }.collect { userEntity ->
+
+                user.value = userEntity
+                println("starting realm $userEntity")
+            }
+        }
+    }
 
     suspend fun saveUser(userEntity: UserEntity) {
         val user = UserEntity().apply {
