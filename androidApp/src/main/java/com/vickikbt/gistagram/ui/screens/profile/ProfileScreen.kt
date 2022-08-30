@@ -259,8 +259,10 @@ fun PinnedRepoSection(
     user: LoggedInUserProfileQuery.Viewer?,
     pinnedRepo: List<LoggedInUserProfileQuery.Node1?>
 ) {
-    val pinnedRepoList = mutableListOf<LoggedInUserProfileQuery.OnRepository?>()
-    pinnedRepo.forEach { pinnedRepoList.add(it?.onRepository) }
+   /* val pinnedRepoList = mutableListOf<LoggedInUserProfileQuery.OnRepository?>()
+    pinnedRepo.forEach { pinnedRepoList.add(it?.onRepository) }*/
+
+    val pinnedRepoList = pinnedRepo.mapNotNull { it?.onRepository }
 
     LazyRow(modifier = Modifier) {
 
@@ -269,7 +271,7 @@ fun PinnedRepoSection(
                 modifier = Modifier.padding(horizontal = 6.dp),
                 onItemClicked = {
                     user?.login?.let { login ->
-                        repo?.name?.let { repo ->
+                        repo.name.let { repo ->
                             navController.navigate(
                                 "status/$login/$repo",
                                 navOptions = null
