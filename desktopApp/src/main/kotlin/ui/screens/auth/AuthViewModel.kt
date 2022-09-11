@@ -66,9 +66,7 @@ class AuthViewModel constructor(private val authRepository: AuthRepository = koi
                 routing {
                     get("/callback") {
                         val code = call.parameters["code"]
-                            ?: throw RuntimeException("Received a response with no code")
-
-                        println("Code: $code")
+                            ?: throw IllegalArgumentException("Received a response with no code")
 
                         call.respondText("OK")
 
