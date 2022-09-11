@@ -36,7 +36,9 @@ subprojects {
         outputToConsole.set(true)
         outputColorName.set("RED")
         filter {
-            exclude("**/generated/**")
+            exclude { entry ->
+                entry.file.toString().contains("generated")
+            }
             include("**/kotlin/**")
         }
     }

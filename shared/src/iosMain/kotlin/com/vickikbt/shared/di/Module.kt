@@ -11,5 +11,5 @@ actual fun platformModule(): Module = module {
 
     single { MultiplatformSettingsWrapper() }
 
-    single {  Ios.create() }
+    single { Ios.create() }
 }

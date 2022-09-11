@@ -5,4 +5,5 @@ import androidx.navigation.NavController
 
 @Composable
 fun NotificationsScreen(navController: NavController) {
+    // Notifications Screen
 }

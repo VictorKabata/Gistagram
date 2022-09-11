@@ -11,5 +11,5 @@ actual fun platformModule(): Module = module {
 
     single { MultiplatformSettingsWrapper(context = get()) }
 
-    single { Android.create()}
+    single { Android.create() }
 }

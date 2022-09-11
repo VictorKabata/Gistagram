@@ -3,8 +3,6 @@ package ui.screens.home
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -23,7 +21,7 @@ import ui.navigation.NavController
 @Composable
 fun HomeScreen(navController: NavController, viewModel: HomeViewModel = koin.get()) {
 
-    LaunchedEffect(key1 = true){
+    LaunchedEffect(key1 = true) {
         viewModel.getUser()
     }
 
