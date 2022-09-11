@@ -1,6 +1,9 @@
 package com.vickikbt.gistagram.ui.screens.auth
 
+import androidx.compose.ui.test.assertIsEnabled
+import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.navigation.NavController
 import androidx.navigation.testing.TestNavHostController
 import androidx.test.core.app.ApplicationProvider
@@ -30,13 +33,31 @@ class AuthScreenTest {
         ShadowLog.stream = System.out
     }
 
+
     @Test
-    fun `should display login button`() {
+    fun `should display login screen and login button`() {
         composeTestRule.setContent {
             GistagramTheme {
                 AuthScreen(navController = navController)
             }
         }
+
+        composeTestRule.onNodeWithTag("button_login").assertExists()
+        composeTestRule.onNodeWithTag("button_login").assertTextEquals("LOGIN")
+        composeTestRule.onNodeWithTag("button_login").assertIsEnabled()
     }
+
+    /*@Test
+    fun `should display loading when clicking login button`() {
+        composeTestRule.setContent {
+            GistagramTheme {
+                AuthScreen(navController = navController)
+            }
+        }
+
+        composeTestRule.onNodeWithTag("button_login").assertExists()
+        composeTestRule.onNodeWithTag("button_login").assertTextEquals("LOGIN")
+        composeTestRule.onNodeWithTag("button_login").assertIsEnabled()
+    }*/
 
 }

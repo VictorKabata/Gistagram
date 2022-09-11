@@ -10,6 +10,7 @@ import com.vickikbt.shared.data.network.rest.ApiClient
 import com.vickikbt.shared.domain.models.AccessToken
 import com.vickikbt.shared.domain.models.User
 import com.vickikbt.shared.domain.repositories.AuthRepository
+import com.vickikbt.shared.domain.utils.Constants
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
@@ -21,7 +22,11 @@ class AuthRepositoryImpl constructor(
 ) : AuthRepository {
 
     override suspend fun fetchAccessToken(code: String): AccessToken? {
-        val response = apiClient.fetchAccessToken(code = code)
+        val response = apiClient.fetchAccessToken(
+            code = code,
+            clientId = Constants.CLIENT_ID,
+            clientSecret = Constants.CLIENT_SECRET
+        )
         val responseEntity = response?.toEntity()
 
         responseEntity?.let {
@@ -58,6 +63,6 @@ class AuthRepositoryImpl constructor(
     }
 
     override suspend fun getUser(): Flow<User?>? {
-        return userDao.user?.map { it?.toDomain() }
+        return userDao.user.map { it?.toDomain() }
     }
 }

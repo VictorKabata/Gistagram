@@ -10,6 +10,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -68,6 +69,7 @@ fun AuthScreen(navController: NavController, viewModel: AuthViewModel = getViewM
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Button(
+                modifier=Modifier.testTag("button_login"),
                 onClick = {
                     githubOAuth(context = context)
                 },

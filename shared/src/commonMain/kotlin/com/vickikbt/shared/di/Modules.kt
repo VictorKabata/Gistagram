@@ -12,16 +12,17 @@ import com.vickikbt.shared.data.data_source.ProfileRepositoryImpl
 import com.vickikbt.shared.data.data_source.SettingsRepositoryImpl
 import com.vickikbt.shared.data.network.graphql.AuthorizationInterceptor
 import com.vickikbt.shared.data.network.rest.ApiClient
-import com.vickikbt.shared.data.network.rest.ApiClientImpl
 import com.vickikbt.shared.domain.repositories.AuthRepository
 import com.vickikbt.shared.domain.repositories.ProfileRepository
 import com.vickikbt.shared.domain.repositories.SettingsRepository
 import com.vickikbt.shared.domain.utils.Constants
 import io.github.aakira.napier.Napier
-import io.ktor.client.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
-import io.ktor.client.features.logging.*
+import io.ktor.client.HttpClient
+import io.ktor.client.features.json.JsonFeature
+import io.ktor.client.features.json.serializer.KotlinxSerializer
+import io.ktor.client.features.logging.LogLevel
+import io.ktor.client.features.logging.Logger
+import io.ktor.client.features.logging.Logging
 import io.realm.kotlin.Realm
 import io.realm.kotlin.RealmConfiguration
 import kotlinx.coroutines.Dispatchers
@@ -56,7 +57,8 @@ val commonModule = module {
             }
         }
     }
-    single<ApiClient> { ApiClientImpl(httpClient = get()) }
+
+    single { ApiClient(httpClient = get()) }
 
     /**
      *Create instance of realm config need to
