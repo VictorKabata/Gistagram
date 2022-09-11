@@ -13,7 +13,7 @@ object Versions {
     const val ktor = "1.6.7"
     const val kotlinSerialization = "1.6.10"
     const val kotlinxSerialization = "1.2.2"
-    const val apollo = "3.5.0"
+    const val apollo = "3.6.0"
     const val multiplatformPaging = "0.4.7"
     const val kotlinxCoroutines = "1.6.3-native-mt"
     const val napier = "2.4.0"
@@ -23,6 +23,7 @@ object Versions {
     const val realm = "1.0.1"
 
     const val mockk = "1.12.3"
+    const val kotlinxTestResources = "0.2.2"
 
     // Desktop Dependencies Version
     const val composeDesktop = "1.2.0-alpha01-dev683"

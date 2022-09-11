@@ -74,6 +74,11 @@ kotlin {
         sourceSets["commonTest"].dependencies {
             implementation(kotlin("test-common"))
             implementation(kotlin("test-annotations-common"))
+            implementation(MultiplatformDependencies.apolloMockServer)
+            implementation(MultiplatformDependencies.ktorMock)
+            implementation(MultiplatformDependencies.kotlinxTestResources)
+            implementation(MultiplatformDependencies.kotlinxCoroutinesTest)
+            implementation(MultiplatformDependencies.multiplatformSettingsTest)
         }
 
         sourceSets["androidMain"].dependencies {

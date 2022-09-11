@@ -17,6 +17,7 @@ object MultiplatformDependencies {
     const val ktoriOS = "io.ktor:ktor-client-ios:${Versions.ktor}"
     const val ktorJvm = "io.ktor:ktor-client-java:${Versions.ktor}"
     const val ktorDarwin = "io.ktor:ktor-client-darwin:${Versions.ktor}"
+    const val ktorMock = "io.ktor:ktor-client-mock:${Versions.ktor}"
 
     const val ktorServerCore = "io.ktor:ktor-server-core:${Versions.ktor}"
     const val ktorServerNetty = "io.ktor:ktor-server-netty:${Versions.ktor}"
@@ -26,6 +27,7 @@ object MultiplatformDependencies {
         "com.apollographql.apollo:apollo-coroutines-support:${Versions.apollo}"
     const val apolloNormalizedCache =
         "com.apollographql.apollo3:apollo-normalized-cache:${Versions.apollo}"
+    const val apolloMockServer = "com.apollographql.apollo3:apollo-mockserver:${Versions.apollo}"
 
     const val multiplatformPaging =
         "io.github.kuuuurt:multiplatform-paging:${Versions.multiplatformPaging}"
@@ -45,7 +47,14 @@ object MultiplatformDependencies {
         "com.russhwolf:multiplatform-settings-no-arg:${Versions.multiplatformSettings}"
     const val multiplatformSettingsCoroutines =
         "com.russhwolf:multiplatform-settings-coroutines-native-mt:${Versions.multiplatformSettings}"
+    const val multiplatformSettingsTest =
+        "com.russhwolf:multiplatform-settings-test:${Versions.multiplatformSettings}"
 
     const val mockk = "io.mockk:mockk:${Versions.mockk}"
+
+    const val kotlinxTestResources = "com.goncalossilva:resources:${Versions.kotlinxTestResources}"
+
+    const val kotlinxCoroutinesTest =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlinxCoroutines}"
 
 }
