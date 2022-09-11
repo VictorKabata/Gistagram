@@ -51,7 +51,7 @@ object Versions {
     const val jUnit = "4.13.2"
     const val truth = "1.1.3"
     const val coroutinesTest = "1.5.0"
-    const val robolectric = "4.5.1"
+    const val robolectric = "4.8.2"
     const val mockWebServer = "4.7.2"
     const val jUnitKtx = "1.1.2"
     const val espresso = "3.3.0"

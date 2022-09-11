@@ -46,4 +46,10 @@ object AndroidDependencies {
     const val splashScreen = "androidx.core:core-splashscreen:${Versions.splashScreen}"
     const val composeMarkDown = "com.github.jeziellago:compose-markdown:${Versions.composeMarkDown}"
     const val markDownView = "com.github.tiagohm.MarkdownView:library:${Versions.markDownView}"
+
+    const val jUnit4="junit:junit:${Versions.jUnit}"
+    const val robolectric="org.robolectric:robolectric:${Versions.robolectric}"
+    const val composeTest="androidx.compose.ui:ui-test-junit4:${Versions.compose}"
+    const val composeManifestTest="androidx.compose.ui:ui-test-manifest:${Versions.compose}"
+    const val navigationTest="androidx.navigation:navigation-testing:${Versions.navigation}"
 }

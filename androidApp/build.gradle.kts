@@ -96,4 +96,11 @@ dependencies {
 
     implementation(AndroidDependencies.composeMarkDown)
     implementation(AndroidDependencies.markDownView)
+
+    // Tests
+    testImplementation(AndroidDependencies.jUnit4)
+    testImplementation(AndroidDependencies.robolectric)
+    testImplementation(AndroidDependencies.composeTest)
+    debugImplementation(AndroidDependencies.composeManifestTest)
+    debugImplementation(AndroidDependencies.navigationTest)
 }
