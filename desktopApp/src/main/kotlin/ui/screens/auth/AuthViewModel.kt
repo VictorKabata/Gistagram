@@ -5,21 +5,29 @@ import com.vickikbt.shared.domain.repositories.AuthRepository
 import com.vickikbt.shared.domain.utils.Configs
 import com.vickikbt.shared.domain.utils.Constants
 import com.vickikbt.shared.presentation.UiState
-import io.ktor.application.*
-import io.ktor.response.*
-import io.ktor.routing.*
-import io.ktor.server.engine.*
-import io.ktor.server.netty.*
-import koin
-import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import org.koin.core.component.KoinComponent
+import io.ktor.application.call
+import io.ktor.response.respondText
+import io.ktor.routing.get
+import io.ktor.routing.routing
+import io.ktor.server.engine.embeddedServer
+import io.ktor.server.engine.stop
+import io.ktor.server.netty.Netty
+import io.ktor.server.netty.NettyApplicationEngine
 import java.awt.Desktop
 import java.net.URI
 import java.net.URLEncoder
 import java.util.concurrent.TimeUnit
+import koin
 import kotlin.coroutines.resume
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.withContext
+import org.koin.core.component.KoinComponent
 
 class AuthViewModel constructor(private val authRepository: AuthRepository = koin.get()) :
     KoinComponent {
@@ -77,7 +85,9 @@ class AuthViewModel constructor(private val authRepository: AuthRepository = koi
         }
 
         viewModelScope.launch {
-            server!!.stop(1, 5, TimeUnit.SECONDS)
+            server?.let {
+                it.stop(1, 5, TimeUnit.SECONDS)
+            }
         }
 
         return code
