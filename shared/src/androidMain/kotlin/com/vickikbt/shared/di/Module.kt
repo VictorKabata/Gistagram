@@ -9,7 +9,7 @@ import org.koin.dsl.module
 actual fun platformModule(): Module = module {
     single { DatabaseDriverFactory(context = get()) }
 
-    single { MultiplatformSettingsWrapper(context = get()) }
+    single { MultiplatformSettingsWrapper(context = get()).createSettings() }
 
     single { Android.create() }
 }

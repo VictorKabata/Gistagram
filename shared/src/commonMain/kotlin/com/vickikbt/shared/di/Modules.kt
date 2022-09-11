@@ -97,7 +97,8 @@ val commonModule = module {
      */
     single { AccessTokenDao(databaseDriverFactory = get()) }
 
-    single { PreferenceManager(multiplatformSettingsWrapper = get()) }
+    /** Multiplatform-Settings*/
+    single { PreferenceManager(observableSettings = get()) }
 
     /**
      * Injecting to repositories
